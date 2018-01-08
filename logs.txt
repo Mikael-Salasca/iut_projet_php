@@ -1,0 +1,13 @@
+logs BD alwaysdata :
+id: ProjetPhpGMV
+mpd: Monvierlemvc
+
+connexion ftp :
+hote: ftp-projetphpmvg.alwaysdata.net
+id: projetphpmvg
+mdp: jblafolle
+
+phpmyadmin
+hote: mysql-projetphpmvg.alwaysdata.net
+id: 150277
+mdp: 123456789
