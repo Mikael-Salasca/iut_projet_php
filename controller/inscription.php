@@ -8,11 +8,6 @@
  */
 
 
-define("ROOT", '/home/projetphpmvg/www/iut_project/');
-
-require ROOT . 'model/saveInscription.php';
-
-require ROOT . 'views/inscriptionView.php';
 
 
 function validInscription($name, $email, $password)

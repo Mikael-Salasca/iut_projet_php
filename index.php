@@ -6,16 +6,18 @@
  * Time: 17:25
  */
 
-require 'inscription.php';
+define("WEBROOT");
+define("ROOT",__DIR__);
 
-if (isset($_POST['action'])) {
-    if ($_POST['action'] == 'enregistrer') {
+print_r($_SERVER);
 
-        validInscription($_POST['name'],$_POST['email'],$_POST['password']);
+require (ROOT . 'model/base.php');
+require (ROOT . 'model/saveInscription.php');
+require (ROOT . 'controller/inscription.php');
 
+$params = explode('/',$_SERVER['REQUEST_URI']);
+$controller = $params[0];
+$action = $params[1];
 
-    }
-
-
-
-    }
+require ('controller/' .$controller .'.php');
+$controller = new $controller();
