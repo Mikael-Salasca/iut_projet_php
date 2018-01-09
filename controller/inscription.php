@@ -23,9 +23,12 @@ class Inscription extends  Controller
         $affectedLines = saveInscription($name, $email, $password);
 
         if ($affectedLines === false) {
-            die('Inscription non enregistrée !');
+            //$_SESSION['erreur_inscription'] = true;
+            header('Location: ./redirect');
+
         } else {
-            echo "test pass";
+
+            header('Location: ./redirect');
         }
     }
 
@@ -34,6 +37,12 @@ class Inscription extends  Controller
     {
 
         require ROOT . '/views/inscriptionView.php';
+
+    }
+
+    function redirect(){
+
+        require ROOT . '/views/accueilView.php';
 
     }
 
