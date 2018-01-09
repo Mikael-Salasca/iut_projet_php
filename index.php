@@ -6,18 +6,19 @@
  * Time: 17:25
  */
 
-define("WEBROOT");
+//define("WEBROOT");
 define("ROOT",__DIR__);
 
 print_r($_SERVER);
 
-require (ROOT . 'model/base.php');
-require (ROOT . 'model/saveInscription.php');
-require (ROOT . 'controller/inscription.php');
+
 
 $params = explode('/',$_SERVER['REQUEST_URI']);
-$controller = $params[0];
-$action = $params[1];
+$controller = $params[1];
+echo $controller;
+$action = $params[2];
+echo $action;
 
 require ('controller/' .$controller .'.php');
 $controller = new $controller();
+$controller->$action();
