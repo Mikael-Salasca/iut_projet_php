@@ -11,25 +11,31 @@ require (ROOT . '/model/saveInscription.php');
 
 require ROOT . '/core/controller.php';
 
-class Inscription extends  Controller {
+class Inscription extends  Controller
+{
 
-    function validInscription($name, $email, $password)
+    function validate()
     {
+        $name = $_POST['name'];
+        $email = $_POST['mail'];
+        $password = $_POST['password'];
+
         $affectedLines = saveInscription($name, $email, $password);
 
         if ($affectedLines === false) {
             die('Inscription non enregistrée !');
-        }
-        else {
-            header('Location: index.php?action=post');
+        } else {
+            echo "test pass";
         }
     }
 
-    function register(){
+
+    function register()
+    {
 
         require ROOT . '/views/inscriptionView.php';
 
     }
 
-}
 
+}

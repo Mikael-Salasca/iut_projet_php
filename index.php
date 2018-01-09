@@ -8,9 +8,9 @@
 
 //define("WEBROOT");
 define("ROOT",__DIR__);
-
+echo '<pre>';
 print_r($_SERVER);
-
+echo '</pre>';
 
 
 $params = explode('/',$_SERVER['REQUEST_URI']);
@@ -19,6 +19,6 @@ echo $controller;
 $action = $params[2];
 echo $action;
 
-require ('controller/' .$controller .'.php');
+require ('controller/' . $controller . '.php');
 $controller = new $controller();
 $controller->$action();

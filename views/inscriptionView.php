@@ -3,14 +3,14 @@
     start_page('Inscription');
 ?>
 
-    <form action = "../model/saveInscription.php" method="post" >
-        Identifiant <input type="text" name="'name" />  </br>
+    <form action = "../inscription/validate" method="post" >
+        Identifiant <input type="text" name="name" />  </br>
         Mail : <input type="text" name="mail" />  </br>
         Mot de passe : <input type="password" name="password" /></br>
         Vérification du mot de passe : <input type="password" /> </br>
 
         <input type="checkbox" name="cu" /> J'acceptes les C.U </br>
-        <input type="submit" name="action" value="enregistrer" />
+        <input type="submit" name="" value="enregistrer" />
 
     </form>
 <?php
