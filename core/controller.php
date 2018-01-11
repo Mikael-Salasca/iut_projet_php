@@ -12,18 +12,20 @@ class Controller {
     {
         echo '<!DOCTYPE html> <html lang="fr"> <head><title>'
             . PHP_EOL . $title . '</title> <link  rel="stylesheet" href="../fic.css"/>
-                
-                
                 <meta charset="utf-8"/>
                 <meta name="description" content="Site web de Traduction"/> 
                 <meta name="keywords" content="HTML,CSS,JS"/>
-                </head><body>' . PHP_EOL;
+                </head>';
+
+        require ROOT. '/views/header.php';
+        echo '<body> '. PHP_EOL;
     }
 
    function end_page()
    {
     echo '</body></html>';
    }
+
 
 
 
