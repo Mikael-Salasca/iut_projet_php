@@ -7,7 +7,7 @@
  * Time: 15:52
  */
 
-require (ROOT . '/model/saveInscription.php');
+require(ROOT . '/model/saveRegistration.php');
 
 require ROOT . '/core/controller.php';
 
