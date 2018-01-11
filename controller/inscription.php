@@ -7,7 +7,7 @@
  * Time: 15:52
  */
 
-require (ROOT . '/model/saveInscription.php');
+require(ROOT . '/model/saveRegistration.php');
 
 require ROOT . '/core/controller.php';
 
@@ -20,12 +20,15 @@ class Inscription extends  Controller
         $email = $_POST['mail'];
         $password = $_POST['password'];
 
-        $affectedLines = saveInscription($name, $email, $password);
+        $affectedLines = saveRegistration($name, $email, $password);
 
         if ($affectedLines === false) {
-            die('Inscription non enregistrée !');
+            //$_SESSION['erreur_inscription'] = true;
+            header('Location: ./redirect');
+
         } else {
-            echo "test pass";
+
+            header('Location: ./redirect');
         }
     }
 
@@ -34,6 +37,12 @@ class Inscription extends  Controller
     {
 
         require ROOT . '/views/inscriptionView.php';
+
+    }
+
+    function redirect(){
+
+        require ROOT . '/views/homeView.php';
 
     }
 

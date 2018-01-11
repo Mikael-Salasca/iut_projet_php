@@ -14,11 +14,42 @@ echo '</pre>';
 
 
 $params = explode('/',$_SERVER['REQUEST_URI']);
-$controller = $params[1];
-echo $controller;
-$action = $params[2];
-echo $action;
+if (isset($params[1])&& isset($params[2])) {
 
-require ('controller/' . $controller . '.php');
-$controller = new $controller();
-$controller->$action();
+    $controller = $params[1];
+    $action = $params[2];
+    echo 'controller : ' . $controller . '</br>';
+    echo 'action : ' . $action;
+    if (file_exists('controller/' . $controller . '.php')) {
+        require 'controller/' . $controller . '.php';
+        if (class_exists($controller)){
+            $controllerObject = new $controller();
+            if (method_exists($controllerObject, $action))
+                $controllerObject->$action();
+        }
+
+    }
+    else {
+            require 'controller/pagenotfound.php';
+            $controllerObject = new Pagenotfound();
+            $controllerObject->start_page('Page d\'Erreur');
+            $controllerObject->displayError();
+            $controllerObject->end_page();
+
+
+        }
+
+    } else {
+        require 'controller/home.php';
+        $controllerObject = new Home();
+        $controllerObject->start_page('Accueil');
+        $controllerObject->index();
+        $controllerObject->end_page();
+    }
+
+
+
+
+
+
+
