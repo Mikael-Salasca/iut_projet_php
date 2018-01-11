@@ -12,8 +12,9 @@ Class Home extends Controller {
 
     function index()
     {
-
+        $this->start_page('Page d\'Accueil');
         require ROOT . '/views/homeView.php';
+        $this->end_page();
 
     }
 

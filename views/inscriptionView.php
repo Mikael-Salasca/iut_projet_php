@@ -1,6 +1,4 @@
-<?php //page d'inscription
 
-?>
 
     <form action = "../inscription/validate" method="post" >
         Identifiant <input type="text" name="name" />  </br>
@@ -12,6 +10,4 @@
         <input type="submit" name="" value="enregistrer" />
 
     </form>
-<?php
-?>
 

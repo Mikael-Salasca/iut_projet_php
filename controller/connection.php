@@ -7,7 +7,9 @@
     class Connection extends Controller {
 
         function connect() {
+            $this->start_page('Page de connexion');
             require ROOT . '/views/connectionView.php';
+            $this->end_page();
         }
 
         function validate() {

@@ -24,11 +24,11 @@ class Inscription extends  Controller
 
         if ($affectedLines === false) {
             //$_SESSION['erreur_inscription'] = true;
-            header('Location: ./redirect');
+            header('Location: /');
 
         } else {
 
-            header('Location: ./redirect');
+            echo 'bien inscrit';
         }
     }
 
@@ -36,15 +36,13 @@ class Inscription extends  Controller
     function register()
     {
 
+        $this->start_page('Page d\'Inscription');
         require ROOT . '/views/inscriptionView.php';
+        $this->end_page();
+
 
     }
 
-    function redirect(){
-
-        require ROOT . '/views/homeView.php';
-
-    }
 
 
 }
