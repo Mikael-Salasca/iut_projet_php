@@ -12,6 +12,11 @@
             $this->end_page();
         }
 
+        function deconnect(){
+            session_abort();
+            header('Location: ' . 'home/index');
+        }
+
         function validate() {
 
             $usersDataBase = new UsersDataBase();
