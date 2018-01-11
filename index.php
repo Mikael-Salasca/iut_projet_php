@@ -14,20 +14,32 @@ echo '</pre>';
 
 
 $params = explode('/',$_SERVER['REQUEST_URI']);
-$controller = $params[1];
-if($controller == "accueil" || $controller == "acceuil")
-{
-    header('Location: accueil.php');
+if (isset($params[1])&& isset($params[2])){
+
+    $controller = $params[1];
+    $action = $params[2];
 }
+
+
+
+
 echo $controller;
-$action = $params[2];
 echo $action;
 
 
 require ('controller/' . $controller . '.php');
 
-if(!empty($action))
-{
-    $controller = new $controller();
-    $controller->$action();
+if (class_exists($controller)){
+    $controllerObject = new $controller(); //test si la classe existe
+    if (method_exists($action))
+        $controllerObject->$action();
+
 }
+
+else {
+    $controllerObject = new Home();
+    $controllerObject->index();
+}
+
+
+

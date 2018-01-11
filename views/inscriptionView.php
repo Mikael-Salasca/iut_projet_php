@@ -1,5 +1,5 @@
 <?php //page d'inscription
-    include 'utils.inc.php';
+
     start_page('Inscription');
 ?>
 

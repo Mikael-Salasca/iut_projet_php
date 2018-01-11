@@ -3,7 +3,7 @@
 
 require 'base.php';
 
-function saveInscription($name, $email, $password)
+function saveRegistration($name, $email, $password)
 {
     $db = dbConnect();
     $password = md5($password);
