@@ -5,7 +5,9 @@ require 'base.php';
 
 function saveRegistration($name, $email, $password)
 {
-    $db = dbConnect();
+
+    $usersDataBase = new UsersDataBase();
+    $db = $usersDataBase->dbConnect();
     $password = md5($password);
     $query = "INSERT INTO user (NAME, EMAIL, PASSWORD, DATE) VALUES ('$name','$email','$password',NOW())";
 
