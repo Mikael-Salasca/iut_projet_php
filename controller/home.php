@@ -13,6 +13,9 @@ Class Home extends Controller {
     function index()
     {
         $this->start_page('Page d\'Accueil');
+        if ($_SESSION['login'] == 'ok')
+            echo  'Vous êtes connecté !';
+        $_SESSION['login'] = 'connecté';
         require ROOT . '/views/homeView.php';
         $this->end_page();
 

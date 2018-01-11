@@ -8,6 +8,9 @@
 
         function connect() {
             $this->start_page('Page de connexion');
+            if($_SESSION['login'] == 'ko')
+                echo 'Identifiants incorrects.';
+            unset($_SESSION['login']);
             require ROOT . '/views/connectionView.php';
             $this->end_page();
         }
@@ -25,12 +28,14 @@
                 $dbRow = mysqli_fetch_assoc($queryResult);
                 $_SESSION['name'] = $dbRow['NAME'];
                 $_SESSION['passwd'] = md5($dbRow['PASSWORD']);
-                echo 'Réussi';
-                //header(accueil.php?step=LOGIN);
-                exit;
+
+                $_SESSION['login'] = 'ok';
+                header("Location: /home/index");
             }
-            echo 'Zut';
-            //header(accueil.php?step=ERROR);
+            else {
+                $_SESSION['login'] = 'ko';
+                header("Location: /connection/connect");
+            }
         }
 
 
