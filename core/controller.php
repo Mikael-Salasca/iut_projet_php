@@ -15,9 +15,9 @@ class Controller {
     }
 
    function end_page()
-{
+   {
     echo '</body></html>';
-}
+   }
 
 
 

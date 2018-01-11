@@ -1,6 +1,5 @@
 <?php //page d'inscription
 
-    start_page('Inscription');
 ?>
 
     <form action = "../inscription/validate" method="post" >
@@ -14,6 +13,5 @@
 
     </form>
 <?php
-    end_page();
 ?>
 
