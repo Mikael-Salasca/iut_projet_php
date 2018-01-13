@@ -8,7 +8,9 @@
         <div id="form-inscription-co">
             <form action = "../inscription/validate" method="post" >
                 <label for="identifiant">Identifiant</label> </br>
-                <input type="text" name="name" maxlength="20" required />  </br></br>
+                <input type="text" name="name" maxlength="20" required />
+                <?php if(isset($_SESSION['error_account_exist'])) { echo $_SESSION['error_account_exist']; unset($_SESSION['error_account_exist']); } ?>
+                </br></br>
                 <label for="mail">Mail</label></br>
                 <input type="text" name="mail" required />  </br></br>
                 <label for="mdp">Mot de passe</label></br>

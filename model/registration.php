@@ -15,8 +15,19 @@ function saveRegistration($name, $email, $password)
     $affectedLines = $inscription->execute();
 
     return $affectedLines;
+}
 
+function checkAccountExist($name){
 
+    $usersDataBase = new UsersDataBase();
+    $dbConnection = $usersDataBase->dbConnect();
 
+    $registerCheckQuery = "SELECT * FROM user WHERE NAME = '$name'";
+    $queryResult = mysqli_query($dbConnection, $registerCheckQuery);
+    if (mysqli_num_rows($queryResult) != 0) {
+        return true;
+    }
+    else
+        return false;
 }
 
