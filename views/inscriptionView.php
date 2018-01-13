@@ -25,6 +25,13 @@
 
 
             </form>
+            <?php
+                if(isset($_SESSION['error_register']) && !empty($_SESSION['error_register']))
+                    {
+                        echo '<br>' . $_SESSION['error_register'];
+                        unset($_SESSION['error_register']);
+                    }
+            ?>
             <br>
         </div>
     </section>

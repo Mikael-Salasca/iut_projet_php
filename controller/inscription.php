@@ -15,6 +15,7 @@ class Inscription extends  Controller
 
     function validate()
     {
+        session_start();
         $name = filter_input(INPUT_POST, 'name');
         $email = filter_input(INPUT_POST, 'mail');
         $password = filter_input(INPUT_POST, 'password');
@@ -30,7 +31,7 @@ class Inscription extends  Controller
 
                 if ($affectedLines === false)
                 {
-                    $_SESSION['error_register'] = '<p>Une erreur s\'est produite lors de l\'inscription, veuillez reassayer.<br>Si le problème persiste, contactez le service client</p>';
+                    $_SESSION['error_register'] = '<p class="error_register">Une erreur s\'est produite lors de l\'inscription, veuillez reassayer.<br>Si le problème persiste, contactez le service client</p>';
                     header('Location: /inscription/register');
 
                 }
@@ -45,6 +46,7 @@ class Inscription extends  Controller
     function register()
     {
 
+        session_start();
         $this->start_page('Page d\'Inscription');
         require ROOT . '/views/inscriptionView.php';
         $this->end_page();
