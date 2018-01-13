@@ -12,13 +12,30 @@ Class Home extends Controller {
 
     function index()
     {
+        session_start();
         $this->start_page('Page d\'Accueil');
-        if ($_SESSION['login'] == 'ok')
-            echo  'Vous êtes connecté !';
-        $_SESSION['login'] = 'connecté';
+        $this->checkFirstCo();
+        $this->checkDisconnect();
         require ROOT . '/views/homeView.php';
         $this->end_page();
 
+    }
+    function checkFirstCo(){
+        if(isset($_SESSION['first_co']))
+        {
+            echo '<script type="text/javascript">alert("Vous êtes désormais connecté !");</script>';
+            unset($_SESSION['first_co']);
+        }
+
+    }
+    function checkDisconnect(){
+
+        if(isset($_SESSION['isDisconnect']))
+        {
+            echo '<script type="text/javascript">alert("Vous avez bien était déconnecté !");</script>';
+            unset($_SESSION['isDisconnect']);
+            session_destroy();
+        }
     }
 
 }

@@ -1,9 +1,6 @@
 <section id="corps">
 
-    <section id="pannel-co">
-        <br><br><br><br><br><br>
-        <p>Vous n'êtes pas connecté !</p>
-    </section>
+        <?php require ROOT . '/views/pannelConnexion/pannelConnexionView.php'; ?>
 
     <section id="main-page">
         <br>

@@ -1,9 +1,5 @@
 <section id="corps">
 
-    <section id="pannel-co">
-        <br><br><br><br><br><br>
-        <p>Vous n'êtes pas connecté !</p>
-    </section>
     <section id="main-page">
         <div id="bar-account">
             <h1>Connexion</h1>
@@ -17,6 +13,13 @@
                 <input type="password" name="mdp" required/> </br></br>
                 <input type="submit" class="button-connexion" name="" value="Se connecter" />
             </form>
+            <?php
+                if(isset($_SESSION['error_connexion']) || !empty($_SESSION['error_connexion']))
+                {
+                    echo '<br>' . $_SESSION['error_connexion'];
+                    unset($_SESSION['error_connexion']);
+                }
+            ?>
         </div>
     </section>
 </section>

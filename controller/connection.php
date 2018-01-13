@@ -2,41 +2,51 @@
 
 require ROOT . '/core/controller.php';
 require ROOT . '/model/base.php';
-session_start();
+
 
 class Connection extends Controller {
 
     function connect() {
+        session_start();
         $this->start_page('Page de connexion');
-        if($_SESSION['login'] == 'ko')
-            echo 'Identifiants incorrects.';
-        unset($_SESSION['login']);
         require ROOT . '/views/connectionView.php';
         $this->end_page();
     }
 
     function validate() {
+        session_start();
 
         $usersDataBase = new UsersDataBase();
         $dbConnection = $usersDataBase->dbConnect();
 
-        $name = $_POST['name'];
-        $passwd = $_POST['mdp'];
+        $name = filter_input(INPUT_POST,name);
+        $passwd = filter_input(INPUT_POST,mdp);
         $connectCheckQuery = "SELECT * FROM user WHERE NAME = '$name' AND PASSWORD = md5('$passwd')";
         $queryResult = mysqli_query($dbConnection, $connectCheckQuery);
         if (mysqli_num_rows($queryResult) != 0) {
             $dbRow = mysqli_fetch_assoc($queryResult);
             $_SESSION['name'] = $dbRow['NAME'];
-            $_SESSION['passwd'] = md5($dbRow['PASSWORD']);
-
             $_SESSION['login'] = 'ok';
-            header("Location: /home/index");
+            $_SESSION['first_co'] = 1;
+            header("Location: /");
         }
         else {
-            $_SESSION['login'] = 'ko';
+            $_SESSION['error_connexion'] = '<p>Le nom d’utilisateur ou le mot de passe est incorrect.<br>Veuillez essayer à nouveau.<p>';
             header("Location: /connection/connect");
         }
     }
 
+    function disconnect()
+    {
+        session_start();
+        if(isset($_SESSION['login']))
+        {
+            unset($_SESSION['login']);
+            unset($_SESSION['name']);
+            $_SESSION['isDisconnect'] = 1;
+            header('Location: /');
+        }
+
+    }
 
 }

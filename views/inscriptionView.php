@@ -1,9 +1,5 @@
 <section id="corps">
 
-    <section id="pannel-co">
-        <br><br><br><br><br><br>
-        <p>Vous n'êtes pas connecté !</p>
-    </section>
     <section id="main-page">
         <div id="bar-account">
             <h1>Créer votre compte</h1>
