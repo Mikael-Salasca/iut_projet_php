@@ -2,14 +2,13 @@
 
 require 'base.php';
 
-function checkConnexionValid()
+function checkConnexionValid($name,$passwd)
 {
 
     $usersDataBase = new UsersDataBase();
     $dbConnection = $usersDataBase->dbConnect();
 
-    $name = filter_input(INPUT_POST,name);
-    $passwd = filter_input(INPUT_POST,mdp);
+
     $connectCheckQuery = "SELECT * FROM user WHERE NAME = '$name' AND PASSWORD = md5('$passwd')";
     $queryResult = mysqli_query($dbConnection, $connectCheckQuery);
     if (mysqli_num_rows($queryResult) != 0) {

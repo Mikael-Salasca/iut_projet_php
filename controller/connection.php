@@ -17,7 +17,9 @@ class Connection extends Controller {
     function validate() {
         session_start();
 
-        if(checkConnexionValid() == true)
+        $name = filter_input(INPUT_POST,name);
+        $passwd = filter_input(INPUT_POST,mdp);
+        if(checkConnexionValid($name,$passwd) == true)
         {
             $_SESSION['name'] = $dbRow['NAME'];
             $_SESSION['login'] = 'ok';
