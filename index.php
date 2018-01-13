@@ -8,10 +8,11 @@
 
 //define("WEBROOT");
 define("ROOT",__DIR__);
+/*
 echo '<pre>';
 print_r($_SERVER);
 echo '</pre>';
-
+*/
 
 $params = explode('/',$_SERVER['REQUEST_URI']);
 if (isset($params[1])&& isset($params[2])) {
