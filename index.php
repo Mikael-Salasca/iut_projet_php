@@ -19,8 +19,8 @@ if (isset($params[1])&& isset($params[2])) {
 
     $controller = $params[1];
     $action = $params[2];
-    echo 'controller : ' . $controller . '</br>';
-    echo 'action : ' . $action;
+    //echo 'controller : ' . $controller . '</br>';
+    //echo 'action : ' . $action;
     if (file_exists('controller/' . $controller . '.php')) {
         require 'controller/' . $controller . '.php';
         if (class_exists($controller)) {
