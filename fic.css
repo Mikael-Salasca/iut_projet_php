@@ -160,28 +160,29 @@ footer {
 
 }
 
-#form-inscription {
+#form-inscription-co {
 
     color:black;
 }
-#form-inscription label{
+#form-inscription-co label{
     display: inline-block;
     margin-left: 20%;
 
 
+
 }
-#form-inscription input {
+#form-inscription-co input {
     outline: none;
     margin-left: 20%;
 
 }
-#form-inscription input[type="text"],input[type="password"] {
+#form-inscription-co input[type="text"],input[type="password"] {
 
     background-color: #fff;
     border: 1px solid #c7c3b4;
 
 }
-#form-inscription input[type="submit"]{
+.button-inscription {
 
     box-shadow: 0 2px 2px 0 #000000;
     background: linear-gradient(to bottom, #c8e014 1%, #bce254 7%, #b5e03e 14%, #a4b921 41%, #a4b921 52%, #a4b921 88%, #b5e03e 99%);
@@ -189,12 +190,28 @@ footer {
     text-shadow: 0 1px 1px #333;
     transition: all 0.3s ease;
     font-size:20px;
+    border: none;
 }
-#form-inscription input[type="submit"]:focus{
+.button-inscription:focus{
     background: linear-gradient(to bottom, #d1eb09 1%, #c3f244 7%, #bdf12d 14%, #b2cb0f 41%, #b2cb0f 52%, #b2cb0f 88%, #bdf12d 99%);
 }
-#form-inscription input[type="submit"]:hover{
+.button-inscription:hover{
     background: linear-gradient(to bottom, #d1eb09 1%, #c3f244 7%, #bdf12d 14%, #b2cb0f 41%, #b2cb0f 52%, #b2cb0f 88%, #bdf12d 99%);
+}
+
+.button-connexion {
+
+    background-color: #97A800;
+    text-shadow: 0 1px 1px #333;
+    color: #fff;
+    border: none;
+    text-transform: uppercase;
+    font-weight: normal;
+    text-align: center;
+    padding: 0.2rem 1rem;
+}
+.button-connexion:hover{
+    background-color: #bfd500;
 }
 
 #bar-account h1 {

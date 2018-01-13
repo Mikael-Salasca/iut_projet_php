@@ -9,7 +9,7 @@
             <h1>Créer votre compte</h1>
         </div>
         <br><br>
-        <div id="form-inscription">
+        <div id="form-inscription-co">
             <form action = "../inscription/validate" method="post" >
                 <label for="identifiant">Identifiant</label> </br>
                 <input type="text" name="name" maxlength="20" required />  </br></br>
@@ -21,7 +21,7 @@
                 <input type="password" name="password2" required/> </br></br>
 
                 <input type="checkbox" name="cu" /> J'acceptes les C.U </br></br>
-                <input type="submit" name="" value="Terminer l'inscription	" />
+                <input type="submit" class="button-inscription" name="" value="Terminer l'inscription	" />
 
 
             </form>
