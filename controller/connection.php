@@ -21,7 +21,6 @@ class Connection extends Controller {
         $passwd = filter_input(INPUT_POST,mdp);
         if(checkConnexionValid($name,$passwd) == true)
         {
-            $_SESSION['name'] = $dbRow['NAME'];
             $_SESSION['login'] = 'ok';
             $_SESSION['first_co'] = 1;
             header("Location: /");

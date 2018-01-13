@@ -14,7 +14,7 @@ print_r($_SERVER);
 echo '</pre>';
 */
 
-$params = explode('/',$_SERVER['REQUEST_URI']);
+$params = explode('/',$_SERVER['REDIRECT_URL']);
 if (isset($params[1])&& isset($params[2])) {
 
     $controller = $params[1];

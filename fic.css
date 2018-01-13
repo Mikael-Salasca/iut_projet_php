@@ -232,3 +232,20 @@ footer {
     font-size: 15px;
 }
 
+.pannel-acc-not-valid{
+
+    font-weight: bold;
+    text-align:center;
+    color:#b4ff00;
+}
+.pannel-disconnect{
+
+    text-align: center;
+    text-decoration: underline;
+}
+.error-403{
+    text-align: center;
+    font-weight: bold;
+    color:red;
+    font-size:25px;
+}

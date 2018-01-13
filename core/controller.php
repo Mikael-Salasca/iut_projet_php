@@ -5,7 +5,7 @@
  * Date: 09/01/18
  * Time: 13:08
  */
-
+require ROOT . '/model/controller.php';
 class Controller {
 
     function start_page($title)

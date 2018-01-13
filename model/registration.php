@@ -31,3 +31,47 @@ function checkAccountExist($name){
         return false;
 }
 
+function saveKeyAccount($key,$name){
+
+    $usersDataBase = new UsersDataBase();
+    $dbConnection = $usersDataBase->dbConnect();
+    $query = "UPDATE user SET keyVerificationAccount='$key',accountActive=0 WHERE NAME = '$name'";
+    $update = $dbConnection->prepare($query);
+    $affectedLines = $update->execute();
+
+    return $affectedLines;
+
+
+
+}
+
+function getAccountByKey($key){
+
+    $usersDataBase = new UsersDataBase();
+    $dbConnection = $usersDataBase->dbConnect();
+    $query = "SELECT * FROM user WHERE keyVerificationAccount='$key'";
+    $queryResult = mysqli_query($dbConnection, $query);
+    if (mysqli_num_rows($queryResult) != 0) {
+        $dbRow = mysqli_fetch_assoc($queryResult);
+        return $dbRow;
+
+    }
+    else
+        return '';
+
+
+}
+
+function activeAccount($name){
+
+    $usersDataBase = new UsersDataBase();
+    $dbConnection = $usersDataBase->dbConnect();
+    $query = "UPDATE user SET accountActive=1 WHERE NAME = '$name'";
+    $update = $dbConnection->prepare($query);
+    $affectedLines = $update->execute();
+    return $affectedLines;
+
+}
+
+
+

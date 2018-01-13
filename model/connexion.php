@@ -13,6 +13,8 @@ function checkConnexionValid($name,$passwd)
     $queryResult = mysqli_query($dbConnection, $connectCheckQuery);
     if (mysqli_num_rows($queryResult) != 0) {
         $dbRow = mysqli_fetch_assoc($queryResult);
+        $_SESSION['name'] = $dbRow['NAME'];
+        $_SESSION['account_active'] = $dbRow['accountActive'];
         return true;
     }
     else
