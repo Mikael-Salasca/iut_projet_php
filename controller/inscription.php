@@ -15,20 +15,30 @@ class Inscription extends  Controller
 
     function validate()
     {
-        $name = $_POST['name'];
-        $email = $_POST['mail'];
-        $password = $_POST['password'];
+        $name = filter_input(INPUT_POST, 'name');
+        $email = filter_input(INPUT_POST, 'mail');
+        $password = filter_input(INPUT_POST, 'password');
 
-        $affectedLines = saveRegistration($name, $email, $password);
-
-        if ($affectedLines === false) {
-            //$_SESSION['erreur_inscription'] = true;
-            header('Location: /');
-
-        } else {
-
-            echo 'bien inscrit';
+        if (empty($name) || empty($email) || empty($password)) {
+            $_SESSION['error_register'] = '<p>Vous devez remplir tout les champs.</p>';
+            header('location:/inscription/register');
         }
+        else
+            {
+
+                $affectedLines = saveRegistration($name, $email, $password);
+
+                if ($affectedLines === false)
+                {
+                    $_SESSION['error_register'] = '<p>Une erreur s\'est produite lors de l\'inscription, veuillez reassayer.<br>Si le problème persiste, contactez le service client</p>';
+                    header('Location: /inscription/register');
+
+                }
+                else{
+                    header('Location:/inscription/confirme');
+                }
+            }
+
     }
 
 
@@ -40,6 +50,13 @@ class Inscription extends  Controller
         $this->end_page();
 
 
+    }
+
+    function confirme()
+    {
+        $this->start_page('Inscription terminé.');
+        require ROOT . '/views/inscriptionFinish.php';
+        $this->end_page();
     }
 
 
