@@ -1,9 +1,9 @@
 <header>
     <div class="ak-idbar">
-        <a href="#">
+        <a href="/inscription/register">
             INSCRIPTION
         </a>
-        <a href="#">
+        <a href="/connection/connect">
             CONNEXION&nbsp;
             <img class="img-responsive" src="../img/profil.png">
         </a>
@@ -15,7 +15,7 @@
     <nav class="navbar-menu">
 
         <ul class="navbar-nav">
-            <li><a href="">Accueil</a></li>
+            <li><a href="/">Accueil</a></li>
             <li><a href="">Traducteur</a></li>
             <li></li>
 

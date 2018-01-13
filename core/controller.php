@@ -23,6 +23,7 @@ class Controller {
 
    function end_page()
    {
+       require ROOT. '/views/footer.php';
     echo '</body></html>';
    }
 

@@ -128,7 +128,30 @@ body {
     text-align: center;
 
 }
-    
-    
 
-    
+#main-page {
+
+    width: 70%;
+    float: left;
+    margin: auto;
+    margin-left:2%;
+    margin-top: 2%;
+    background-color: #f2f1ef;
+    opacity: 0.8;
+    min-height: 300px;
+}
+
+#main-page p {
+    color:black;
+    text-align: center;
+}
+
+footer {
+
+    min-height: 100px;
+    background-color: black;
+    text-align: center;
+    color:white;
+
+}
+
