@@ -96,7 +96,7 @@ class Inscription extends  Controller
             unset($_SESSION['error_account_active']);
         }
         else if(isset($_SESSION['active_account'])) {
-            $this->forceDisconnect();
+            $this->forceDisconnect(); // On force la session à se fermer (pour que l'utilisateur se reconnecte et ainsi éviter de potentiels erreurs de vues)
             require ROOT . '/views/confirmationAccount/confirmationAccountTrueView.php';
             unset($_SESSION['active_account']);
         }
@@ -170,7 +170,7 @@ class Inscription extends  Controller
 
 
         }
-        else { // dans le cas ou la clé n'a pas était trouver dans le serveur
+        else { // dans le cas ou la clé n'a pas était trouver dans le serveur (ou n'importe quoi a était passé en argument)
 
             $_SESSION['error_account'] = 1;
             header('location:/inscription/confirmaccount');
@@ -186,6 +186,15 @@ class Inscription extends  Controller
             unset($_SESSION['login']);
             unset($_SESSION['name']);
         }
+    }
+
+    function cu()
+    {
+        session_start();
+        $this->start_page('Conditions d\'utilisation');
+        require ROOT . '/views/inscription/cuView.php';
+        $this->end_page();
+
     }
 
 }

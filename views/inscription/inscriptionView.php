@@ -18,7 +18,7 @@
                 <label for="mdp2">Vérification du mot de passe</label></br>
                 <input type="password" name="password2" required/> </br></br>
 
-                <input type="checkbox" name="cu" /> J'acceptes les C.U </br></br>
+                <input type="checkbox" name="cu" /> J'acceptes les <a target="_blank" href="/inscription/cu">C.U</a> </br></br>
                 <input type="submit" class="button-inscription" name="" value="Terminer l'inscription	" />
 
 

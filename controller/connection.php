@@ -17,16 +17,16 @@ class Connection extends Controller {
     function validate() {
         session_start();
 
-        $name = filter_input(INPUT_POST,name);
+        $email = filter_input(INPUT_POST,email);
         $passwd = filter_input(INPUT_POST,mdp);
-        if(checkConnexionValid($name,$passwd) == true)
+        if(checkConnexionValid($email,$passwd) == true)
         {
             $_SESSION['login'] = 'ok';
             $_SESSION['first_co'] = 1;
             header("Location: /");
         }
         else {
-            $_SESSION['error_connexion'] = '<p>Le nom d’utilisateur ou le mot de passe est incorrect.<br>Veuillez essayer à nouveau.<p>';
+            $_SESSION['error_connexion'] = '<div class="error-co">Le compte associé n\'existe pas ou le mot de passe est incorrect.<br>Veuillez essayer à nouveau.<div>';
             header("Location: /connection/connect");
         }
 
