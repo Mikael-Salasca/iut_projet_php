@@ -317,3 +317,92 @@ footer {
 
 }
 
+#pannel-information{
+
+    width: 22%;
+    min-height: 300px;
+    margin-top:2%;
+    margin-right: 2%;
+    margin-bottom: 2%;
+
+
+
+
+}
+
+#pannel-info-block-1{
+
+    background-color: #727272;
+    color: #fff;
+    font-family: "UnicaOne",sans-serif;
+    background-size: 60px auto;
+
+    text-align: center;
+    padding-top: 4%;
+    padding-bottom: 4%;
+}
+
+#pannel-info-content {
+
+    border: 1px solid #cecece;
+    background: #f1f1f1;
+    padding: 1.2rem;
+    color: #28170F;
+}
+
+#form-recovery-pass input[type="text"]{
+
+    background: #f4f4f4;
+    border-radius: 0;
+    height: 40px;
+    transition: all 0.3s ease;
+    border: 1px solid #c7c3b4;
+    color: #555;
+    width: 260px;
+}
+#form-recovery-pass {
+
+    color: #000;
+    font-family: "Lato",sans-serif;
+    margin-left: 35px;
+
+}
+
+.button-valid{
+
+    background-color: #f45c20;
+    color: #fff;
+    text-shadow: 0 1px 1px #333;
+    transition: all 0.3s ease;
+    font-family: "UnicaOne",sans-serif;
+    font-size: 25px;
+    border:none;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 7px 27px;
+}
+
+.button-valid:hover{
+    background-color: #f2801b;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.form-recovery-block{
+
+    position: relative;
+    overflow: hidden;
+    min-height: 30px;
+    padding: 16px 24px;
+    border-bottom: 1px solid #e5e5e5;
+    border-top:1px solid #e5e5e5;
+}
+.form-recovery-block-2{
+
+    position: relative;
+    overflow: hidden;
+    min-height: 30px;
+    padding: 16px 24px;
+    border-bottom: 1px solid #e5e5e5;
+
+}

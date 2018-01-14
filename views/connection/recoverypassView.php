@@ -1,12 +1,50 @@
 <section id="corps">
+    <section id="pannel-information">
+        <div id="pannel-info-block-1">
 
-    <section id="main-page-large">
-        <br><br>
-        <div id="bar-account">
-            <h1>En développement</h1>
-        </div><br>
-
+            <p>INFORMATIONS</p>
+        </div>
+        <div id="pannel-info-content">
+            <strong>Pour récupérer un nouveau mot de passe, nous devons vérifier que vous êtes bien le propriétaire du compte et de l'adresse e-mail associé.</strong>
+            <br><br>
+            Une fois identifié, nous vous enverrons un e-mail pour modifier le mot de passe du compte concerné.
+            <br><br>
+            <strong>L'adresse e-mail est un élément personnel et confidentiel.</strong>
+            Vous devez utiliser votre propre adresse e-mail et surtout pas celle d'un ami	 ni même celle d'un membre de votre famille.
+        </div>
 
 
     </section>
+
+    <section id="main-page">
+
+
+        <br><br>
+        <div id="bar-account">
+            <h1>Identifiez le compte concerné</h1>
+        </div><br><br>
+        <div id="form-recovery-pass">
+            <form action="../connection/validate" method = "post">
+                <div class="form-recovery-block">
+                    <label for="compte">Votre nom de compte</label></br>
+                    <input type="text" name="name" required placeholder="Votre nom de compte"/>
+                </div>
+                </br>
+                <div class="form-recovery-block-2">
+                    <label for="mdp">Votre adresse email</label></br>
+                    <input type="text" name="mail" required placeholder="Votre adresse email"/>
+                </div>
+                </br>
+                <div class="form-recovery-block-2">
+                    <input type="submit" class="button-valid" name="" value="VALIDER" />
+                </div>
+                </br></br>
+
+            </form>
+
+        </div>
+
+
+    </section>
+</section>
 </section>
