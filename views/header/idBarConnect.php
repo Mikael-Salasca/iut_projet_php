@@ -1,7 +1,7 @@
 <div class="ak-idbar">
 
-    <a href="/connection/connect">
-        <?php if (isset($_SESSION['NAME'])) echo strtoupper($_SESSION['NAME']); ?>
+    <a href="#">
+        <?php if (isset($_SESSION['name'])) echo strtoupper($_SESSION['name']) . '&nbsp;' ; ?>
         <img class="img-responsive" src="../../img/profil.png">
     </a>
 
