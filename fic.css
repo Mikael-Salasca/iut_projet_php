@@ -122,6 +122,7 @@ body {
     margin: auto;
     min-height: 300px;
     margin-top: 2%;
+    margin-bottom: 2%;
     margin-right: 2%;
     background-color: #02c3d2;
 }
@@ -130,7 +131,9 @@ body {
     text-align: center;
 
 }
-
+.pannel-co-date{
+    color: #303030;
+}
 #main-page {
 
     width: 70%;

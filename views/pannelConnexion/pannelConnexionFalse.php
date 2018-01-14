@@ -1,4 +1,4 @@
 <section id="pannel-co">
     <br><br><br><br><br><br>
-    <p>Vous n'êtes pas connecté !</p>
+    <p><b>Vous n'êtes pas connecté !</b></p>
 </section>

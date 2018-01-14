@@ -15,6 +15,7 @@ function checkConnexionValid($email,$passwd)
         $dbRow = mysqli_fetch_assoc($queryResult);
         $_SESSION['name'] = $dbRow['NAME'];
         $_SESSION['account_active'] = $dbRow['accountActive'];
+        $_SESSION['account_type'] = $dbRow['TYPEACCOUNT'];
         return true;
     }
     else
