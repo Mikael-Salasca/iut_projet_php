@@ -1,17 +1,11 @@
 <header>
-    <div class="ak-idbar">
-        <a href="/inscription/register">
-            INSCRIPTION
-        </a>
-        <a href="/connection/connect">
-            CONNEXION&nbsp;
-            <img class="img-responsive" src="../img/profil.png">
-        </a>
+    <? php
+    if(!isset($_SESSION['login']) || $_SESSION['login'] != 'ok')
+        require 'idBarNotConnect.php';
+    else
+        require 'idBarConnect.php';
+    ?>
 
-
-
-
-    </div>
     <nav class="navbar-menu">
 
         <ul class="navbar-nav">

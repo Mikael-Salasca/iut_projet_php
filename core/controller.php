@@ -17,7 +17,7 @@ class Controller {
                 <meta name="keywords" content="HTML,CSS,JS"/>
                 </head>';
 
-        require ROOT. '/views/header.php';
+        require ROOT . '/views/header.php';
         echo '<body> '. PHP_EOL;
     }
 
