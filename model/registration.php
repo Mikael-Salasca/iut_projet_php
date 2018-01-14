@@ -17,12 +17,12 @@ function saveRegistration($name, $email, $password)
     return $affectedLines;
 }
 
-function checkAccountExist($name){
+function checkAccountExist($email){
 
     $usersDataBase = new UsersDataBase();
     $dbConnection = $usersDataBase->dbConnect();
 
-    $registerCheckQuery = "SELECT * FROM user WHERE NAME = '$name'";
+    $registerCheckQuery = "SELECT * FROM user WHERE EMAIL = '$email'";
     $queryResult = mysqli_query($dbConnection, $registerCheckQuery);
     if (mysqli_num_rows($queryResult) != 0) {
         return true;
