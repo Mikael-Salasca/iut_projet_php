@@ -10,7 +10,7 @@ class Connection extends Controller {
     function connect() {
         session_start();
         $this->start_page('Page de connexion');
-        require ROOT . '/views/connectionView.php';
+        require ROOT . '/views/connection/connectionView.php';
         $this->end_page();
     }
 
@@ -42,6 +42,23 @@ class Connection extends Controller {
             $_SESSION['isDisconnect'] = 1;
             header('Location: /');
         }
+
+    }
+
+    function impossible(){
+
+        $this->start_page('Impossible de se connecter ?');
+        require ROOT . '/views/connection/impossibleConnectionView.php';
+        $this->end_page();
+
+
+    }
+
+    function recoverypass()
+    {
+        $this->start_page('Récupérer mon mot de passe');
+        require ROOT . '/views/connection/recoverypassView.php';
+        $this->end_page();
 
     }
 
