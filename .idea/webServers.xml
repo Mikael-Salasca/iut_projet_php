@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="0e89623f-0096-456b-9d5b-54a578a7fc80" name="projet" url="http://ftp-projetphpmvg.alwaysdata.net">
-        <fileTransfer host="ftp-projetphpmvg.alwaysdata.net" port="21">
+      <webServer id="0e89623f-0096-456b-9d5b-54a578a7fc80" name="projet" url="http://ftp-thomas-soutif.alwaysdata.net">
+        <fileTransfer host="ftp-thomas-soutif.alwaysdata.net" port="21">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" />
           </advancedOptions>

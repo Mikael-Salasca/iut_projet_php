@@ -8,7 +8,7 @@ Class Pagenotfound extends Controller {
     {
 
         $this->start_page('Page d\'Erreur');
-        require ROOT . '/views/pagenotfoundView.php';
+        require ROOT . '/views/errorGestion/pagenotfoundView.php';
         $this->end_page();
 
     }
