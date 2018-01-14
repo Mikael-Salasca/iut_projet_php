@@ -61,3 +61,47 @@ function saveKeyPass($key,$name){
 
 
 }
+
+
+function getAccountByKey($key){
+
+    $usersDataBase = new UsersDataBase();
+    $dbConnection = $usersDataBase->dbConnect();
+    $query = "SELECT * FROM user WHERE keyVerificationPass='$key'";
+    $queryResult = mysqli_query($dbConnection, $query);
+    if (mysqli_num_rows($queryResult) != 0) {
+        $dbRow = mysqli_fetch_assoc($queryResult);
+        return $dbRow;
+
+    }
+    else
+        return '';
+
+
+}
+
+function checkDatePass($key)
+{
+    //retourne vrai si la date d'expiration est après la date actuelle
+    $usersDataBase = new UsersDataBase();
+    $dbConnection = $usersDataBase->dbConnect();
+    $query = "SELECT * FROM user WHERE keyVerificationPass='$key'";
+    $query2 = "SELECT NOW()";
+    $queryResult = mysqli_query($dbConnection, $query);
+    $queryDate = mysqli_query($dbConnection, $query2);
+    if (mysqli_num_rows($queryResult) != 0) {
+        $dbRow = mysqli_fetch_assoc($queryResult);
+        $date = mysqli_fetch_assoc($queryDate);
+        $date_base = $dbRow['dateVerificationPass'];
+        $date_now = $date['NOW()'];
+
+        if ($date_base > $date_now)
+            return true;
+        else
+            return false;
+
+
+} else
+    return false;
+
+}

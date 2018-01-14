@@ -135,7 +135,24 @@ class Connection extends Controller {
     function resetpassword(){
 
     //une fois que l'utilisateur aura cliqué sur le lien pr changer son mot de passe par mail, il sera redirigé ici
+        session_start();
+        $key = filter_input(INPUT_GET,'guid');
 
+        $row = getAccountByKey($key);
+
+        if($row == '' || !checkDatePass($key))
+        {
+            $_SESSION['error_key_invalid'] = 1;
+            header('location:/connection/changepass');
+            exit();
+        }
+
+        // sinon la clé a était trouver dans la base de donnée
+
+        $_SESSION['reset_name'] = $row['NAME']; // on sauvegarde le nom de compte de la personne
+        $_SESSION['reset_ok'] = 1;
+        header('location:/connection/changepass');
+        exit();
     }
 
     function mailsend(){
@@ -153,6 +170,40 @@ class Connection extends Controller {
         }
 
         $this->end_page();
+
+
+    }
+
+    function changepass(){
+        session_start();
+        $this->start_page('Récupérer mon mot de passe');
+        if(!isset($_SESSION['reset_ok']) && isset($_SESSION['reset_name']))
+        {
+            header('location:/');
+        }
+        else if(isset($_SESSION['reset_name'])) {
+            require ROOT . '/views/resetpassword/resetPassOkView.php';
+            unset($_SESSION['reset_ok']);
+        }
+        else if (isset($_SESSION['error_key_invalid'])) {
+            require ROOT . '/views/resetpassword/resetPassErrorView.php';
+            unset($_SESSION['error_key_invalid']);
+        }
+        else
+            require ROOT . '/views/errorGestion/error403View.php';
+        $this->end_page();
+    }
+
+    function activerecovery(){
+
+        //Une fois que les deux nouveaux mots de passe ont étaient recus, les traites
+        session_start();
+        $this->start_page("En développement");
+        require ROOT . '/views/inDeveloppement.php';
+        $this->end_page();
+
+        exit();
+
 
 
     }
