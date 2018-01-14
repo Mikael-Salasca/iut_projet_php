@@ -7,11 +7,11 @@
         </div><br>
         <p class="impossible-connection">Aidez-nous à vous aider !<br>
             Indiquez-nous quel est votre souci pour vous connecter</p>
-        <br>
+        <br><br><br>
         <div class="row">
 
             <div class="col-row-1">
-                <a href="/connection/recoverypass">
+                <a href="/connection/forgotpass">
                     <img src="../../img/imgkey.png">
                 </a>
             </div>
@@ -24,6 +24,7 @@
 
 
         </div>
+        <br><br><br>
 
 
     </section>

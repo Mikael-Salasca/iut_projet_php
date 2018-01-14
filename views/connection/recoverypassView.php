@@ -10,7 +10,7 @@
             Une fois identifié, nous vous enverrons un e-mail pour modifier le mot de passe du compte concerné.
             <br><br>
             <strong>L'adresse e-mail est un élément personnel et confidentiel.</strong>
-            Vous devez utiliser votre propre adresse e-mail et surtout pas celle d'un ami	 ni même celle d'un membre de votre famille.
+            Vous devez utiliser votre propre adresse e-mail et surtout pas celle d'un ami ni même celle d'un membre de votre famille.
         </div>
 
 
@@ -22,17 +22,20 @@
         <br><br>
         <div id="bar-account">
             <h1>Identifiez le compte concerné</h1>
+            <?php if(isset($_SESSION['error_system'])) echo $_SESSION['error_system']; unset($_SESSION['error_system']); ?>
         </div><br><br>
         <div id="form-recovery-pass">
-            <form action="../connection/validate" method = "post">
+            <form action="/connection/recoverypass" method = "post">
                 <div class="form-recovery-block">
                     <label for="compte">Votre nom de compte</label></br>
-                    <input type="text" name="name" required placeholder="Votre nom de compte"/>
+                    <input type="text" name="account" required placeholder="Votre nom de compte"/>
+                    <?php if (isset($_SESSION['error_account'])) echo $_SESSION['error_account']; ?>
                 </div>
                 </br>
                 <div class="form-recovery-block-2">
                     <label for="mdp">Votre adresse email</label></br>
                     <input type="text" name="mail" required placeholder="Votre adresse email"/>
+                    <?php if (isset($_SESSION['error_account'])) echo $_SESSION['error_account']; unset($_SESSION['error_account']); ?>
                 </div>
                 </br>
                 <div class="form-recovery-block-2">
