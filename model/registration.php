@@ -27,8 +27,10 @@ function checkAccountExist($email){
     if (mysqli_num_rows($queryResult) != 0) {
         return true;
     }
-    else
+    else {
         return false;
+    }
+
 }
 
 function saveKeyAccount($key,$name){
