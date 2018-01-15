@@ -7,14 +7,14 @@ require ROOT . '/model/connexion.php';
 
 class Connection extends Controller {
 
-    function connect() {
+    public function connect() {
         session_start();
         $this->start_page('Page de connexion');
         require ROOT . '/views/connection/connectionView.php';
         $this->end_page();
     }
 
-    function validate() {
+    public function validate() {
         session_start();
 
         $email = filter_input(INPUT_POST,email);
@@ -29,11 +29,10 @@ class Connection extends Controller {
             $_SESSION['error_connexion'] = '<div class="error-co">Le compte associé n\'existe pas ou le mot de passe est incorrect.<br>Veuillez essayer à nouveau.<div>';
             header("Location: /connection/connect");
         }
-
         }
 
 
-    function disconnect()
+    public function disconnect()
     {
         session_start();
         if (isset($_SESSION['login'])) {
@@ -45,7 +44,7 @@ class Connection extends Controller {
 
     }
 
-    function impossible(){
+    public function impossible(){
 
         $this->start_page('Impossible de se connecter ?');
         require ROOT . '/views/connection/impossibleConnectionView.php';
@@ -54,7 +53,7 @@ class Connection extends Controller {
 
     }
 
-    function forgotpass()
+    public function forgotpass()
     {
         session_start();
         $this->start_page('Récupérer mon mot de passe');
@@ -63,7 +62,7 @@ class Connection extends Controller {
 
     }
 
-    function recoverypass()
+    public function recoverypass()
     {
         session_start();
 
@@ -110,7 +109,7 @@ class Connection extends Controller {
     }
 
 
-    function sendEmailVerification($email,$key)
+    private function sendEmailVerification($email,$key)
     {
 
         $TO = $email;
@@ -132,7 +131,7 @@ class Connection extends Controller {
 
     }
 
-    function resetpassword(){
+    public function resetpassword(){
 
     //une fois que l'utilisateur aura cliqué sur le lien pr changer son mot de passe par mail, il sera redirigé ici
         session_start();
@@ -150,12 +149,12 @@ class Connection extends Controller {
         // sinon la clé a était trouver dans la base de donnée
 
         $_SESSION['reset_name'] = $row['NAME']; // on sauvegarde le nom de compte de la personne
-        $_SESSION['reset_ok'] = 1;
+
         header('location:/connection/changepass');
         exit();
     }
 
-    function mailsend(){
+    public function mailsend(){
         session_start();
         $this->start_page('Récupérer mon mot de passe');
         if(isset($_SESSION['send_mail'])){
@@ -174,16 +173,12 @@ class Connection extends Controller {
 
     }
 
-    function changepass(){
+    public function changepass(){
         session_start();
         $this->start_page('Récupérer mon mot de passe');
-        if(!isset($_SESSION['reset_ok']) && isset($_SESSION['reset_name']))
-        {
-            header('location:/');
-        }
-        else if(isset($_SESSION['reset_name'])) {
+        if(isset($_SESSION['reset_name'])) {
             require ROOT . '/views/resetpassword/resetPassOkView.php';
-            unset($_SESSION['reset_ok']);
+
         }
         else if (isset($_SESSION['error_key_invalid'])) {
             require ROOT . '/views/resetpassword/resetPassErrorView.php';
@@ -194,17 +189,46 @@ class Connection extends Controller {
         $this->end_page();
     }
 
-    function activerecovery(){
-
+    public function activerecovery(){
         //Une fois que les deux nouveaux mots de passe ont étaient recus, les traites
         session_start();
-        $this->start_page("En développement");
-        require ROOT . '/views/inDeveloppement.php';
+        if(!isset($_SESSION['reset_name']))
+        {
+            header('location:/');
+            exit();
+
+        }
+        $pass1 = filter_input(INPUT_POST,'mdp');
+        $pass2 = filter_input(INPUT_POST,'mdp2');
+
+        if(!isset($pass1) || !isset($pass2))
+        {
+
+            require ROOT . '/views/errorGestion/error403View.php';
+        }
+        if(empty($pass1) || empty($pass2) || $pass1 != $pass2)
+        {
+            $_SESSION['error_recovery'] = '<div class="error-recovery-1">Vos mots de passe doivent être identiques</div>';
+            header('location:/connection/changepass');
+            exit();
+        }
+
+        if(!saveNewPass($_SESSION['reset_name'],md5($pass1))) // si le nouveau mot de passe n'a pas pu être sauvegardé
+        {
+
+            require ROOT . '/views/errorGestion/technicalError.php';
+            exit();
+
+        }
+
+
+
+        // on redirige le client en lui disant que son mot de passe a bien était sauvegardé.
+        $this->start_page("Mot de passe modifié");
+        require ROOT . '/views/connection/passmodifiedOK.php';
         $this->end_page();
-
+        unset($_SESSION['reset_name']);
         exit();
-
-
 
     }
 
