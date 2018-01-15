@@ -2,35 +2,42 @@
 
 require 'base.php';
 
-function findEnglishTranslation($wordToTranslate)
-{
+
+    function siteTranslation($targetLangage,$toTranslate)
+    {
         $usersDataBase = new UsersDataBase();
         $dbConnection = $usersDataBase->dbConnect();
-        $query = "SELECT ENGLISH FROM translate WHERE FRENCH='$wordToTranslate'";
-        $queryResult = mysqli_query($dbConnection, $query);
-        if (mysqli_num_rows($queryResult) != 0) {
-            $dbRow = mysqli_fetch_assoc($queryResult);
-            return $dbRow;
+
+
+        $query = 'SELECT ' .$targetLangage. ' FROM translate WHERE FRENCH=:toTranslate';
+        var_dump($query);
+        $stmt = $dbConnection->prepare($query);
+
+        $stmt->bindValue('toTranslate',$toTranslate,PDO::PARAM_STR);
+        try
+        {
+            $stmt->execute();
+            $stmt->rowCount() or die('Pas de résultat' . PHP_EOL);
+            $stmt->setFetchMode(PDO::FETCH_OBJ);
+            return $stmt->fetch()->$targetLangage;
 
         }
-        else
-            return '';
+        catch (PDOException $e)
+        {
+            echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+            echo 'Requête : ', $query, PHP_EOL;
+            exit();
+        }
 
-}
-
-$a = findEnglishTranslation('Bonjour');
-echo $a;
+    }
 
 
-function findFrenchTranslation($wordToTranslate)
-{
-    $usersDataBase = new UsersDataBase();
-    $dbConnection = $usersDataBase->dbConnect();
-    $Query = 'SELECT FRENCH FROM translate WHERE ENGLISH=\'' .$wordToTranslate.'\'';
 
-    $queryResult = mysqli_query($dbConnection, $Query);
-    $trad = mysqli_fetch_assoc($queryResult);
-    return $trad;
-}
+
+
+
+
+
+
 
 

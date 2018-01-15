@@ -16,23 +16,20 @@ class Translation extends Controller {
 
     function displayTranslation() {
 
-        $translateType = ($_POST["fr"] =='on') ? 'fr' : 'en';
-        echo $translateType;
-        $wordToTranslate =  $_POST['word-to-translate'];
-        echo $wordToTranslate;
-        if ($translateType=='fr') {
-            $translation = findFrenchTranslation($wordToTranslate);
+        $targetLangage = filter_input(INPUT_POST, 'langDest');
+        //$sourceLangage = $_POST["langSrc"];
+        $wordToTranslate =  filter_input(INPUT_POST, 'word-to-translate');
 
-        }
-        else {
-            $translation = findEnglishTranslation($wordToTranslate);
-        }
+        echo $targetLangage;
+        echo $wordToTranslate;
+
+        $translation = siteTranslation($targetLangage,$wordToTranslate);
 
         echo 'traduction : ' . $translation ."\r\n";
 
-        /*$this->start_page('Page de connexion');
+        $this->start_page('Page de connexion');
         require ROOT . '/views/translate/translateView.php';
-        $this->end_page();*/
+        $this->end_page();
 
 
     }
