@@ -19,28 +19,33 @@ if (isset($params[1])&& isset($params[2])) {
 
     $controller = $params[1];
     $action = $params[2];
-    //echo 'controller : ' . $controller . '</br>';
-    //echo 'action : ' . $action;
-    if (file_exists('controller/' . $controller . '.php')) {
+    if (sizeof($params) < 4 && file_exists('controller/' . $controller . '.php')) {
         require 'controller/' . $controller . '.php';
         if (class_exists($controller)) {
             $controllerObject = new $controller();
             if (method_exists($controllerObject, $action))
                 $controllerObject->$action();
         }
-
     }
     else {
         require 'controller/pagenotfound.php';
         $controllerObject = new Pagenotfound();
         $controllerObject->displayError();
+        echo 'coucou';
         $controllerObject->end_page();
     }
 }
 
-else {
+else if (sizeof($params) == 1 || (sizeof($params) == 2 && $params[1] == 'home')) {
     require 'controller/home.php';
     $controllerObject = new Home();
     $controllerObject->index();
+}
+
+else {
+    require 'controller/pagenotfound.php';
+    $controllerObject = new Pagenotfound();
+    $controllerObject->displayError();
+    $controllerObject->end_page();
 }
                             
