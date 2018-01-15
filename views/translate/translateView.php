@@ -14,7 +14,7 @@
 
             <select name="langSrc">
                 <option value="FRENCH"> Français </option>
-                <option value="EN"> Anglais </option>
+                <option value="ENGLISH"> Anglais </option>
                 <option value="AUTO"> Détecter la langue </option>
             </select>
 

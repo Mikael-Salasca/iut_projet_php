@@ -17,13 +17,14 @@ class Translation extends Controller {
     function displayTranslation() {
 
         $targetLangage = filter_input(INPUT_POST, 'langDest');
-        //$sourceLangage = $_POST["langSrc"];
+        $sourceLangage = filter_input(INPUT_POST, 'langSrc');
         $wordToTranslate =  filter_input(INPUT_POST, 'word-to-translate');
 
+        echo $sourceLangage;
         echo $targetLangage;
         echo $wordToTranslate;
 
-        $translation = siteTranslation($targetLangage,$wordToTranslate);
+        $translation = userTranslation($sourceLangage, $targetLangage,$wordToTranslate);
 
         echo 'traduction : ' . $translation ."\r\n";
 
