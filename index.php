@@ -25,7 +25,7 @@ if (isset($params[1])&& isset($params[2])) {
         require 'controller/' . $controller . '.php';
         if (class_exists($controller)) {
             $controllerObject = new $controller();
-            if (method_exists($controllerObject, $action))
+            if (is_callable(array($controllerObject, $action)))
                 $controllerObject->$action();
         }
 

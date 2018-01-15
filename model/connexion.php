@@ -105,3 +105,20 @@ function checkDatePass($key)
     return false;
 
 }
+
+
+function saveNewPass($name,$pass)
+{
+
+    $usersDataBase = new UsersDataBase();
+    $dbConnection = $usersDataBase->dbConnect();
+    $query = "UPDATE user SET PASSWORD='$pass',keyVerificationPass=NULL WHERE NAME = '$name'";
+    $update = $dbConnection->prepare($query);
+    $affectedLines = $update->execute();
+
+    if($affectedLines == 1)
+        return true;
+    else
+        return false;
+
+}
