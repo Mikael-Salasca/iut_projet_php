@@ -9,68 +9,105 @@ function saveRegistration($name, $email, $password)
     $usersDataBase = new UsersDataBase();
     $db = $usersDataBase->dbConnect();
     $password = md5($password);
-    $query = "INSERT INTO user (NAME, EMAIL, PASSWORD, DATE) VALUES ('$name','$email','$password',NOW())";
-
+    $query = "INSERT INTO user (NAME, EMAIL, PASSWORD, DATE) VALUES (:name,:email,:password,NOW())";
     $inscription = $db->prepare($query);
-    $affectedLines = $inscription->execute();
-
-    return $affectedLines;
+    $inscription->bindValue('name', $name, PDO::PARAM_STR);
+    $inscription->bindValue('email', $email, PDO::PARAM_STR);
+    $inscription->bindValue('password', $password, PDO::PARAM_STR);
+    try {
+        $inscription->execute();
+        $affectedLines = $inscription->rowCount();
+        return $affectedLines;
+    }
+    catch (PDOException $e) {
+        echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+        echo 'Requête : ', $query, PHP_EOL;
+        exit();
+    }
 }
 
 function checkAccountExist($email){
 
     $usersDataBase = new UsersDataBase();
     $dbConnection = $usersDataBase->dbConnect();
+    $registerCheckQuery = "SELECT * FROM user WHERE EMAIL = :email";
+    $stmt = $dbConnection->prepare($registerCheckQuery);
+    $stmt->bindValue('email', $email, PDO::PARAM_STR);
 
-    $registerCheckQuery = "SELECT * FROM user WHERE EMAIL = '$email'";
-    $queryResult = mysqli_query($dbConnection, $registerCheckQuery);
-    if (mysqli_num_rows($queryResult) != 0) {
-        return true;
-    }
-    else
+    try {
+        $stmt->execute();
+        $affectedLines = $stmt->rowCount();
+        if ($affectedLines != 0)
+            return true;
         return false;
+    }
+    catch (PDOException $e) {
+        echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+        echo 'Requête : ', $registerCheckQuery, PHP_EOL;
+        exit();
+    }
 }
 
 function saveKeyAccount($key,$name){
 
     $usersDataBase = new UsersDataBase();
     $dbConnection = $usersDataBase->dbConnect();
-    $query = "UPDATE user SET keyVerificationAccount='$key',accountActive=0 WHERE NAME = '$name'";
+    $query = "UPDATE user SET keyVerificationAccount=:key,accountActive=0 WHERE NAME = :name";
     $update = $dbConnection->prepare($query);
-    $affectedLines = $update->execute();
-
-    return $affectedLines;
-
-
-
+    $update->bindValue('key', $key, PDO::PARAM_STR);
+    $update->bindValue('name', $name, PDO::PARAM_INT);
+    try {
+        $update->execute();
+        $affectedLines = $update->rowCount();
+        return $affectedLines;
+    }
+    catch (PDOException $e) {
+        echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+        echo 'Requête : ', $query, PHP_EOL;
+        exit();
+    }
 }
 
 function getAccountByKey($key){
 
     $usersDataBase = new UsersDataBase();
     $dbConnection = $usersDataBase->dbConnect();
-    $query = "SELECT * FROM user WHERE keyVerificationAccount='$key'";
-    $queryResult = mysqli_query($dbConnection, $query);
-    if (mysqli_num_rows($queryResult) != 0) {
-        $dbRow = mysqli_fetch_assoc($queryResult);
-        return $dbRow;
-
-    }
-    else
+    $query = "SELECT * FROM user WHERE keyVerificationAccount = :key";
+    $stmt = $dbConnection->prepare($query);
+    $stmt->bindValue('key', $key, PDO::PARAM_STR);
+    try {
+        $stmt->execute();
+        if ($stmt->rowCount()) {
+            $stmt->setFetchMode(PDO::FETCH_OBJ);
+            $result = $stmt->fetch();
+            return $result;
+        }
         return '';
-
-
+    }
+    catch (PDOException $e) {
+        echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+        echo 'Requête : ', $query, PHP_EOL;
+        exit();
+    }
 }
 
 function activeAccount($name){
 
     $usersDataBase = new UsersDataBase();
     $dbConnection = $usersDataBase->dbConnect();
-    $query = "UPDATE user SET accountActive=1 WHERE NAME = '$name'";
+    $query = "UPDATE user SET accountActive=1 WHERE NAME = :name";
     $update = $dbConnection->prepare($query);
-    $affectedLines = $update->execute();
-    return $affectedLines;
-
+    $update->bindValue('name', $name, PDO::PARAM_STR);
+    try {
+        $update->execute();
+        $affectedLines = $update->rowCount();
+        return $affectedLines;
+    }
+    catch (PDOException $e) {
+        echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+        echo 'Requête : ', $query, PHP_EOL;
+        exit();
+    }
 }
 
 
