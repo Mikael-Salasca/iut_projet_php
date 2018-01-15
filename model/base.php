@@ -1,22 +1,26 @@
 <?php // Connexion à la BD alwaysdata
 
-class UsersDataBase {
-    function dbConnect(){
-
-        $dbLink = mysqli_connect('mysql-projetphpmvg.alwaysdata.net', '150277', '123456789')
-        or die('Erreur de connexion au serveur : ' . mysqli_connect_error());
-
+class UsersDataBase
+{
+    function dbConnect()
+    {
 
 
-        mysqli_select_db($dbLink , 'projetphpmvg_bd')
-        or die('Erreur dans la sélection de la base : ' . mysqli_error($dbLink)
-        );
-
-        return $dbLink;
+        try {
+// Connexion à la base de données.
+            $dsn = 'mysql:host=mysql-projetphpmvg.alwaysdata.net;dbname=projetphpmvg_bd';
+            $pdo = new PDO($dsn, '150277', '123456789');
+// Codage de caractères.
+            $pdo->exec('SET CHARACTER SET utf8');
+// Gestion des erreurs sous forme d'exceptions.
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+// Affichage de l'erreur.
+            die('Erreur : ' . $e->getMessage());
+        }
+        return $pdo;
     }
 }
-
-?>
 
 
 
