@@ -1,7 +1,7 @@
 <?php
 
 
-
+//commentaire
 Class PageErrors extends Controller {
 
     public function pagenotfound()
