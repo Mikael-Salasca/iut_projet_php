@@ -93,9 +93,9 @@ class Forgotpass extends Controller {
         session_start();
         $key = filter_input(INPUT_GET,'guid');
 
-        $row = getAccountByKey($key);
+        $name = getAccountByKey($key);
 
-        if($row == '' || !checkDatePass($key))
+        if($name == '' || !checkDatePass($key))
         {
             $_SESSION['error_key_invalid'] = 1;
             header('location:/forgotpass/changepass');
@@ -104,7 +104,7 @@ class Forgotpass extends Controller {
 
         // sinon la clé a était trouver dans la base de donnée
 
-        $_SESSION['reset_name'] = $row['NAME']; // on sauvegarde le nom de compte de la personne
+        $_SESSION['reset_name'] = $name; // on sauvegarde le nom de compte de la personne
 
         header('location:/forgotpass/changepass');
         exit();

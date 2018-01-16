@@ -64,7 +64,7 @@ function getAccountByKey($key){
         if ($stmt->rowCount()) {
             $stmt->setFetchMode(PDO::FETCH_OBJ);
             $result = $stmt->fetch();
-            return $result;
+            return $result->NAME;
         }
         return '';
     }
@@ -93,7 +93,7 @@ function checkDatePass($key)
             $result = $stmt->fetch();
             $result2 = $stmt2->fetch();
             $date_base = $result->dateVerificationPass;
-            $date_now = $result2->NOW();
+            $date_now = $result2->NOW;
             if ($date_base > $date_now)
                 return true;
             return false;
