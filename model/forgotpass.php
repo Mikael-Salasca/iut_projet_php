@@ -88,16 +88,25 @@ function checkDatePass($key)
 
 function saveNewPass($name,$pass)
 {
-
     $usersDataBase = new UsersDataBase();
     $dbConnection = $usersDataBase->dbConnect();
-    $query = "UPDATE user SET PASSWORD='$pass',keyVerificationPass=NULL WHERE NAME = '$name'";
-    $update = $dbConnection->prepare($query);
-    $affectedLines = $update->execute();
 
-    if($affectedLines == 1)
-        return true;
-    else
+    $query = "UPDATE user SET PASSWORD=:pass,keyVerificationPass=NULL WHERE NAME =:name";
+    $stmt = $dbConnection->prepare($query);
+    $stmt->bindValue('pass', $pass, PDO::PARAM_STR);
+    $stmt->bindValue('name', $name, PDO::PARAM_STR);
+    try {
+        $stmt->execute();
+        if($stmt->rowCount() == 1)
+            return true;
+        else
+            return false;
+
+
+    }
+    catch (PDOException $e)
+    {
         return false;
+    }
 
 }
