@@ -391,6 +391,17 @@ footer {
 
 }
 
+#pannel-information-large{
+
+    width: 30%;
+    min-height: 300px;
+    margin-top: 2%;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    border: none;
+    margin-left: 2%;
+}
+
 #pannel-info-block-1{
 
     background-color: #727272;
@@ -576,6 +587,7 @@ footer {
     padding: 16px 24px;
     border-bottom: 1px solid #e5e5e5;
 
+
 }
 
 .error-recovery-1{
@@ -711,4 +723,46 @@ footer {
     background-origin: unset;
 
 
+}
+
+.emailsend{
+
+    text-align: center;
+}
+
+.id1 {
+
+    width: 80%;
+    color: #757575;
+    text-align: center;
+    margin-left: 10%;
+}
+
+.block-12{
+
+    max-width: 365px;
+    padding: 12px;
+    font-weight: bold;
+    background: #efefef;
+    color: #000;
+    margin: 24px auto;
+    text-align: center;
+    font-size: 17px;
+    border: 1px solid #d0d0d0;
+}
+
+
+.block-33{
+
+    position: relative;
+    overflow: hidden;
+    min-height: 30px;
+    padding: 16px 24px;
+    border-bottom: 1px solid #e5e5e5;
+    text-align: center;
+
+
+}
+.block-33 a{
+    text-decoration: none;
 }

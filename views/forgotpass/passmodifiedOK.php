@@ -3,9 +3,15 @@
 
     <section id="main-page">
 
-        <p> Votre mot de passe a bien été modifié.<br>(Design de la page en dévelopemment, excusez nous pour cette vieille page pour le moment.</p>
-        <p><a href="/connection/connect">Se connecter</a></p>
-
+        <br><br>
+        <div class="emailsend">
+            <img src="/img/congrate-pwd.webp"></img>
+        </div>
+        <br>
+        <div class="id1">Votre mot de passe a bien été modifié.</div><br>
+        <div class="block-33">
+            <a class="button-valid-2" href="/connection/connect">Se connecter</a>
+        </div>
 
     </section>
 </section>

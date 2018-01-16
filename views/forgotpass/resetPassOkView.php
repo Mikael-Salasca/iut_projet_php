@@ -18,13 +18,20 @@
     </section>
 
     <section id="main-page">
+        <div id="block-row">
+            <ul class="ak-stepper-list">
+                <li>Identification</li>&nbsp;&nbsp;&nbsp;&nbsp;----------------------&nbsp;&nbsp;&nbsp;&nbsp;
+                <li>Boite email</li>&nbsp;&nbsp;&nbsp;&nbsp;----------------------&nbsp;&nbsp;&nbsp;&nbsp;
+                <li class="current">Modification</li>
 
+            </ul>
+        </div>
 
-        <br><br><br><br>
+        <br>
         <div id="bar-account">
             <h1>ENTREZ VOTRE NOUVEAU MOT DE PASSE</h1>
             <?php if(isset($_SESSION['error_system'])) echo $_SESSION['error_system']; unset($_SESSION['error_system']); ?>
-        </div><br><br>
+        </div>
         <div id="form-recovery-pass">
             <form action="/forgotpass/activerecovery" method = "post">
                 <div class="form-recovery-block">

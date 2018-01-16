@@ -121,7 +121,7 @@ class Forgotpass extends Controller {
         }
         else
         {
-            header('location:/');
+            header('location:/forgotpass/forgot');
         }
 
         $this->end_page();
@@ -150,7 +150,7 @@ class Forgotpass extends Controller {
         session_start();
         if(!isset($_SESSION['reset_name']))
         {
-            header('location:/');
+            header('location:/forgotpass/forgot');
             exit();
 
         }
