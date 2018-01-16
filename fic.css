@@ -148,6 +148,7 @@ body {
     min-height: 300px;
 
 
+
 }
 
 #main-page-large{
@@ -157,6 +158,19 @@ body {
     opacity: 0.8;
     min-height: 300px;
 
+}
+
+#main-page-error{
+
+    display: flex;
+    width: 70%;
+    max-height: 500px;
+    margin-left:-25%;
+
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background-color: #333;
+    opacity: 0.8;
 }
 
 #main-page-center{
@@ -199,12 +213,7 @@ footer {
     color: #555;
     width: 90%;
     margin-top: 2%;
-
-}
-#form-inscription input[type="text"]:focus{
-
     font-weight: bold;
-
 }
 #form-inscription input[type="password"]{
 
@@ -284,7 +293,7 @@ footer {
 
 .error-register{
 
-
+    margin-left:20%;
     color:red;
     font-size: 15px;
 }
@@ -612,3 +621,26 @@ footer {
 
 }
 
+.erreur404{
+
+    min-width: 0;
+    min-height: 0;
+}
+
+.text-error404{
+
+    font: 24px "Lato",sans-serif;
+    color: #e7431a;
+    text-align: center;
+
+    min-width: 40%;
+    margin-right: -35%;
+
+}
+
+.text-error404 h1{
+
+    color:white;
+    font-weight: bold;
+
+}
