@@ -31,7 +31,6 @@ if (isset($params[1])&& isset($params[2])) {
         require 'controller/pagenotfound.php';
         $controllerObject = new Pagenotfound();
         $controllerObject->displayError();
-        $controllerObject->end_page();
     }
 }
 
@@ -45,6 +44,6 @@ else {
     require 'controller/pagenotfound.php';
     $controllerObject = new Pagenotfound();
     $controllerObject->displayError();
-    $controllerObject->end_page();
+
 }
                             
