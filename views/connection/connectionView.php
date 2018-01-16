@@ -6,7 +6,7 @@
         <strong>Pas de compte ?</strong>
         <br><br>
         <div class="button-valid-3">
-            <a href="">Créer un compte</a>
+            <a href="/inscription/register">Créer un compte</a>
         </div>
 
     </section>
@@ -21,9 +21,9 @@
                 <div class="form-recovery-block">
                     <label for="email">Adresse email</label></br>
                     <input type="text" name="email" required/>  </br></br>
-                    <?php
-                    if(isset($_SESSION['error_connexion'])) echo '<br>' . $_SESSION['error_connexion']; unset($_SESSION['error_connexion']); ?>
+                    <?php if(isset($_SESSION['error_connexion'])) echo $_SESSION['error_connexion']; unset($_SESSION['error_connexion']); ?>
                 </div>
+
                 <div class="form-recovery-block">
                     <label for="mdp">Mot de passe</label></br>
                     <input type="password" name="mdp" required/> </br></br>

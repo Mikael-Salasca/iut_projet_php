@@ -26,7 +26,7 @@ class Connection extends Controller {
             header("Location: /");
         }
         else {
-            $_SESSION['error_connexion'] = '<div class="error-co">Le compte associé n\'existe pas ou le mot de passe est incorrect.<br>Veuillez essayer à nouveau.<div>';
+            $_SESSION['error_connexion'] = '<div class="error-co">Le compte associé n\'existe pas ou le mot de passe est incorrect.</div>';
             header("Location: /connection/connect");
         }
         }
