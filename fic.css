@@ -184,7 +184,7 @@ body {
 
     margin-top: 2%;
     margin-bottom: 2%;
-    background-color: #333;
+    background: none;
 
 }
 
@@ -651,7 +651,7 @@ footer {
 .text-error404{
 
     font: 24px "Lato",sans-serif;
-    color: #e7431a;
+    color: #fff;
     text-align: center;
 
     min-width: 40%;
@@ -661,7 +661,7 @@ footer {
 
 .text-error404 h1{
 
-    color:white;
+    color:#bdf12d;
     font-weight: bold;
 
 }
