@@ -26,22 +26,24 @@
             <?php if(isset($_SESSION['error_system'])) echo $_SESSION['error_system']; unset($_SESSION['error_system']); ?>
         </div><br><br>
         <div id="form-recovery-pass">
-            <form action="/connection/activerecovery" method = "post">
+            <form action="/forgotpass/activerecovery" method = "post">
                 <div class="form-recovery-block">
                     <label for="mdp">Nouveau mot de passe</label></br>
-                    <input type="pass" name="mdp" required placeholder="Nouveau mot de passe"/>
+                    <input type="password" name="mdp" required placeholder="Nouveau mot de passe"/>
                     <?php if (isset($_SESSION['error_pass'])) echo $_SESSION['error_pass']; ?>
                 </div>
                 </br>
                 <div class="form-recovery-block-2">
                     <label for="mdp">Confirmez  le nouveau mot de passe</label></br>
-                    <input type="pass" name="mdp2" required placeholder="Confirmez le nouveau mot de passe"/>
+                    <input type="password" name="mdp2" required placeholder="Confirmez le nouveau mot de passe"/>
                     <?php if (isset($_SESSION['error_pass'])) echo $_SESSION['error_pass']; unset($_SESSION['error_pass']); ?>
                 </div>
                 </br>
                 <div class="form-recovery-block-2">
                     <input type="submit" class="button-valid" name="" value="VALIDER" />
+                    <?php if(isset($_SESSION['error_recovery'])) echo '<br>' .$_SESSION['error_recovery']; unset($_SESSION['error_recovery']); ?>
                 </div>
+
                 </br></br>
 
             </form>

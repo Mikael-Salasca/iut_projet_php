@@ -107,11 +107,12 @@ body {
     width:85%;
     margin: auto;
     min-height : 400px;
-    box-shadow: 15px -6px 1px black;
+    box-shadow: 2px 4px 6px black;
     margin-top: 10px;
     margin-bottom: 10px;
     color: white;
     background-color: #333;
+    justify-content: center;
 
 }
 
@@ -151,7 +152,7 @@ body {
 
 #main-page-large{
     width: 90%;
-    margin: auto;
+    margin: 2%;
     background-color: #f1f1f1;
     opacity: 0.8;
     min-height: 300px;

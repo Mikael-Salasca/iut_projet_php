@@ -11,7 +11,7 @@
         <div class="row">
 
             <div class="col-row-1">
-                <a href="/connection/forgotpass">
+                <a href="/forgotpass/forgot">
                     <img src="../../img/imgkey.png">
                 </a>
             </div>
