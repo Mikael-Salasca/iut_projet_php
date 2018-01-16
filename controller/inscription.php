@@ -101,11 +101,8 @@ class Inscription extends  Controller
     {
         session_start();
         $this->start_page('Activation du compte');
-        if(isset($_SESSION['error_account_active'])) {
-            require ROOT . '/views/confirmationAccount/confimationAccountExistingView.php';
-            unset($_SESSION['error_account_active']);
-        }
-        else if(isset($_SESSION['active_account'])) {
+
+        if(isset($_SESSION['active_account'])) {
             $this->forceDisconnect(); // On force la session à se fermer (pour que l'utilisateur se reconnecte et ainsi éviter de potentiels erreurs de vues)
             require ROOT . '/views/confirmationAccount/confirmationAccountTrueView.php';
             unset($_SESSION['active_account']);
@@ -116,7 +113,7 @@ class Inscription extends  Controller
             unset($_SESSION['error_account']);
         }
         else
-            require ROOT . '/views/errorGestion/error403View.php';
+            header('location:/inscription/register');
         $this->end_page();
 
     }
@@ -159,8 +156,8 @@ class Inscription extends  Controller
         {
             if($row->accountActive == 1)
             {
-                $_SESSION['error_account_active'] = 1;
-                header('location:/inscription/confirmaccount');
+
+                header('location:/inscription/register');
             }
             else
             {
@@ -182,8 +179,8 @@ class Inscription extends  Controller
         }
         else { // dans le cas ou la clé n'a pas était trouver dans le serveur (ou n'importe quoi a était passé en argument)
 
-            $_SESSION['error_account'] = 1;
-            header('location:/inscription/confirmaccount');
+
+            header('location:/inscription/register');
 
         }
 
