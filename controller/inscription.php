@@ -152,7 +152,7 @@ class Inscription extends  Controller
         $row = getAccountByKey($key);
         if($row != '')
         {
-            if($row['accountActive'] == 1)
+            if($row->accountActive == 1)
             {
                 $_SESSION['error_account_active'] = 1;
                 header('location:/inscription/confirmaccount');
@@ -160,7 +160,7 @@ class Inscription extends  Controller
             else
             {
                 // on active son compte
-                if(activeAccount($row['NAME']) != 0) // Si on a bien réussit à l'activé
+                if(activeAccount($row->NAME) != 0) // Si on a bien réussit à l'activé
                 {
                     $_SESSION['active_account'] = 1;
                     header('location:/inscription/confirmaccount');
