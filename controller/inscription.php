@@ -26,7 +26,12 @@ class Inscription extends  Controller
             $_SESSION['error_register'] = '<div class="error-register">Vous devez remplir tout les champs.</div>';
             header('location:/inscription/register');
         }
-        else if(checkAccountExist($email))
+        else if(checkAccountExist($name))
+        {
+            $_SESSION['error_account_name'] = '<div class="error-register">Ce compte existe déja !</div>';
+            header('location:/inscription/register');
+        }
+        else if(checkEmailExist($email))
         {
             $_SESSION['error_account_email'] = '<div class="error-register">Cette adresse email est déja enregistré !</div>';
             header('location:/inscription/register');
@@ -38,13 +43,13 @@ class Inscription extends  Controller
         }
         else if ($password != $password2)
         {
-            $_SESSION['error_register'] = '<div class="error-register">Vos mots de passe doivent être identique</div>';
+            $_SESSION['error_mdp'] = '<div class="error-register">Vos mots de passe doivent être identique</div>';
             header('location:/inscription/register');
 
         }
         else if($cuAccept != true)
         {
-            $_SESSION['error_register'] = '<div class="error-register">Veuillez lire et accepter les conditions d\'utilisation</div>';
+            $_SESSION['error_cu'] = '<div class="error-register">Veuillez lire et accepter les conditions d\'utilisation</div>';
             header('location:/inscription/register');
         }
         else

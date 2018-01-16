@@ -26,18 +26,21 @@
         <div id="form-inscription">
             <form action = "/inscription/validate" method="post" >
                 <label for="identifiant">Identifiant</label> </br>
-                <input type="text" name="name" maxlength="20" required />
+                <input type="text" name="name" maxlength="20" required placeholder="Nom de compte" />
+                <?php if(isset($_SESSION['error_account_name'])) { echo $_SESSION['error_account_name']; unset($_SESSION['error_account_name']); } ?>
                 </br></br>
                 <label for="mail">Mail</label></br>
-                <input type="text" name="mail" required />
+                <input type="text" name="mail" required placeholder="E-mail" />
                 <?php if(isset($_SESSION['error_account_email'])) { echo $_SESSION['error_account_email']; unset($_SESSION['error_account_email']); } ?>
                 </br></br>
                 <label for="mdp">Mot de passe</label></br>
-                <input type="password" name="password" required /></br></br>
+                <input type="password" name="password" required placeholder="Mot de passe"/></br></br>
                 <label for="mdp2">Vérification du mot de passe</label></br>
-                <input type="password" name="password2" required/> </br></br>
+                <input type="password" name="password2" required placeholder="Confirmez le mot de passe"/> </br></br>
+                <?php if(isset($_SESSION['error_mdp'])) { echo $_SESSION['error_mdp']; unset($_SESSION['error_mdp']); } ?>
 
                 <input type="checkbox" name="cu" /> J'acceptes les <a target="_blank" href="/inscription/cu">C.U</a> </br></br>
+                <?php if(isset($_SESSION['error_cu'])) { echo $_SESSION['error_cu']; unset($_SESSION['error_cu']); } ?>
                 <input type="submit" class="button-inscription" name="" value="Terminer l'inscription" />
 
 

@@ -26,7 +26,7 @@ function saveRegistration($name, $email, $password)
     }
 }
 
-function checkAccountExist($email){
+function checkEmailExist($email){
 
     $usersDataBase = new UsersDataBase();
     $dbConnection = $usersDataBase->dbConnect();
@@ -46,6 +46,29 @@ function checkAccountExist($email){
         echo 'Requête : ', $registerCheckQuery, PHP_EOL;
         exit();
     }
+}
+
+function checkAccountExist($name){
+
+    $usersDataBase = new UsersDataBase();
+    $dbConnection = $usersDataBase->dbConnect();
+    $registerCheckQuery = "SELECT * FROM user WHERE NAME = :name";
+    $stmt = $dbConnection->prepare($registerCheckQuery);
+    $stmt->bindValue('name', $name, PDO::PARAM_STR);
+
+    try {
+        $stmt->execute();
+        $affectedLines = $stmt->rowCount();
+        if ($affectedLines != 0)
+            return true;
+        return false;
+    }
+    catch (PDOException $e) {
+        echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+        echo 'Requête : ', $registerCheckQuery, PHP_EOL;
+        exit();
+    }
+
 }
 
 function saveKeyAccount($key,$name){
