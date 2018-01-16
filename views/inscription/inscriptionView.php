@@ -1,12 +1,30 @@
 <section id="corps">
 
+
+    <section id="pannel-information">
+        <div id="pannel-info-block-1">
+
+            <p>Droit à l'information</p>
+        </div>
+        <div id="pannel-info-content">
+            Les informations de ce formulaire sont <strong>obligatoires</strong>.<br><br>Elles sont enregistrées dans un fichier informatisé pour vous permettre de <strong>créer votre compte</strong>. <br><br>Conformément aux dispositions de la loi "Informatique et libertés" du 6 Janvier 1978 vous pouvez exercer votre droit d'accès aux données vous concernant et les faire rectifier en nous contactant.
+        </div>
+
+
+    </section>
+
+
     <section id="main-page">
-        <div id="bar-account">
-            <h1>Créer votre compte</h1>
+        <div id="bar-account-3">
+            <h1>Créez votre compte</h1>
+
+        </div>
+        <div class="title-bottom-img">
+            <img class="title-bottom-img" src="/img/title-bottom1.png">
         </div>
         <br><br>
-        <div id="form-inscription-co">
-            <form action = "../inscription/validate" method="post" >
+        <div id="form-inscription">
+            <form action = "/inscription/validate" method="post" >
                 <label for="identifiant">Identifiant</label> </br>
                 <input type="text" name="name" maxlength="20" required />
                 </br></br>
@@ -20,16 +38,16 @@
                 <input type="password" name="password2" required/> </br></br>
 
                 <input type="checkbox" name="cu" /> J'acceptes les <a target="_blank" href="/inscription/cu">C.U</a> </br></br>
-                <input type="submit" class="button-inscription" name="" value="Terminer l'inscription	" />
+                <input type="submit" class="button-inscription" name="" value="Terminer l'inscription" />
 
 
             </form>
             <?php
-                if(isset($_SESSION['error_register']) && !empty($_SESSION['error_register']))
-                    {
-                        echo '<br>' . $_SESSION['error_register'];
-                        unset($_SESSION['error_register']);
-                    }
+            if(isset($_SESSION['error_register']) && !empty($_SESSION['error_register']))
+            {
+                echo '<br>' . $_SESSION['error_register'];
+                unset($_SESSION['error_register']);
+            }
             ?>
             <br>
         </div>

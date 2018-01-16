@@ -17,7 +17,7 @@
         </div>
         <br><br>
         <div id="form-connect">
-            <form action="../connection/validate" method = "post">
+            <form action="/connection/validate" method = "post">
                 <div class="form-recovery-block">
                     <label for="email">Adresse email</label></br>
                     <input type="text" name="email" required/>  </br></br>

@@ -107,7 +107,7 @@ body {
     width:85%;
     margin: auto;
     min-height : 400px;
-    box-shadow: 2px 4px 6px black;
+
     margin-top: 10px;
     margin-bottom: 10px;
     color: white;
@@ -182,31 +182,42 @@ footer {
 
 }
 
-#form-inscription-co {
-
-    color:black;
-    margin-left: 30%;
-
-}
-#form-inscription-co label{
-    display: inline-block;
-
-
-
-
-}
-#form-inscription-co input {
-    outline: none;
-
+#form-inscription {
+    width: 40%;
+    margin:auto;
+    color: #735c3e;;
 
 }
 
-#form-inscription-co input[type="text"],input[type="password"] {
+#form-inscription input[type="text"]{
 
-    background-color: #fff;
+    background: #fff;
+    border-radius: 0;
+    height: 40px;
+    transition: all 0.3s ease;
     border: 1px solid #c7c3b4;
-
+    color: #555;
+    width: 90%;
+    margin-top: 2%;
+    font-weight: bold;
 }
+#form-inscription input[type="password"]{
+
+    background: #fff;
+    border-radius: 0;
+    height: 40px;
+    transition: all 0.3s ease;
+    border: 1px solid #c7c3b4;
+    color: #555;
+    width: 90%;
+    margin-top: 2%;
+}
+
+#form-inscription input:focus{
+    background-color: #edeae0;
+    box-shadow: none;
+}
+
 .button-inscription {
 
     box-shadow: 0 2px 2px 0 #000000;
@@ -214,8 +225,16 @@ footer {
     color: #fff;
     text-shadow: 0 1px 1px #333;
     transition: all 0.3s ease;
-    font-size:20px;
+    font-size: 17px;
     border: none;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    /* width: 28px; */
+    /* text-align: center; */
 }
 .button-inscription:focus{
     background: linear-gradient(to bottom, #d1eb09 1%, #c3f244 7%, #bdf12d 14%, #b2cb0f 41%, #b2cb0f 52%, #b2cb0f 88%, #bdf12d 99%);
@@ -223,6 +242,14 @@ footer {
 .button-inscription:hover{
     background: linear-gradient(to bottom, #d1eb09 1%, #c3f244 7%, #bdf12d 14%, #b2cb0f 41%, #b2cb0f 52%, #b2cb0f 88%, #bdf12d 99%);
 }
+
+
+
+
+
+
+
+
 
 .button-connexion {
 
@@ -318,7 +345,7 @@ footer {
     margin-top:2%;
     margin-right: 2%;
     margin-bottom: 2%;
-
+    border: none;
 
 
 
@@ -330,7 +357,7 @@ footer {
     color: #fff;
     font-family: "UnicaOne",sans-serif;
     background-size: 60px auto;
-
+    text-transform: uppercase;
     text-align: center;
     padding-top: 4%;
     padding-bottom: 4%;
@@ -344,7 +371,17 @@ footer {
     color: #28170F;
 }
 
-#form-recovery-pass input[type="text"],input[type="password"]{
+#form-recovery-pass input[type="text"]{
+
+    background: #f4f4f4;
+    border-radius: 0;
+    height: 40px;
+    transition: all 0.3s ease;
+    border: 1px solid #c7c3b4;
+    color: #555;
+    width: 260px;
+}
+#form-recovery-pass input[type="password"]{
 
     background: #f4f4f4;
     border-radius: 0;
@@ -367,13 +404,15 @@ footer {
     text-decoration: none;
 
 }
-#form-recovery-pass,#form-connect a:hover{
+#form-recovery-pass a:hover{
     text-decoration: underline;
 }
 
+#form-connect a:hover{
+    text-decoration: underline;
+}
 
-
-#form-connect input[type="text"],input[type="password"]{
+#form-connect input[type="text"] {
 
     background: #868686;
     color: #fff;
@@ -385,7 +424,17 @@ footer {
     width: 260px;
 
 }
+#form-connect input[type="password"]{
+    background: #868686;
+    color: #fff;
+    border-radius: 0;
+    height: 40px;
+    transition: all 0.3s ease;
+    border: 1px solid #c7c3b4;
+    opacity: 0.8;
+    width: 260px;
 
+}
 
 .button-valid{
 
@@ -520,6 +569,24 @@ footer {
     font-family: "bebas_neueregular",sans-serif;
 
 
+}
+
+#bar-account-3 {
+
+    background-color: #c5d432;
+    color:#fff;
+    text-align: center;
+    min-height: 30px;
+    font-size:25px;
+    padding: 10px;
+    font-family: "bebas_neueregular",sans-serif;
+    opacity: 0.9;
+
+
+}
+.title-bottom-img{
+    text-align: center;
+    margin-top: -2px;
 }
 
 #pannel-register{
