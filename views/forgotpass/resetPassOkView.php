@@ -26,7 +26,7 @@
             <?php if(isset($_SESSION['error_system'])) echo $_SESSION['error_system']; unset($_SESSION['error_system']); ?>
         </div><br><br>
         <div id="form-recovery-pass">
-            <form action="/connection/activerecovery" method = "post">
+            <form action="/forgotpass/activerecovery" method = "post">
                 <div class="form-recovery-block">
                     <label for="mdp">Nouveau mot de passe</label></br>
                     <input type="password" name="mdp" required placeholder="Nouveau mot de passe"/>

@@ -25,7 +25,7 @@
             <?php if(isset($_SESSION['error_system'])) echo $_SESSION['error_system']; unset($_SESSION['error_system']); ?>
         </div><br><br>
         <div id="form-recovery-pass">
-            <form action="/connection/recoverypass" method = "post">
+            <form action="/forgotpass/recoverypass" method = "post">
                 <div class="form-recovery-block">
                     <label for="compte">Votre nom de compte</label></br>
                     <input type="text" name="account" required placeholder="Votre nom de compte"/>
