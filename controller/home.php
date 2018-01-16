@@ -10,7 +10,7 @@ require ROOT . '/core/controller.php';
 
 Class Home extends Controller {
 
-    function index()
+    public function index()
     {
         session_start();
         $this->start_page('Page d\'Accueil');
@@ -20,7 +20,7 @@ Class Home extends Controller {
         $this->end_page();
 
     }
-    function checkFirstCo(){
+    private function checkFirstCo(){
         if(isset($_SESSION['first_co']))
         {
             echo '<script type="text/javascript">alert("Vous êtes désormais connecté !");</script>';
@@ -28,7 +28,7 @@ Class Home extends Controller {
         }
 
     }
-    function checkDisconnect(){
+    private function checkDisconnect(){
 
         if(isset($_SESSION['isDisconnect']))
         {

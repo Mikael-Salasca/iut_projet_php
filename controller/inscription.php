@@ -13,7 +13,7 @@ require ROOT . '/core/controller.php';
 class Inscription extends  Controller
 {
 
-    function validate()
+    public function validate()
     {
         session_start();
         $name = filter_input(INPUT_POST, 'name');
@@ -73,7 +73,7 @@ class Inscription extends  Controller
     }
 
 
-    function register()
+    public function register()
     {
 
         session_start();
@@ -84,7 +84,7 @@ class Inscription extends  Controller
 
     }
 
-    function confirme()
+    public function confirme()
     {
 
         $this->start_page('Verification du compte.');
@@ -92,7 +92,7 @@ class Inscription extends  Controller
         $this->end_page();
     }
 
-    function confirmaccount()
+    public function confirmaccount()
     {
         session_start();
         $this->start_page('Activation du compte');
@@ -117,7 +117,7 @@ class Inscription extends  Controller
     }
 
 
-    function sendEmailVerification($name,$email)
+    private function sendEmailVerification($name,$email)
     {
         // Génération de la clée de verification et stockage de celle ci dans la base de donnée
 
@@ -144,7 +144,7 @@ class Inscription extends  Controller
 
     }
 
-    function verifymail(){
+    public function verifymail(){
 
         session_start();
 
@@ -152,7 +152,7 @@ class Inscription extends  Controller
         $row = getAccountByKey($key);
         if($row != '')
         {
-            if($row['accountActive'] == 1)
+            if($row->accountActive == 1)
             {
                 $_SESSION['error_account_active'] = 1;
                 header('location:/inscription/confirmaccount');
@@ -160,7 +160,7 @@ class Inscription extends  Controller
             else
             {
                 // on active son compte
-                if(activeAccount($row['NAME']) != 0) // Si on a bien réussit à l'activé
+                if(activeAccount($row->NAME) != 0) // Si on a bien réussit à l'activé
                 {
                     $_SESSION['active_account'] = 1;
                     header('location:/inscription/confirmaccount');
@@ -185,7 +185,7 @@ class Inscription extends  Controller
     }
 
 
-    function forceDisconnect()
+    private function forceDisconnect()
     {
         if (isset($_SESSION['login'])) {
             unset($_SESSION['login']);
@@ -193,7 +193,7 @@ class Inscription extends  Controller
         }
     }
 
-    function cu()
+    public function cu()
     {
         session_start();
         $this->start_page('Conditions d\'utilisation');

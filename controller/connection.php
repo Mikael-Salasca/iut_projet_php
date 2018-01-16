@@ -7,14 +7,14 @@ require ROOT . '/model/connexion.php';
 
 class Connection extends Controller {
 
-    function connect() {
+    public function connect() {
         session_start();
         $this->start_page('Page de connexion');
-        require ROOT . '/views/connectionView.php';
+        require ROOT . '/views/connection/connectionView.php';
         $this->end_page();
     }
 
-    function validate() {
+    public function validate() {
         session_start();
 
         $email = filter_input(INPUT_POST,email);
@@ -29,11 +29,10 @@ class Connection extends Controller {
             $_SESSION['error_connexion'] = '<div class="error-co">Le compte associé n\'existe pas ou le mot de passe est incorrect.<br>Veuillez essayer à nouveau.<div>';
             header("Location: /connection/connect");
         }
-
         }
 
 
-    function disconnect()
+    public function disconnect()
     {
         session_start();
         if (isset($_SESSION['login'])) {
@@ -44,5 +43,17 @@ class Connection extends Controller {
         }
 
     }
+
+    public function impossible(){
+
+        $this->start_page('Impossible de se connecter ?');
+        require ROOT . '/views/connection/impossibleConnectionView.php';
+        $this->end_page();
+
+
+    }
+
+
+
 
 }

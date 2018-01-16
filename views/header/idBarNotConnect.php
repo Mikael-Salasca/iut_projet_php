@@ -4,7 +4,7 @@
     </a>
     <a href="/connection/connect">
         CONNEXION&nbsp;
-        <img class="img-responsive" src="../../img/profil.png">
+        <img class="img-responsive" src="/img/profil.png">
     </a>
 
 
