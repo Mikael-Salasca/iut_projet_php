@@ -6,14 +6,21 @@
 body {
     background-color: #271d14;
     font-family: "Roboto",sans-serif;
+    background-image: url(/img/fondespace.jpg);
+    background-repeat:no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 
 .navbar-menu{
-    background-color:#272727;border-color:#e7e7e7;
+    background-color:black;
+    border-color:#e7e7e7;
     width: 100%;
     margin:auto;
-
+    opacity: 0.9;
 
 
 }
@@ -107,12 +114,13 @@ body {
     width:85%;
     margin: auto;
     min-height : 400px;
-
+    position:relative;
     margin-top: 10px;
     margin-bottom: 10px;
     color: white;
     background-color: #333;
     justify-content: center;
+    background: none repeat scroll 0 0 rgba(255,255,255,0.3);
 
 }
 
@@ -136,6 +144,10 @@ body {
 .pannel-co-date{
     color: #303030;
 }
+
+#main-page,#main-page-center,#main-page-large{
+    opacity: 1;
+}
 #main-page {
 
     width: 70%;
@@ -144,7 +156,7 @@ body {
     margin-top: 2%;
     margin-bottom: 2%;
     background-color: #f1f1f1;
-    opacity: 0.8;
+
     min-height: 300px;
 
 
@@ -155,7 +167,6 @@ body {
     width: 90%;
     margin: 2%;
     background-color: #f1f1f1;
-    opacity: 0.8;
     min-height: 300px;
 
 }
@@ -170,14 +181,14 @@ body {
     margin-top: 2%;
     margin-bottom: 2%;
     background-color: #333;
-    opacity: 0.8;
+
 }
 
 #main-page-center{
     width: 60%;
     margin: auto;
     background-color: #f1f1f1;
-    opacity: 0.8;
+
     min-height: 300px;
 
 }
@@ -190,9 +201,12 @@ body {
 footer {
 
     min-height: 100px;
+    min-width: 100%;
     background-color: black;
     text-align: center;
     color:white;
+
+    bottom: 0;
 
 }
 
