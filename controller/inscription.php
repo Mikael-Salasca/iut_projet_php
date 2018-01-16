@@ -8,7 +8,7 @@
 
 require(ROOT . '/model/registration.php');
 
-require ROOT . '/core/controller.php';
+
 
 class Inscription extends  Controller
 {

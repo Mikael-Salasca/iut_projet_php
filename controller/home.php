@@ -6,7 +6,7 @@
  * Time: 16:13
  */
 
-require ROOT . '/core/controller.php';
+
 
 Class Home extends Controller {
 

@@ -1,6 +1,6 @@
 <?php
 
-require ROOT . '/core/controller.php';
+
 require ROOT . '/model/translation.php';
 
 

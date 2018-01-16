@@ -1,8 +1,8 @@
 <?php
 
-require ROOT . '/core/controller.php';
 
-Class Error extends Controller {
+
+Class PageErrors extends Controller {
 
     public function pagenotfound()
     {
