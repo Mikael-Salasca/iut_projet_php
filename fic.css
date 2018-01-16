@@ -200,14 +200,7 @@ footer {
 
 
 }
-#form-inscription-co a {
-    color:#9c9c9a;
-    text-decoration: none;
 
-}
-#form-inscription-co a:hover{
-    text-decoration: underline;
-}
 #form-inscription-co input[type="text"],input[type="password"] {
 
     background-color: #fff;
@@ -351,7 +344,7 @@ footer {
     color: #28170F;
 }
 
-#form-recovery-pass input[type="text"]{
+#form-recovery-pass input[type="text"],input[type="password"]{
 
     background: #f4f4f4;
     border-radius: 0;
@@ -361,13 +354,38 @@ footer {
     color: #555;
     width: 260px;
 }
-#form-recovery-pass {
+#form-recovery-pass,#form-connect {
 
     color: #000;
     font-family: "Lato",sans-serif;
     margin-left: 35px;
 
 }
+
+#form-recovery-pass,#form-connect a {
+    color:#9c9c9a;
+    text-decoration: none;
+
+}
+#form-recovery-pass,#form-connect a:hover{
+    text-decoration: underline;
+}
+
+
+
+#form-connect input[type="text"],input[type="password"]{
+
+    background: #868686;
+    color: #fff;
+    border-radius: 0;
+    height: 40px;
+    transition: all 0.3s ease;
+    border: 1px solid #c7c3b4;
+    opacity: 0.8;
+    width: 260px;
+
+}
+
 
 .button-valid{
 
@@ -383,10 +401,73 @@ footer {
     padding: 7px 27px;
 }
 
+.button-valid-2{
+
+    background-color: #f45c20;
+    color: #fff;
+    text-shadow: 0 1px 1px #333;
+    transition: all 0.3s ease;
+    font-family: "bebas_neueregular",sans-serif;
+    font-size: 17px;
+    border: none;
+    text-transform: uppercase;
+    text-align: center;
+    /* padding: 1.2rem 3.4rem; */
+    font-weight: bold;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 4.0rem;
+    padding-right: 4.0rem;
+
+}
+
 .button-valid:hover{
     background-color: #f2801b;
     transition: all 0.3s ease;
     text-decoration: none;
+}
+.button-valid-2:hover{
+
+    background-color: #bfd500;
+    transition: all 0.3s ease;
+}
+
+.button-valid-3{
+
+    background-color: #f29c06;
+    color: #fff;
+    text-shadow: 0 1px 1px #333;
+    transition: all 0.3s ease;
+    font-family: "bebas_neueregular",sans-serif;
+    font-size: 17px;
+    border: none;
+    text-transform: uppercase;
+    text-align: center;
+    /* padding: 1.2rem 3.4rem; */
+    font-weight: bold;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    /* padding-left: 4.0rem; */
+    /* padding-right: 4.0rem; */
+    /* max-width: 217px; */
+    /* margin-left: 10%; */
+    /* margin-right: 10%; */
+    margin: auto;
+    width: 90%;
+    border: none;
+
+}
+
+.button-valid-3:hover{
+
+    background-color: #ffd200;
+
+}
+
+
+.button-valid-3 a{
+    text-decoration: none;
+    color:#fff;
 }
 
 .form-recovery-block{
@@ -425,3 +506,37 @@ footer {
 
     width: 50%;
 }
+
+#bar-account-2 {
+
+
+    background-color: #d9d9d9;
+    color:#333; ;
+    text-align: center;
+    min-height: 30px;
+    font-size:25px;
+    padding: 10px;
+
+    font-family: "bebas_neueregular",sans-serif;
+
+
+}
+
+#pannel-register{
+
+    /*border: 1px solid #cecece;*/
+    background: #f1f1f1;
+    /* max-height: 399px; */
+    min-width: 274px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 3%;
+    margin-right: 3%;
+    color: #28170F;
+    text-transform: uppercase;
+    text-align: center;
+    opacity: 0.9;
+    border: none;
+
+}
+
