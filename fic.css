@@ -302,13 +302,18 @@ footer {
 }
 
 #bar-account h1 {
-    background-color: #c5d432;
-    color:white ;
-    text-align: center;
+    background-color: none;
+    border-top: 2px solid #f45c20;
+    border-bottom: 2px solid #e8e8e8;
+    color:#F45C20; ;
+
     min-height: 30px;
     margin-top:1%;
-    margin-left:1%;
-    margin-right: 1%;
+    margin-left:6%;
+
+    text-transform: uppercase;
+    font-family: "Lato",sans-serif;
+    padding: 12px 0 12px 12px;
 
 }
 
@@ -561,7 +566,7 @@ footer {
     min-height: 30px;
     padding: 16px 24px;
     border-bottom: 1px solid #e5e5e5;
-    border-top:1px solid #e5e5e5;
+
 }
 .form-recovery-block-2{
 
@@ -640,6 +645,7 @@ footer {
     opacity: 0.9;
     border: none;
 
+
 }
 
 .erreur404{
@@ -663,5 +669,46 @@ footer {
 
     color:#bdf12d;
     font-weight: bold;
+
+}
+
+#block-row{
+    background-color: #011933;
+    min-height: auto;
+    text-align: center;
+    padding: 16px 24px;
+
+    border-bottom: 4px solid #f45c20;
+}
+#block-row ul {
+    list-style:none;
+    display: flex;
+    justify-content: center;
+    font-size: 17px;
+
+
+}
+
+#block-row li {
+
+
+
+}
+
+.current{
+
+    color:red;
+    font-weight: bold;
+}
+
+#hideborder{
+
+
+    background-color: #333;
+    min-height: 30px;
+
+
+    background-origin: unset;
+
 
 }
