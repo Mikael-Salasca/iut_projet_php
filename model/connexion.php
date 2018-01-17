@@ -20,8 +20,8 @@ function checkConnexionValid($email,$passwd)
             $stmt->setFetchMode(PDO::FETCH_OBJ);
             $result = $stmt->fetch();
 
-            $_SESSION['user'] = serialize(new User($result->NAME, $result->EMAIL, $result->PASSWORD, $result->TYPEACCOUNT));
 
+            $_SESSION['user'] = new User($result->NAME, $result->EMAIL, $result->PASSWORD, $result->TYPEACCOUNT, $result->accountActive, $result->DATE);
             return true;
         }
         else

@@ -7,14 +7,16 @@
  */
 
 class User {
-    private $name, $email, $password, $accountType;
+    private $name, $email, $password, $accountType,$activation,$dateCreation;
 
-    public function __construct($name, $email, $password, $accountType)
+    public function __construct($name, $email, $password, $accountType,$activation,$dateCreation)
     {
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
         $this->accountType = $accountType;
+        $this->activation = $activation;
+        $this->dateCreation = $dateCreation;
     }
 
     public function __sleep()
@@ -41,5 +43,28 @@ class User {
     {
         return $this->password;
     }
+
+
+    public function getAccountType()
+    {
+        return $this->accountType;
+    }
+
+
+    public function getActivation()
+    {
+        return $this->activation;
+    }
+
+
+    public function getDateCreation()
+    {
+        return $this->dateCreation;
+    }
+
+
+
+
+
 
 }

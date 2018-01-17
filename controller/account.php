@@ -1,6 +1,6 @@
 <?php
 
-require ROOT . '/core/controller.php';
+
 require ROOT . '/core/User.php';
 require ROOT . '/model/accountmodif.php';
 
@@ -9,19 +9,14 @@ class account extends Controller {
     public function modify() {
         session_start();
         $this->start_page("Gestion du compte");
-        $this->getInfo();
-        require ROOT . '/views/account/viewAccount.php';
-        $this->end_page();
-    }
-
-    public function getInfo() {
-        if (isset($_SESSION['user'])) {
-            $current_user = unserialize($_SESSION['user']);
-            $_SESSION['name'] = $current_user->getName();
-            $_SESSION['email'] = $current_user->getEmail();
-            $_SESSION['password'] = $current_user->getPassword();
+        if(isset($_SESSION['user'])) {
+            require ROOT . '/views/account/viewAccount.php';
         }
-
+        else
+        {
+            require ROOT . '/views/errorGestion/error403View.php';
+        }
+        $this->end_page();
     }
 
     public function modify_email() {

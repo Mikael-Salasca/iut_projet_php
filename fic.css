@@ -151,7 +151,6 @@ body {
 
 #main-page,#main-page-center,#main-page-large{
     opacity: 1;
-    text-align:center;
 }
 #main-page {
 
@@ -195,7 +194,7 @@ body {
     background-color: #f1f1f1;
     color:black;
     min-height: 300px;
-
+    text-align: center;
 }
 
 #main-page-center h1{
@@ -327,7 +326,7 @@ footer {
 
 .error-register{
 
-    margin-left:20%;
+
     color:red;
     font-size: 15px;
 }
@@ -892,3 +891,96 @@ header{
     float: right;
     margin-top: 11px;
 }
+.card-header h2{
+
+    color: #a1a0a5;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight:300;
+
+    margin:0;
+    padding: 30px;
+    font-size: 30px ;
+}
+
+.row-compte{
+
+    margin-left: 1%;
+    margin-right: 1%;
+
+
+}
+
+#tab-compte {
+    color:black;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    display: table;
+}
+
+
+
+#tab-compte tr,th{
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+
+
+}
+
+.td-1 {
+
+    width: 75%;
+
+}
+
+.td-1-no-activ {
+
+    width: 75%;
+    color: red;
+
+}
+
+.modif-elem-ok{
+
+    width: 2%;
+}
+.modif-elem-ok a{
+
+    color: #7BBA42;
+    text-decoration: none;
+}
+.modif-elem-ok a:hover{
+
+    text-decoration: underline;
+}
+
+.modif-elem-no{
+
+    color: #19c589
+
+}
+
+#tab-compte{
+
+    border-top: solid 1px #9a9a9a;
+    border-bottom: solid 1px #9a9a9a;
+}
+
+#tab-compte td,tr{
+
+
+    padding: 20px 5px;
+
+    text-align: left;
+    vertical-align: middle;
+    border-radius: 2px;
+}
+
+.c1{
+
+    background-color: #e4d0d0;
+}
+
+

@@ -41,10 +41,9 @@ Class Home extends Controller {
     public function disconnect()
     {
         session_start();
-        if (isset($_SESSION['login'])) {
-            unset($_SESSION['login']);
-            unset($_SESSION['name']);
-            $_SESSION['isDisconnect'] = 1;
+        if (isset($_SESSION['user'])) {
+            session_destroy();
+
             header('Location: /');
         }
 

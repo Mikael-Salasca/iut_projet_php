@@ -1,6 +1,6 @@
 <header>
     <?php
-    if(!isset($_SESSION['login']) || $_SESSION['login'] != 'ok')
+    if(!isset($_SESSION['user']) )
         require 'idBarNotConnect.php';
     else
         require 'idBarConnect.php';
