@@ -26,5 +26,5 @@
     ?>
 
     <br><br><br>
-    <div class="pannel-disconnect"><a href="/connection/disconnect">Se déconnecter</a></div>
+    <div class="pannel-disconnect"><a href="/home/disconnect">Se déconnecter</a></div>
 </section>
