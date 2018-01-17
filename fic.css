@@ -24,7 +24,7 @@ body {
     border-color:#e7e7e7;
     width: 100%;
     margin:auto;
-    opacity: 0.9;
+
 
 
 }
@@ -151,6 +151,7 @@ body {
 
 #main-page,#main-page-center,#main-page-large{
     opacity: 1;
+    text-align:center;
 }
 #main-page {
 
@@ -192,9 +193,16 @@ body {
     width: 60%;
     margin: auto;
     background-color: #f1f1f1;
-
+    color:black;
     min-height: 300px;
 
+}
+
+#main-page-center h1{
+
+    font-weight: bold;
+    font: bold 20px "Lato",sans-serif;
+    text-align: center;
 }
 
 #main-page p {
@@ -767,6 +775,120 @@ footer {
     text-decoration: none;
 }
 
-.imglock{
-    width: 15%;
+#menu-connection ul ul{
+
+    display: none;
+}
+
+#menu-connection li:hover ul.niveau2{
+
+    display: block;
+}
+
+
+
+
+
+#menu ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    position: absolute;
+}
+/*Create a horizontal list with spacing*/
+#menu li {
+    display:inline-block;
+    float: right;
+    margin-right: 1px;
+
+}
+
+#menu li a {
+    display: block;
+    min-width: 100px;
+    height: 32px;
+    text-align: center;
+    /* line-height: 50px; */
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #fff;
+    background: #2f3036;
+    text-decoration: none;
+}
+/*Hover state for top level links*/
+#menu li:hover a {
+    background: #19c589;
+}
+/*Style for dropdown links*/
+#menu li:hover ul a {
+    background: #f3f3f3;
+    color: #2f3036;
+    height: 40px;
+    line-height: 40px;
+}
+/*Hover state for dropdown links*/
+#menu li:hover ul a:hover {
+    background: #19c589;
+    color: #fff;
+}
+
+/*Hide dropdown links until they are needed*/
+li ul {
+    display: none;
+}
+/*Make dropdown links vertical*/
+#menu li ul li {
+    display: inline-block;
+    float: none;
+
+}
+/*Prevent text wrapping*/
+#menu li ul li a {
+
+    min-width: 80px;
+    padding: 0 20px;
+
+}
+/*Display the dropdown on hover*/
+#menu  li a:hover + .hidden, .hidden:hover {
+    display: block;
+}
+
+@media screen and (max-width: 320px) {
+    .parent {
+        -webkit-transform:  rotate(180deg);
+        transform:  rotate(180deg);
+    }
+
+    .parent > div {
+        display: block;
+        margin: 0 auto 5px;
+        -webkit-transform: rotate(-180deg);
+        transform: rotate(-180deg);
+    }
+}
+
+.bl-1{
+    margin-top:35px;
+}
+
+
+header{
+
+
+}
+
+#block-11{
+
+
+}
+
+.drap-1{
+    width: 30%;
+    float: left;
+}
+
+.drap-2{
+    width: 20%;
+    float: right;
+    margin-top: 11px;
 }
