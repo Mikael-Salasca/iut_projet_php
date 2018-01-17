@@ -75,7 +75,7 @@ function saveKeyAccount($key,$name){
 
     $usersDataBase = new UsersDataBase();
     $dbConnection = $usersDataBase->dbConnect();
-    $query = "UPDATE user SET keyVerificationAccount=:key,accountActive=0 WHERE NAME = :name";
+    $query = "UPDATE user SET keyVerificationAccount=:key WHERE NAME = :name";
     $update = $dbConnection->prepare($query);
     $update->bindValue('key', $key, PDO::PARAM_STR);
     $update->bindValue('name', $name, PDO::PARAM_INT);

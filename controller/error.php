@@ -2,7 +2,7 @@
 
 
 //commentaire
-Class PageErrors extends Controller {
+class PageErrors extends Controller {
 
     public function pagenotfound()
     {

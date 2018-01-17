@@ -46,9 +46,11 @@ class account extends Controller {
         }
 
         else {
-            $_SESSION['email'] = $new_email;
-            if($this->sendEmailVerification($new_email))
+
+            if($this->sendEmailVerification($new_email)) {
+                $_SESSION['email'] = $new_email;
                 header('location:/account/confirm');
+            }
             else
                 {
                     $_SESSION['error_register'] = '<p class="error_register">Une erreur s\'est produite, veuillez réessayer.<br>Si le problème persiste, veuillez contacter le support.</p>';
