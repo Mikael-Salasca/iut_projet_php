@@ -32,17 +32,7 @@ class Connection extends Controller {
         }
 
 
-    public function disconnect()
-    {
-        session_start();
-        if (isset($_SESSION['login'])) {
-            unset($_SESSION['login']);
-            unset($_SESSION['name']);
-            $_SESSION['isDisconnect'] = 1;
-            header('Location: /');
-        }
 
-    }
 
     public function impossible(){
 
