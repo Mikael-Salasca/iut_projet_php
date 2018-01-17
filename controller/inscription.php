@@ -67,7 +67,7 @@ class Inscription extends  Controller
 
                     if($this->sendEmailVerification($name,$email)) {
 
-                        $_SESSION['email_send'] = 1;
+                        $_SESSION['email_send'] = $email;
                         header('Location:/inscription/confirme');
                     }
                     else

@@ -10,7 +10,7 @@
             <br><br>
             Attention, vous ne pourrez pas <strong>profiter des avantages</strong> d'un compte normal tant que vous ne l'aurez pas activé.
             <br><br>
-            Si vous n'arrivez pas à accéder à votre boite mail, <strong>pas de panique</strong> ! Vous avez une chance de la changer maintenant.
+            Si vous n'arrivez pas à accéder à votre boite mail, <strong>pas de panique</strong> ! Vous avez une chance de la changer maintenant.(en développement)
 
         </div>
 
@@ -44,7 +44,7 @@
         </div>
         <br>
         <div id="ak-mail-text">
-            Vous avez reçu un email à l'adresse :<br> <strong>tomboss971@gmail.com</strong>
+            Vous avez reçu un email à l'adresse :<br> <strong><?php echo $_SESSION['email_send'] ?></strong>
         </div>
         <br><br>
     </section>
