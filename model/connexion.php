@@ -1,6 +1,7 @@
 <?php
 
 require 'base.php';
+require ROOT . '/core/User.php';
 
 function checkConnexionValid($email,$passwd)
 {
@@ -19,9 +20,8 @@ function checkConnexionValid($email,$passwd)
             $stmt->setFetchMode(PDO::FETCH_OBJ);
             $result = $stmt->fetch();
 
-            $_SESSION['name'] = $result->NAME;
-            $_SESSION['account_active'] = $result->accountActive;
-            $_SESSION['account_type'] = $result->TYPEACCOUNT;
+
+            $_SESSION['user'] = new User($result->NAME, $result->EMAIL, $result->PASSWORD, $result->TYPEACCOUNT, $result->accountActive, $result->DATE);
             return true;
         }
         else
