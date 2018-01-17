@@ -23,6 +23,7 @@ class Connection extends Controller {
         {
             $_SESSION['login'] = 'ok';
             $_SESSION['first_co'] = 1;
+
             header("Location: /");
         }
         else {
