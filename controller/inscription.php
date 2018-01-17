@@ -203,10 +203,7 @@ class Inscription extends  Controller
 
     private function forceDisconnect()
     {
-        if (isset($_SESSION['login'])) {
-            unset($_SESSION['login']);
-            unset($_SESSION['name']);
-        }
+        session_destroy();
     }
 
     public function cu()
