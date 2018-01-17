@@ -65,8 +65,11 @@ class Inscription extends  Controller
                 }
                 else{
 
-                    if($this->sendEmailVerification($name,$email))
+                    if($this->sendEmailVerification($name,$email)) {
+
+                        $_SESSION['email_send'] = 1;
                         header('Location:/inscription/confirme');
+                    }
                     else
                     {
                         $_SESSION['error_register'] = '<p class="error_register">Une erreur s\'est produite lors de la validation de votre compte, veuillez reassayer.<br>Si le problème persiste, contactez le support</p>';
@@ -91,10 +94,21 @@ class Inscription extends  Controller
 
     public function confirme()
     {
-
+        session_start();
         $this->start_page('Verification du compte.');
-        require ROOT . '/views/inscription/inscriptionFinish.php';
+        if(isset($_SESSION['email_send']))
+        {
+
+            require ROOT . '/views/inscription/inscriptionFinish.php';
+            unset($_SESSION['email_send']);
+        }
+        else{
+
+            header('location:/inscription/register');
+        }
         $this->end_page();
+
+
     }
 
     public function confirmaccount()
