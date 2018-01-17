@@ -983,4 +983,48 @@ header{
     background-color: #e4d0d0;
 }
 
+.ak-mailsend{
 
+    text-align: center;
+    font-size: 19px;
+    font-family: "bebas_neueregular",sans-serif;
+    color: #848e02;
+    text-transform: uppercase;
+    margin: auto;
+    margin-top: 2%;
+    font-weight: bold;
+}
+
+#bar-progres{
+    text-align: center;
+    color: black;
+    /* margin: auto; */
+    width: 90%;
+    background-color: #97A800;
+    padding: 1%;
+
+}
+
+
+
+#bar-befpro{
+
+    background-color: #f6f5f5;
+    max-height: -1px;
+    margin: auto;
+    width: 40%;
+    /* border: solid 1px; */
+    /* border-color: black; */
+    border: 1px solid #b1ac9c;
+    margin-top: 2%;
+}
+
+#ak-mail-text{
+
+
+    color: #56380a;
+    font-family: "Roboto",sans-serif;
+    text-align: center;
+    /* vertical-align: middle; */
+    line-height: 24px;
+}
