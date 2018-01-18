@@ -1,7 +1,12 @@
 <?php // informations de l'inscription inscrites dans la bd
 
 
-require 'base.php';
+
+if (!class_exists('UsersDataBase'))
+{
+    require ROOT . '/model/base.php';
+}
+
 
 function saveRegistration($name, $email, $password)
 {

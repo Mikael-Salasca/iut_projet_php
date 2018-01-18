@@ -1,7 +1,14 @@
 <?php
 
-require 'base.php';
-require ROOT . '/core/User.php';
+
+if (!class_exists('UsersDataBase'))
+{
+    require ROOT . '/model/base.php';
+}
+if(!class_exists('User')) {
+
+    require ROOT . '/core/User.php';
+}
 
 function checkConnexionValid($email,$passwd)
 {

@@ -1,6 +1,10 @@
 <?php
 
-require 'base.php';
+if (!class_exists('UsersDataBase'))
+{
+    require ROOT . '/model/base.php';
+}
+
 
 
 function interneTranslation($targetLangage, $toTranslate) //fr par defaut

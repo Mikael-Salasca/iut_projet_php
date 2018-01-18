@@ -6,21 +6,17 @@ require ROOT . '/model/accountmodif.php';
 
 class account extends Controller {
 
-    public function modify() {
+    public function informations() {
         session_start();
+        $this->isConnect();
         $this->start_page("Gestion du compte");
-        if(isset($_SESSION['user'])) {
-            require ROOT . '/views/account/viewAccount.php';
-        }
-        else
-        {
-            require ROOT . '/views/errorGestion/error403View.php';
-        }
+        require ROOT . '/views/account/viewAccount.php';
         $this->end_page();
     }
 
     public function modify_email() {
         session_start();
+        $this->isConnect();
         $this->start_page("Changement d'adresse");
         require ROOT . '/views/account/viewChangeMail.php';
         $this->end_page();
@@ -28,24 +24,17 @@ class account extends Controller {
 
     public function send_email() {
         session_start();
-        if(!isset($_SESSION['user'])){
-
-            $this->start_page('Acces refusé');
-            require ROOT . '/views/errorGestion/error403View.php';
-            $this->end_page();
-            exit();
-
-        }
+        $this->isConnect();
         $email = filter_input(INPUT_POST, 'email');
         if(!filter_var($email,FILTER_VALIDATE_EMAIL))
         {
             $_SESSION['error_account_email'] = '<div class="error-register">Veuillez entrer une adresse mail valide</div>';
-            header('location:/account/modify_email');
+            header('location:/account/informations_email');
         }
 
         else if ($email != $_SESSION['email']) {
             $_SESSION['error_account_email'] = '<div class="error-register">Votre compte n\'est pas lié à cette adresse email.</div>';
-            header('location:/account/modify_email');
+            header('location:/account/informations_email');
         }
 
         else {
@@ -186,7 +175,7 @@ class account extends Controller {
             unset($_SESSION['email_changed']);
         }
         else{
-            header('location:/account/modify');
+            header('location:/account/informations');
         }
 
         $this->end_page();
@@ -216,6 +205,76 @@ class account extends Controller {
 
 
         return $crypt;
+
+    }
+
+
+    public function modify_password(){
+
+        session_start();
+        $this->isConnect();
+        if(isset($_SESSION['pass_has_change'])){
+            $this->start_page("Mot de passe changé.");
+            require ROOT . '/views/account/passmodfiedOk.php';
+            unset($_SESSION['pass_has_change']);
+        }
+        else {
+            $this->start_page("Modifié votre mot de passe");
+            require ROOT . '/views/account/viewChangePassword.php';
+        }
+        $this->end_page();
+
+
+
+
+
+
+    }
+
+    public function send_pass(){
+
+        session_start();
+        $this->isConnect();
+        require ROOT . '/model/connexion.php'; // on charge des fonctions déja écrite antérieurement(donc pas la peine de les réécrire)
+        require ROOT . '/model/forgotpass.php';
+
+
+        $password = filter_input(INPUT_POST,'mypass');
+        $newpass = filter_input(INPUT_POST,'newpass');
+        $newpass2 = filter_input(INPUT_POST,'newpass2');
+        if(!checkConnexionValid($_SESSION['email'],$password))
+        {
+            $_SESSION['error_mypass'] = '<div class="error-register">Le mot de passe est incorrect</div>';
+            header('location:/account/modify_password');
+            exit();
+        }
+
+        if($newpass != $newpass2)
+        {
+            $_SESSION['error_pass'] = '<div class="error-register">Vos mot de passes ne sont pas identiques</div>';
+            header('location:/account/modify_password');
+            exit();
+        }
+
+        //si on arrive ici on peut changer le mot de passe
+
+        if(!saveNewPass($_SESSION['name'],md5($newpass)))
+        {
+            header('location:/error/technical');
+            exit();
+        }
+        $_SESSION['pass_has_change'] = 1;
+        header('location:/account/modify_password');
+
+    }
+
+    private function isConnect(){
+
+        if(!isset($_SESSION['user']))
+        {
+            header('location:/connection/connect');
+            exit();
+        }
 
     }
 

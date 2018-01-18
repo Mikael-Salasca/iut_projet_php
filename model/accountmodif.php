@@ -1,6 +1,10 @@
 <?php
 
-require ROOT . '/model/base.php';
+if (!class_exists('UsersDataBase'))
+{
+    require ROOT . '/model/base.php';
+}
+
 
 function checkCode($name, $code) {
     $usersDataBase = new UsersDataBase();
