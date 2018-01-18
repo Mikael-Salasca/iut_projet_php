@@ -1,6 +1,6 @@
 <?php
 
-
+require ROOT . '/model/translation.php';
 //commentaire
 class PageErrors extends Controller {
 

@@ -3,7 +3,7 @@
 
 require ROOT . '/model/forgotpass.php';
 
-
+require ROOT . '/model/translation.php';
 
 class Forgotpass extends Controller {
 

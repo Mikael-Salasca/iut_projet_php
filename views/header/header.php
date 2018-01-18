@@ -9,8 +9,8 @@
     <nav class="navbar-menu">
 
         <ul class="navbar-nav">
-            <li><a href="/">Accueil</a></li>
-            <li><a href="">Traducteur</a></li>
+            <li><a href="/"><?php echo translate("Accueil") ?></a></li>
+            <li><a href=""><?php echo translate("Traduction") ?></a></li>
             <li></li>
 
             <li><a href="">Menu 3</a></li>

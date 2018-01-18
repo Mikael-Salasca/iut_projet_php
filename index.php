@@ -14,6 +14,8 @@ print_r($_SERVER);
 echo '</pre>';
 */
 require 'core/controller.php';
+session_start();
+if(!isset($_SESSION['lang'])) $_SESSION['lang'] = 'FRENCH'; // langue par default;
 $params = explode('/',$_SERVER['REDIRECT_URL']);
 if (isset($params[1])&& isset($params[2])) {
 

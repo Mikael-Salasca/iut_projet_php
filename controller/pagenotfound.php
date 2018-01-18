@@ -1,6 +1,6 @@
 <?php
 
-
+require ROOT . '/model/translation.php';
 
 Class Pagenotfound extends Controller {
 

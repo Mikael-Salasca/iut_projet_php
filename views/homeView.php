@@ -10,7 +10,7 @@
             <img class="drap-2" src="/img/drapeau-anglais.png">
         </div>
         <br>
-        <h1>Bienvenue sur notre site de traduction 100 % gratuit !</h1>
+        <h1><?php echo translate("Bienvenue sur notre site de traduction 100 % gratuit") ?> !</h1>
         <br><br><br>
         <!--<p>Créer vous un compte pour pouvoir dépasser de suite la restriction des 10 minutes de recherche ! C'est gratuit et ça mange pas de pain !</p>
         <br>
@@ -18,7 +18,7 @@
         <br>
         <p> Si vous avez des suggestions ou rencontrez un problème sur le site, n'hessitez pas à nous contacter via le menu Contact !</p>
         -->
-        <p>(Page de présentation temporaire)</p>
+        <p>(<?php echo translate("Page de présentation temporaire") ?>)</p>
     </section>
 
 </section>
