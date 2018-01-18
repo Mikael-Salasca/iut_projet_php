@@ -56,7 +56,7 @@ function saveCodeVerification($code,$name){
 
     $usersDataBase = new UsersDataBase();
     $dbConnection = $usersDataBase->dbConnect();
-    $query = "UPDATE user SET codeVerificationEmail=:code WHERE NAME = :name";
+    $query = "UPDATE user SET codeVerificationEmail=:code, dateVerificationCode=NOW()+INTERVAL 30 MINUTE WHERE NAME = :name";
     $update = $dbConnection->prepare($query);
     $update->bindValue('code', $code, PDO::PARAM_STR);
     $update->bindValue('name', $name, PDO::PARAM_STR);
@@ -96,4 +96,35 @@ function checkEmailExist($email){
         exit();
     }
 }
-?>
+
+function checkDateCode($code)
+{
+    //retourne vrai si la date d'expiration est après la date actuelle
+    $usersDataBase = new UsersDataBase();
+    $dbConnection = $usersDataBase->dbConnect();
+    $query = "SELECT * FROM user WHERE codeVerificationEmail=:code AND dateVerificationCode > DATE_SUB(NOW(),INTERVAL 0 MINUTE )";
+    $query2 = "SELECT NOW()";
+    $stmt = $dbConnection->prepare($query);
+    $stmt->bindValue('code', $code, PDO::PARAM_STR);
+    $stmt2 = $dbConnection->prepare($query2);
+    try {
+        $stmt->execute();
+        $stmt2->execute();
+        if ($stmt->rowCount()) {
+            $stmt->setFetchMode(PDO::FETCH_OBJ);
+            $result = $stmt->fetch();
+            $result2 = $stmt2->fetch();
+            $date_base = $result->dateVerificationCode;
+
+            return false;
+
+        }
+        return true;
+    }
+    catch (PDOException $e) {
+        echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+        echo 'Requête : ', $query, PHP_EOL;
+        exit();
+    }
+
+}

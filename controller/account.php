@@ -137,8 +137,8 @@ class account extends Controller {
             exit();
         }
 
-        if (!checkCode($_SESSION['name'], $code)) {
-            $_SESSION['wrong_code'] = '<div class="error-register">Le code entré n\'est pas le bon !</div>';
+        if (!checkCode($_SESSION['name'], $code) || checkDateCode($code)) {
+            $_SESSION['wrong_code'] = '<div class="error-register">Le code entré n\'est pas le bon ! (Ou a expiré)</div>';
             header('location:/account/confirm_code');
         }
         else {
@@ -152,7 +152,8 @@ class account extends Controller {
                 $_SESSION['email_changed'] = 1;
                 $_SESSION['email'] = $new_email; // on stocke sa nouvelle adresse email dans sa session
 
-                $_SESSION['email_crypt'] = $this->cryptEmail($new_email);
+                $_SESSION['crypt_email'] = $this->cryptEmail($new_email);
+
                 unset($_SESSION['access_code']); // l'utilisateur n'a plus le droit de renouveller les requetes à présent.
                 header('Location:/account/mail_change');
             }
