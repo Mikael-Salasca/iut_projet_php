@@ -44,8 +44,8 @@
 
                 <tr>
                     <th>&nbsp;Adresse email</th>
-                    <td class="td-1"><?php echo $_SESSION['email']; ?></td>
-                    <td class="modif-elem-ok"><a href="">Modifier</a></td>
+                    <td class="td-1"><?php echo $_SESSION['crypt_email']; ?></td>
+                    <td class="modif-elem-ok"><a href="/account/modify_email">Modifier</a></td>
                 </tr>
 
                 <tr class="c1">

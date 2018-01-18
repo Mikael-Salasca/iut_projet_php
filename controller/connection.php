@@ -63,12 +63,37 @@ class Connection extends Controller {
             $_SESSION['password'] = $current_user->getPassword();
             $_SESSION['type'] = $current_user->getAccountType();
             $_SESSION['isActive'] = $current_user->getActivation();
-
+            $_SESSION['crypt_email'] = $this->cryptEmail($_SESSION['email']);
 
             return true;
         }
          return false;
 
+
+    }
+
+    private function cryptEmail($email){
+
+        $crypt = '';
+
+
+        for($i=0; $i < iconv_strlen($email);$i++)
+        {
+            if(substr($email,$i,1) == "@") break;
+            if($i > 1)
+                $crypt .= '*';
+            else
+                $crypt .=  substr($email,$i,1);
+
+        }
+        for($i; $i < iconv_strlen($email); $i++)
+        {
+            $crypt .= substr($email,$i,1);
+        }
+
+
+
+        return $crypt;
 
     }
 
