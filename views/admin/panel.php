@@ -5,7 +5,7 @@
         <div class="card-header">
             <h2>Panneau de contrôle</h2>
         </div>
-        <?php if (isset($_SESSION['no_user_found'])) echo $_SESSION['no_user_found'] ; unset($_SESSION['no_user_found']); ?>
+        <?php  var_dump($_SESSION['user']);if (isset($_SESSION['no_user_found'])) echo $_SESSION['no_user_found'] ; unset($_SESSION['no_user_found']); ?>
 
         <table id="panel-admin" border="1">
             <tr>
@@ -13,7 +13,7 @@
                 <td> Email </td>
                 <td> Type de compte </td>
             </tr>
-            <?php if (isset($_SESSION['user_infos'])) {
+            <?php var_dump($_SESSION['user_infos']); if (isset($_SESSION['user_infos'])) {
                 $users = $_SESSION['user_infos'];
                 unset($_SESSION['user_infos']);
                 foreach ($users as $row) {
