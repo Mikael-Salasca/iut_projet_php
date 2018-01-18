@@ -24,17 +24,18 @@ class account extends Controller {
 
     public function send_email() {
         session_start();
+
         $this->isConnect();
         $email = filter_input(INPUT_POST, 'email');
         if(!filter_var($email,FILTER_VALIDATE_EMAIL))
         {
             $_SESSION['error_account_email'] = '<div class="error-register">Veuillez entrer une adresse mail valide</div>';
-            header('location:/account/informations_email');
+            header('location:/account/modify_email');
         }
 
         else if ($email != $_SESSION['email']) {
             $_SESSION['error_account_email'] = '<div class="error-register">Votre compte n\'est pas lié à cette adresse email.</div>';
-            header('location:/account/informations_email');
+            header('location:/account/modify_email');
         }
 
         else {

@@ -1,6 +1,6 @@
 <section id="corps">
 
-    <?php require ROOT . '/views/pannelConnexion/pannelConnexionView.php'; ?>
+
 
     <section id="corps">
         <section id="pannel-information">
