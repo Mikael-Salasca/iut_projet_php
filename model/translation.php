@@ -12,7 +12,7 @@ function translate ($toTranslate) //fr par defaut
     $usersDataBase = new UsersDataBase();
     $dbConnection  = $usersDataBase->dbConnect();
     $targetLangage = $_SESSION['lang'];
-
+    if(empty($targetLangage)) $targetLangage = 'FRENCH';
     $query = 'SELECT ' . $targetLangage . ' FROM translate WHERE FRENCH=:toTranslate';
     $stmt = $dbConnection->prepare($query);
 

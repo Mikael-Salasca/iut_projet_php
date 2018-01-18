@@ -3,7 +3,7 @@
 
 require ROOT . '/core/User.php';
 require ROOT . '/model/accountmodif.php';
-require ROOT . '/model/translation.php';
+
 class account extends Controller {
 
     public function informations() {

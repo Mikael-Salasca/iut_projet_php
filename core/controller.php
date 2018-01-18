@@ -6,6 +6,7 @@
  * Time: 13:08
  */
 
+require ROOT . '/model/translation.php';
 class Controller {
 
     protected function start_page($title)

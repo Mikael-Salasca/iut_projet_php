@@ -6,6 +6,7 @@
  * Time: 15:33
  */
 
+
 class User {
     private $name, $email, $password, $accountType,$activation,$dateCreation;
 

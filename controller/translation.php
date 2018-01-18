@@ -1,7 +1,7 @@
 <?php
 
 
-require ROOT . '/model/translation.php';
+
 
 
 

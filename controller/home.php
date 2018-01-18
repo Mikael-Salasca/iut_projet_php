@@ -6,7 +6,7 @@
  * Time: 16:13
  */
 
-require ROOT . '/model/translation.php';
+
 
 Class Home extends Controller {
 

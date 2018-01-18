@@ -3,7 +3,6 @@
 
 require ROOT . '/model/connexion.php';
 
-require ROOT . '/model/translation.php';
 
 class Connection extends Controller {
 
