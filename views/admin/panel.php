@@ -5,20 +5,23 @@
         <div class="card-header">
             <h2>Panneau de contrôle</h2>
         </div>
-        <?php  var_dump($_SESSION['user']);if (isset($_SESSION['no_user_found'])) echo $_SESSION['no_user_found'] ; unset($_SESSION['no_user_found']); ?>
+        <?php if (isset($_SESSION['no_user_found'])) echo $_SESSION['no_user_found'] ; unset($_SESSION['no_user_found']); ?>
 
-        <table id="panel-admin" border="1">
+        <table style = "..." id="panel-admin" border="1">
             <tr>
                 <td> Nom de compte </td>
                 <td> Email </td>
                 <td> Type de compte </td>
             </tr>
-            <?php var_dump($_SESSION['user_infos']); if (isset($_SESSION['user_infos'])) {
+            <?php if (isset($_SESSION['user_infos'])) {
                 $users = $_SESSION['user_infos'];
+                //var_dump($users);
                 unset($_SESSION['user_infos']);
                 foreach ($users as $row) {
-                    for ($i = 0; $i < sizeof($row) / 2; ++$i) {
-                        echo '<tr> <td>' . $row[$i] . '</td>';
+                    $row = get_object_vars($row);
+                    echo '<tr>';
+                    foreach ($row as $key => $value) {
+                        echo '<td>' . $value . '</td>';
                     }
                     echo '</tr>';
                 }
