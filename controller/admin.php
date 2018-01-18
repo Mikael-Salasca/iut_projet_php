@@ -11,7 +11,7 @@ class Admin extends Controller {
         if (isset($_SESSION['user'])) {
             if ($_SESSION['type'] != 'ADMIN') {
                 $_SESSION['access_denied'] = 'Vous n\'avez pas le droit d\'accéder à cette page.';
-                header('Location:/ergh');
+                header('Location:/');
             }
 
             $this->start_page('Panneau de contrôle');
@@ -23,6 +23,24 @@ class Admin extends Controller {
             }
             require ROOT . '/views/admin/panel.php';
             $this->end_page();
+        }
+        else header('Location:/');
+    }
+
+    function changerank() {
+        if (isset($_SESSION['user'])) {
+            if ($_SESSION['type'] != 'ADMIN') {
+                $_SESSION['access_denied'] = 'Vous n\'avez pas le droit d\'accéder à cette page.';
+                header('Location:/');
+            }
+            $users = $_SESSION['user_infos'];
+            foreach ($users as $row) {
+                $row = get_object_vars($row);
+                updateRanks($row['NAME'], $_POST[$row['NAME']]);
+                    $_SESSION['rank_changes'] = 'Changements de rangs effectués';
+
+            }
+            header('Location:/admin/control');
         }
     }
 }

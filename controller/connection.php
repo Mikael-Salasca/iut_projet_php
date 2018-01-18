@@ -17,8 +17,8 @@ class Connection extends Controller {
     public function validate() {
         session_start();
 
-        $email = filter_input(INPUT_POST,email);
-        $passwd = filter_input(INPUT_POST,mdp);
+        $email = filter_input(INPUT_POST,'email');
+        $passwd = filter_input(INPUT_POST,'mdp');
 
         if(empty($email || $passwd))
         {
@@ -57,7 +57,7 @@ class Connection extends Controller {
 
     private function getInfo() {
         if (isset($_SESSION['user'])) {
-            $current_user = unserialize($_SESSION['user']);
+            $current_user = $_SESSION['user'];
             $_SESSION['name'] = $current_user->getName();
             $_SESSION['email'] = $current_user->getEmail();
             $_SESSION['password'] = $current_user->getPassword();

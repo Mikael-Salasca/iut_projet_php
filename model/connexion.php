@@ -28,8 +28,7 @@ function checkConnexionValid($email,$passwd)
             $result = $stmt->fetch();
 
 
-            //$_SESSION['user'] = new User($result->NAME, $result->EMAIL, $result->PASSWORD, $result->TYPEACCOUNT, $result->accountActive, $result->DATE);
-            $_SESSION['user'] = serialize(new User($result->NAME, $result->EMAIL, $result->PASSWORD, $result->TYPEACCOUNT, $result->accountActive, $result->DATE));
+            $_SESSION['user'] = new User($result->NAME, $result->EMAIL, $result->PASSWORD, $result->TYPEACCOUNT, $result->accountActive, $result->DATE);
             return true;
         }
         else
