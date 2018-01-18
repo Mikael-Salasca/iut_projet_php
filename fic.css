@@ -597,6 +597,18 @@ footer {
 
 }
 
+.form-recovery-block-3{
+
+
+    position: relative;
+    overflow: hidden;
+    min-height: 30px;
+    padding: 16px 24px;
+    border-bottom: 1px solid #e5e5e5;
+    text-align: center;
+    margin-top: 3px;
+}
+
 .error-recovery-1{
 
     color:red;
@@ -1059,4 +1071,32 @@ header{
     margin-top: 5px;
     /* margin-bottom: 10px; */
     padding-bottom: 0px;
+}
+.img-111{
+
+    width: 20%;
+}
+
+.ak-block-mail{
+
+    max-width: 400px;
+    margin: 12px auto;
+    color: #28170e;
+}
+
+.ak-block-mail input[type="text"]{
+    background: #f4f4f4;
+    border-radius: 0;
+    height: 44px;
+
+    transition: all 0.3s ease;
+    border: 1px solid #c7c3b4;
+
+}
+
+.ak-block-mail input[type="text"]:focus{
+
+
+    transition: all 0.3s ease;
+    background: #e3e3e3;
 }

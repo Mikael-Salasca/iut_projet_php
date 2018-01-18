@@ -47,7 +47,10 @@ class account extends Controller {
             else
                 {
                     //$_SESSION['error_register'] = '<p class="error_register">Une erreur s\'est produite, veuillez réessayer.<br>Si le problème persiste, veuillez contacter le support.</p>';
-                    header('Location: /error/technical');
+                    $this->start_page("Erreur technique");
+                    require ROOT . '/views/errorGestion/technicalError.php';
+                    $this->end_page();
+                    exit();
                 }
             }
         }
@@ -89,7 +92,7 @@ class account extends Controller {
         $this->end_page();
     }
 
-    public function verifycode() {
+    public function verify_code() {
         session_start();
         if(!isset($_SESSION['access_code'])){
             $this->start_page('Acces refusé');
@@ -99,55 +102,107 @@ class account extends Controller {
         }
 
         $code = filter_input(INPUT_POST, 'code');
-        $new_email = filter_input(INPUT_POST, 'new_email');
-        $new_email2 = filter_input(INPUT_POST, 'new_email2');
 
+
+
+        if (!checkCode($_SESSION['name'], $code) || checkDateCode($code)) {
+            $_SESSION['wrong_code'] = '<div class="error-register">Le code entré n\'est pas le bon ! (Ou a expiré)</div>';
+            header('location:/account/confirm_code');
+            exit();
+        }
+
+        $_SESSION['access_new_email'] =1;
+        header('location:/account/new_email');
+
+    }
+
+
+    public function new_email(){
+        session_start();
+        if(!isset($_SESSION['access_new_email']))
+        {
+            $this->start_page('Acces refusé');
+            require ROOT . '/views/errorGestion/error403View.php';
+            $this->end_page();
+            exit();
+        }
+        else
+        {
+            $this->start_page('Nouvelle adresse email');
+            require ROOT . '/views/account/viewNewEmail.php';
+            $this->end_page();
+
+        }
+
+
+
+
+
+    }
+
+    public function send_new_mail(){
+        session_start();
+        if(!isset($_SESSION['access_new_email']))
+        {
+            $this->start_page('Acces refusé');
+            require ROOT . '/views/errorGestion/error403View.php';
+            $this->end_page();
+            exit();
+
+        }
+
+
+
+        $new_email =  filter_input(INPUT_POST,'newemail');
+        $new_email2 = filter_input(INPUT_POST,'newemail2');
 
         if($new_email == $_SESSION['email']){
             $_SESSION['error_account_email'] = '<div class="error-register">Cette adresse email est déja lié à votre compte.</div>';
-            header('location:/account/confirm_code');
+            header('location:/account/new_email');
             exit();
 
         }
         else if (checkEmailExist($new_email)) {
             $_SESSION['error_account_email'] = '<div class="error-register">Cette adresse email n\' est pas disponible.</div>';
-            header('location:/account/confirm_code');
+            header('location:/account/new_email');
             exit();
         }
         else if($new_email != $new_email2)
         {
             $_SESSION['error_account_email'] = '<div class="error-register"> Vos adresses emails ne sont pas les mêmes</div>';
-            header('location:/account/confirm_code');
+            header('location:/account/new_email');
             exit();
         }
         else if(!filter_var($new_email,FILTER_VALIDATE_EMAIL))
         {
             $_SESSION['error_account_email'] = '<div class="error-register">Veuillez entrer une adresse mail valide</div>';
-            header('location:/account/confirm_code');
+            header('location:/account/new_email');
             exit();
         }
 
-        if (!checkCode($_SESSION['name'], $code) || checkDateCode($code)) {
-            $_SESSION['wrong_code'] = '<div class="error-register">Le code entré n\'est pas le bon ! (Ou a expiré)</div>';
-            header('location:/account/confirm_code');
-        }
-        else {
+
             if (!modifyemail($_SESSION['name'], $new_email)) {
                 unset($_SESSION['access_code'] );
+                unset($_SESSION['acces_new_email']);
                 //$_SESSION['error_new_email'] = '<p class="error_register">Une erreur s\'est produite, veuillez réessayer.<br>Si le problème persiste, veuillez contacter le support.</p>';
-                header('Location: /error/technical');
+                $this->start_page("Erreur technique");
+                require ROOT . '/views/errorGestion/technicalError.php';
+                $this->end_page();
+                exit();
             }
-            else {
-                // faire comme thomas a fait pour afficher que la connexion a été effectuée avec succès (OK Je le ferais bientôt. Cordialement, Thomas.)
-                $_SESSION['email_changed'] = 1;
-                $_SESSION['email'] = $new_email; // on stocke sa nouvelle adresse email dans sa session
 
-                $_SESSION['crypt_email'] = $this->cryptEmail($new_email);
+            $_SESSION['email_changed'] = 1;
+            $_SESSION['email'] = $new_email; // on stocke sa nouvelle adresse email dans sa session
 
-                unset($_SESSION['access_code']); // l'utilisateur n'a plus le droit de renouveller les requetes à présent.
-                header('Location:/account/mail_change');
-            }
-        }
+            $_SESSION['crypt_email'] = $this->cryptEmail($new_email);
+
+            unset($_SESSION['access_code']); // l'utilisateur n'a plus le droit de renouveller les requetes à présent.
+            unset($_SESSION['acces_new_email']); // pareil pr la page de mail.
+            header('Location:/account/mail_change');
+
+
+
+
 
     }
 
@@ -261,11 +316,14 @@ class account extends Controller {
 
         if(!saveNewPass($_SESSION['name'],md5($newpass)))
         {
-            header('location:/error/technical');
+            $this->start_page("Erreur technique");
+            require ROOT . '/views/errorGestion/technicalError.php';
+            $this->end_page();
             exit();
         }
         $_SESSION['pass_has_change'] = 1;
         header('location:/account/modify_password');
+        exit();
 
     }
 

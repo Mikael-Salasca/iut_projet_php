@@ -28,7 +28,9 @@ class Connection extends Controller {
         {
             // on initialise toute les infos de compte du client
             if(!$this->getInfo()){
-                header('location:/error/technical');
+                $this->start_page("Erreur technique");
+                require ROOT . '/views/errorGestion/technicalError.php';
+                $this->end_page();
                 exit();
 
             }

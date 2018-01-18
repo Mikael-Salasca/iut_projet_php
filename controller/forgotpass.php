@@ -166,7 +166,9 @@ class Forgotpass extends Controller {
 
         if(!saveNewPass($_SESSION['reset_name'],md5($pass1))) // si le nouveau mot de passe n'a pas pu être sauvegardé
         {
-            header('location:/error/technical');
+            $this->start_page("Erreur technique");
+            require ROOT . '/views/errorGestion/technicalError.php';
+            $this->end_page();
             exit();
 
         }

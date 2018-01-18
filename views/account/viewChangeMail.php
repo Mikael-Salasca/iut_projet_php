@@ -2,25 +2,13 @@
 
 
 
-    <section id="corps">
-        <section id="pannel-information">
-            <div id="pannel-info-block-1">
-
-                <p>INFORMATIONS</p>
-            </div>
-            <div id="pannel-info-content">
-
-            </div>
-
-
-        </section>
 
         <section id="main-page">
             <div id="block-row">
                 <ul class="ak-stepper-list">
-                    <li class="current">Vérification email</li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li class="current">Email actuelle</li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <li>Code de sécurité</li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li>Changement terminé</li>
+                    <li>Nouvelle adresse email</li>
                 </ul>
             </div>
 
