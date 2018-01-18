@@ -16,8 +16,8 @@ class Connection extends Controller {
     public function validate() {
         session_start();
 
-        $email = filter_input(INPUT_POST,email);
-        $passwd = filter_input(INPUT_POST,mdp);
+        $email = filter_input(INPUT_POST,'email');
+        $passwd = filter_input(INPUT_POST,'mdp');
 
         if(empty($email || $passwd))
         {
@@ -65,6 +65,7 @@ class Connection extends Controller {
             $_SESSION['type'] = $current_user->getAccountType();
             $_SESSION['isActive'] = $current_user->getActivation();
             $_SESSION['crypt_email'] = $this->cryptEmail($_SESSION['email']);
+            $_SESSION['user'] = serialize($current_user);
 
             return true;
         }
