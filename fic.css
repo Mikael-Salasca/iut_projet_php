@@ -43,7 +43,7 @@ body {
 
 .ak-idbar a {
 
-    font-size: 10px;
+    font-size: 12px;
     line-height: 32px;
     float: right;
     text-decoration: none;
@@ -1027,4 +1027,36 @@ header{
     text-align: center;
     /* vertical-align: middle; */
     line-height: 24px;
+}
+
+#tab-lang{
+
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    display: -webkit-inline-box;
+
+}
+
+#tab-lang a{
+
+    text-decoration: none;
+    color: #365899;
+
+}
+#tab-lang a:hover{
+    text-decoration: underline;
+}
+
+.lang-set{
+    color: #737373;
+}
+#footer-border{
+    border-bottom: solid 1px #dddfe2;
+    margin-left: 10%;
+    margin-right: 10%;
+    /* padding: 3px; */
+    /* padding-top: 5px; */
+    margin-top: 5px;
+    /* margin-bottom: 10px; */
+    padding-bottom: 0px;
 }

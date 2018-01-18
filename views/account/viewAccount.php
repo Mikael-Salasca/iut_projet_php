@@ -51,7 +51,7 @@
                 <tr class="c1">
                     <th>&nbsp;Mot de passe</th>
                     <td class="td-1">**********</td>
-                    <td class="modif-elem-ok"><a href="">Modifier</a></td>
+                    <td class="modif-elem-ok"><a href="/account/modify_password">Modifier</a></td>
                 </tr>
 
                 <tr>
