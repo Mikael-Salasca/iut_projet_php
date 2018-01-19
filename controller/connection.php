@@ -8,6 +8,11 @@ class Connection extends Controller {
 
     public function connect() {
         session_start();
+
+        if(isset($_SESSION['user']))
+        {
+            header('location:/');
+        }
         $this->start_page('Page de connexion');
         require ROOT . '/views/connection/connectionView.php';
         $this->end_page();
@@ -15,7 +20,10 @@ class Connection extends Controller {
 
     public function validate() {
         session_start();
-
+        if(isset($_SESSION['user']))
+        {
+            header('location:/');
+        }
         $email = filter_input(INPUT_POST,email);
         $passwd = filter_input(INPUT_POST,mdp);
 
