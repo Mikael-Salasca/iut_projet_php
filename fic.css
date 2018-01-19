@@ -6,7 +6,7 @@ html {
 body {
     background-color: #271d14;
     font-family: "Roboto",sans-serif;
-    background-image: url(/img/fond-monde.jpg);
+    background-image: url(/img/fondmonde.jpg);
     background-repeat:repeat-y;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -1099,4 +1099,37 @@ header{
 
     transition: all 0.3s ease;
     background: #e3e3e3;
+}
+
+#panel-admin{
+    width: 100%;
+    color: black;
+    border-collapse: collapse;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+#panel-admin tr,td{
+    padding: 10px 5px;
+    font-weight: 300;
+}
+
+.info-table{
+    border-top: solid 1px black;
+    border-bottom: solid 1px #9a9a9a;
+    background-color: #988686;
+    text-align: left;
+}
+
+.panel-td{
+
+    width: 51%;
+}
+
+.panel-td2{
+
+
+}
+.c-20{
+    background-color: #e4d0d0;
 }
