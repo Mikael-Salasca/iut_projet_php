@@ -54,7 +54,7 @@ function userTranslation($srcLangage,$targetLangage, $toTranslate) //fr par defa
 
 
     $query = 'SELECT ' . $targetLangage . ' FROM translate WHERE ' .$srcLangage .'=:toTranslate';
-    var_dump($query);
+    //var_dump($query);
     $stmt = $dbConnection->prepare($query);
 
     $stmt->bindValue('toTranslate', $toTranslate, PDO::PARAM_STR);

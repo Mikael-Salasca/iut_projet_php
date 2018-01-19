@@ -9,8 +9,6 @@
 
     <div id="form-translation">
         <form action = "/translation/displayTranslation" method="post" >
-            <textarea name="word-to-translate"> </textarea> </br>
-
 
             <select name="langSrc">
                 <option value="FRENCH"> Français </option>
@@ -18,13 +16,15 @@
                 <option value="AUTO"> Détecter la langue </option>
             </select>
 
+            <textarea name="word-to-translate"> </textarea> </br> </br></br>
+
             <select name="langDest">
                 <option value="FRENCH"> Français </option>
                 <option value="ENGLISH"> Anglais </option>
                 <option value="AUTO"> Détecter la langue </option>
             </select>
 
-            <h1> Mot traduit :  <?php echo $translation?> </h1></br>
+            <div> Mot traduit :  <?php echo $translation?> </div>
 
 
 
