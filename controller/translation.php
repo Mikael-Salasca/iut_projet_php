@@ -1,10 +1,5 @@
 <?php
 
-
-
-
-
-
 class Translation extends Controller {
 
     function translate() {
@@ -33,14 +28,30 @@ class Translation extends Controller {
         session_start();
         if (!isset($_SESSION['user'])) { //non connecté
 
+
+
             if (isset($_SESSION['haveToWait'])) {
-                $time = date("H:i",strtotime("now"));
-                echo $time;
+                $now = new DateTime("NOW");
+                $last_translation = $_SESSION['last_translation'];
+
+
+                $since_last_translation = $last_translation->diff($now);
+                if ($since_last_translation->i >= 10 ) {
+                    unset($_SESSION['haveToWait']);
+                    header("location: /translation/translate");
+                    exit();
+
+                }
+                else {
+                    echo 10 - $since_last_translation->i . ' minutes à attendre';
+
+
+                }
 
 
 
 
-            }
+        }
 
             else { // pas besoin d'attendre
                     $targetLangage = filter_input(INPUT_POST, 'langDest');
@@ -59,7 +70,8 @@ class Translation extends Controller {
                     require ROOT . '/views/translate/translateView.php';
                     $this->end_page();
 
-                    $_SESSION['last_translation'] = date("H:i");;
+                    $_SESSION['haveToWait'] = true;
+                    $_SESSION['last_translation'] = new DateTime("NOW");
 
 
             }
