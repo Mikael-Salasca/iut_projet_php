@@ -42,11 +42,16 @@ Class Home extends Controller {
     public function disconnect()
     {
         session_start();
+        $lang = $_SESSION['lang'];
         if (isset($_SESSION['user'])) {
             session_destroy();
+            session_start();
+            $_SESSION['lang'] = $lang;
+            header('location:/');
 
-            header('Location: /');
         }
+        header('Location: /');
+
 
     }
 

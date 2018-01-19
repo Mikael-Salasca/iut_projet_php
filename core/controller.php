@@ -17,7 +17,7 @@ class Controller {
                 <meta name="description" content="Site web de Traduction"/> 
                 <meta name="keywords" content="HTML,CSS,JS"/>
                 </head>';
-
+        if(isset($_SESSION['user'])) $this->refreshInfoUser();
         require ROOT . '/views/header/header.php';
         echo '<body> '. PHP_EOL;
     }
@@ -29,7 +29,35 @@ class Controller {
    }
 
 
+    private function refreshInfoUser(){
 
+        require ROOT . 'model/connexion.php';
+
+        if(checkConnexionValid($_SESSION['email'],$_SESSION['password'])){
+
+            $this->getInfo();
+
+        }
+
+
+    }
+
+    protected function getInfo() {
+        if (isset($_SESSION['user'])) {
+            $current_user = $_SESSION['user'];
+            $_SESSION['name'] = $current_user->getName();
+            $_SESSION['email'] = $current_user->getEmail();
+            $_SESSION['password'] = $current_user->getPassword();
+            $_SESSION['type'] = $current_user->getAccountType();
+            $_SESSION['isActive'] = $current_user->getActivation();
+            $_SESSION['crypt_email'] = $this->cryptEmail($_SESSION['email']);
+
+            return true;
+        }
+        return false;
+
+
+    }
 
 
 };

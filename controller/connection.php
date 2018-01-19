@@ -64,22 +64,7 @@ class Connection extends Controller {
 
     }
 
-    private function getInfo() {
-        if (isset($_SESSION['user'])) {
-            $current_user = $_SESSION['user'];
-            $_SESSION['name'] = $current_user->getName();
-            $_SESSION['email'] = $current_user->getEmail();
-            $_SESSION['password'] = $current_user->getPassword();
-            $_SESSION['type'] = $current_user->getAccountType();
-            $_SESSION['isActive'] = $current_user->getActivation();
-            $_SESSION['crypt_email'] = $this->cryptEmail($_SESSION['email']);
 
-            return true;
-        }
-         return false;
-
-
-    }
 
     private function cryptEmail($email){
 
