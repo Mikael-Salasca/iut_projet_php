@@ -10,7 +10,7 @@
 
         <ul class="navbar-nav">
             <li><a href="/"><?php echo translate("Accueil") ?></a></li>
-            <li><a href=""><?php echo translate("Traduction") ?></a></li>
+            <li><a href="/translation/translate"><?php echo translate("Traduction") ?></a></li>
             <li></li>
 
             <li><a href="">Menu 3</a></li>

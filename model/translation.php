@@ -54,13 +54,13 @@ function userTranslation($srcLangage,$targetLangage, $toTranslate) //fr par defa
 
 
     $query = 'SELECT ' . $targetLangage . ' FROM translate WHERE ' .$srcLangage .'=:toTranslate';
-    var_dump($query);
+    //var_dump($query);
     $stmt = $dbConnection->prepare($query);
 
     $stmt->bindValue('toTranslate', $toTranslate, PDO::PARAM_STR);
     try {
         $stmt->execute();
-        $stmt->rowCount() or die('Pas de résultat' . PHP_EOL);
+        $stmt->rowCount() or die('Pas de traduction disponible' . PHP_EOL);
         $stmt->setFetchMode(PDO::FETCH_OBJ);
         return $stmt->fetch()->$targetLangage;
 
