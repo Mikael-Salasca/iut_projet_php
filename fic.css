@@ -6,7 +6,7 @@ html {
 body {
     background-color: #271d14;
     font-family: "Roboto",sans-serif;
-    background-image: url(/img/fondmonde.jpg);
+    background-image: url(/img/fond-monde.jpg);
     background-repeat:repeat-y;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -856,7 +856,7 @@ li ul {
 #menu li ul li a {
 
     min-width: 80px;
-    padding: 0 20px;
+
 
 }
 /*Display the dropdown on hover*/
