@@ -60,9 +60,13 @@ function userTranslation($srcLangage,$targetLangage, $toTranslate) //fr par defa
     $stmt->bindValue('toTranslate', $toTranslate, PDO::PARAM_STR);
     try {
         $stmt->execute();
-        $stmt->rowCount() or die('Pas de traduction disponible' . PHP_EOL);
-        $stmt->setFetchMode(PDO::FETCH_OBJ);
-        return $stmt->fetch()->$targetLangage;
+        if($stmt->rowCount())
+        {
+            $stmt->setFetchMode(PDO::FETCH_OBJ);
+            return $stmt->fetch()->$targetLangage;
+        }
+        return '';
+
 
     }
     catch (PDOException $e) {

@@ -16,6 +16,7 @@ class Controller {
                 <meta charset="utf-8"/>
                 <meta name="description" content="Site web de Traduction"/> 
                 <meta name="keywords" content="HTML,CSS,JS"/>
+               
                 </head>';
         if(isset($_SESSION['user'])) $this->refreshInfoUser();
         require ROOT . '/views/header/header.php';
