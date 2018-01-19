@@ -28,6 +28,7 @@ class Admin extends Controller {
     }
 
     function changerank() {
+        session_start();
         if (isset($_SESSION['user'])) {
             if ($_SESSION['type'] != 'ADMIN') {
                 $_SESSION['access_denied'] = 'Vous n\'avez pas le droit d\'accéder à cette page.';
@@ -42,6 +43,7 @@ class Admin extends Controller {
 
             }
             header('Location:/admin/control');
+            exit();
         }
 
         header('Location:/');
