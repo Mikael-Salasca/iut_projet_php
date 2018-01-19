@@ -32,39 +32,39 @@ class Translation extends Controller {
 
         session_start();
         if (!isset($_SESSION['user'])) { //non connecté
-            if (!isset($_SESSION['translation_allowed'])) {
-                $_SESSION['translation_allowed'] = 'ok'; //init
-            }
-            else if (isset($_SESSION['translation_allowed'])){
 
-
-            }
+            if (isset($_SESSION['haveToWait'])) {
+                $time = date("H:i",strtotime("now"));
+                echo $time;
 
 
 
-            if ($_SESSION['translation_allowed'] == 'ok') {
-                $targetLangage = filter_input(INPUT_POST, 'langDest');
-                $sourceLangage = filter_input(INPUT_POST, 'langSrc');
-                $wordToTranslate = filter_input(INPUT_POST, 'word-to-translate');
-
-                echo $sourceLangage;
-                echo $targetLangage;
-                echo $wordToTranslate;
-
-                $translation = userTranslation($sourceLangage, $targetLangage, $wordToTranslate);
-
-                echo 'traduction : ' . $translation . "\r\n";
-
-                $this->start_page('Page de connexion');
-                require ROOT . '/views/translate/translateView.php';
-                $this->end_page();
-
-                $_SESSION['last_translation'] = date("H:i");;
 
             }
-            else {
-                echo 'Temps pour prochaine traduction : ';
+
+            else { // pas besoin d'attendre
+                    $targetLangage = filter_input(INPUT_POST, 'langDest');
+                    $sourceLangage = filter_input(INPUT_POST, 'langSrc');
+                    $wordToTranslate = filter_input(INPUT_POST, 'word-to-translate');
+
+                    echo $sourceLangage;
+                    echo $targetLangage;
+                    echo $wordToTranslate;
+
+                    $translation = userTranslation($sourceLangage, $targetLangage, $wordToTranslate);
+
+                    echo 'traduction : ' . $translation . "\r\n";
+
+                    $this->start_page('Page de connexion');
+                    require ROOT . '/views/translate/translateView.php';
+                    $this->end_page();
+
+                    $_SESSION['last_translation'] = date("H:i");;
+
+
             }
+
+
 
 
         }
