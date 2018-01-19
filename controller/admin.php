@@ -2,7 +2,7 @@
 
 require ROOT . '/core/User.php';
 require ROOT . '/model/userinfo.php';
-require ROOT . '/model/translation.php';
+
 
 class Admin extends Controller {
 
@@ -32,6 +32,7 @@ class Admin extends Controller {
             if ($_SESSION['type'] != 'ADMIN') {
                 $_SESSION['access_denied'] = 'Vous n\'avez pas le droit d\'accéder à cette page.';
                 header('Location:/');
+                exit();
             }
             $users = $_SESSION['user_infos'];
             foreach ($users as $row) {
@@ -42,6 +43,10 @@ class Admin extends Controller {
             }
             header('Location:/admin/control');
         }
+
+        header('Location:/');
+
+
     }
 }
 ?>

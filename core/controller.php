@@ -31,9 +31,9 @@ class Controller {
 
     private function refreshInfoUser(){
 
-        require ROOT . 'model/connexion.php';
+        require ROOT . '/model/connexion.php';
 
-        if(checkConnexionValid($_SESSION['email'],$_SESSION['password'])){
+        if(getAllInfoUser($_SESSION['email'])){
 
             $this->getInfo();
 
@@ -56,6 +56,31 @@ class Controller {
         }
         return false;
 
+
+    }
+
+    private function cryptEmail($email){
+
+        $crypt = '';
+
+
+        for($i=0; $i < iconv_strlen($email);$i++)
+        {
+            if(substr($email,$i,1) == "@") break;
+            if($i > 1)
+                $crypt .= '*';
+            else
+                $crypt .=  substr($email,$i,1);
+
+        }
+        for($i; $i < iconv_strlen($email); $i++)
+        {
+            $crypt .= substr($email,$i,1);
+        }
+
+
+
+        return $crypt;
 
     }
 

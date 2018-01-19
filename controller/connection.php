@@ -68,30 +68,7 @@ class Connection extends Controller {
 
 
 
-    private function cryptEmail($email){
 
-        $crypt = '';
-
-
-        for($i=0; $i < iconv_strlen($email);$i++)
-        {
-            if(substr($email,$i,1) == "@") break;
-            if($i > 1)
-                $crypt .= '*';
-            else
-                $crypt .=  substr($email,$i,1);
-
-        }
-        for($i; $i < iconv_strlen($email); $i++)
-        {
-            $crypt .= substr($email,$i,1);
-        }
-
-
-
-        return $crypt;
-
-    }
 
 
 
