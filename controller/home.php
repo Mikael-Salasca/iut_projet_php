@@ -24,7 +24,7 @@ Class Home extends Controller {
     private function checkFirstCo(){
         if(isset($_SESSION['first_co']))
         {
-            echo '<script type="text/javascript">alert(translate("Vous êtes désormais connecté !"));</script>';
+            echo '<script type="text/javascript">alert(\'' . translate("Vous êtes désormais connecté !").'\')</script>';
             unset($_SESSION['first_co']);
         }
 
@@ -33,7 +33,7 @@ Class Home extends Controller {
 
         if(isset($_SESSION['isDisconnect']))
         {
-            echo '<script type="text/javascript">alert(translate("Vous avez bien était déconnecté !"));</script>';
+            echo '<script type="text/javascript">alert('. translate("Vous avez bien était déconnecté !"). ')</script>';
             unset($_SESSION['isDisconnect']);
             session_destroy();
         }
