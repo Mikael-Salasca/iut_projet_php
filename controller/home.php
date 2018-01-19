@@ -6,14 +6,15 @@
  * Time: 16:13
  */
 
-require ROOT . '/core/controller.php';
+
 
 Class Home extends Controller {
 
     public function index()
     {
         session_start();
-        $this->start_page('Page d\'Accueil');
+
+        $this->start_page(translate('Page d\'accueil'));
         $this->checkFirstCo();
         $this->checkDisconnect();
         require ROOT . '/views/homeView.php';
@@ -23,7 +24,7 @@ Class Home extends Controller {
     private function checkFirstCo(){
         if(isset($_SESSION['first_co']))
         {
-            echo '<script type="text/javascript">alert("Vous êtes désormais connecté !");</script>';
+            echo '<script type="text/javascript">alert(translate("Vous êtes désormais connecté !"));</script>';
             unset($_SESSION['first_co']);
         }
 
@@ -32,10 +33,43 @@ Class Home extends Controller {
 
         if(isset($_SESSION['isDisconnect']))
         {
-            echo '<script type="text/javascript">alert("Vous avez bien était déconnecté !");</script>';
+            echo '<script type="text/javascript">alert(translate("Vous avez bien était déconnecté !"));</script>';
             unset($_SESSION['isDisconnect']);
             session_destroy();
         }
+    }
+
+    public function disconnect()
+    {
+        session_start();
+        $lang = $_SESSION['lang'];
+        if (isset($_SESSION['user'])) {
+            session_destroy();
+            session_start();
+            $_SESSION['lang'] = $lang;
+            header('location:/');
+
+        }
+        header('Location: /');
+
+
+    }
+
+    public function fr(){
+
+        session_start();
+        $_SESSION['lang'] = 'FRENCH';
+        header('location:/');
+
+    }
+
+
+    public function en(){
+
+        session_start();
+        $_SESSION['lang'] = 'ENGLISH';
+        header('location:/');
+
     }
 
 }

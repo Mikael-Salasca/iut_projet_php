@@ -8,7 +8,7 @@
 
 require(ROOT . '/model/registration.php');
 
-require ROOT . '/core/controller.php';
+
 
 class Inscription extends  Controller
 {
@@ -26,7 +26,12 @@ class Inscription extends  Controller
             $_SESSION['error_register'] = '<div class="error-register">Vous devez remplir tout les champs.</div>';
             header('location:/inscription/register');
         }
-        else if(checkAccountExist($email))
+        else if(checkAccountExist($name))
+        {
+            $_SESSION['error_account_name'] = '<div class="error-register">Ce compte existe déja !</div>';
+            header('location:/inscription/register');
+        }
+        else if(checkEmailExist($email))
         {
             $_SESSION['error_account_email'] = '<div class="error-register">Cette adresse email est déja enregistré !</div>';
             header('location:/inscription/register');
@@ -38,13 +43,13 @@ class Inscription extends  Controller
         }
         else if ($password != $password2)
         {
-            $_SESSION['error_register'] = '<div class="error-register">Vos mots de passe doivent être identique</div>';
+            $_SESSION['error_mdp'] = '<div class="error-register">Vos mots de passe doivent être identique</div>';
             header('location:/inscription/register');
 
         }
         else if($cuAccept != true)
         {
-            $_SESSION['error_register'] = '<div class="error-register">Veuillez lire et accepter les conditions d\'utilisation</div>';
+            $_SESSION['error_cu'] = '<div class="error-register">Veuillez lire et accepter les conditions d\'utilisation</div>';
             header('location:/inscription/register');
         }
         else
@@ -60,8 +65,11 @@ class Inscription extends  Controller
                 }
                 else{
 
-                    if($this->sendEmailVerification($name,$email))
+                    if($this->sendEmailVerification($name,$email)) {
+
+                        $_SESSION['email_send'] = $email;
                         header('Location:/inscription/confirme');
+                    }
                     else
                     {
                         $_SESSION['error_register'] = '<p class="error_register">Une erreur s\'est produite lors de la validation de votre compte, veuillez reassayer.<br>Si le problème persiste, contactez le support</p>';
@@ -86,21 +94,29 @@ class Inscription extends  Controller
 
     public function confirme()
     {
-
+        session_start();
         $this->start_page('Verification du compte.');
-        require ROOT . '/views/inscription/inscriptionFinish.php';
+        if(isset($_SESSION['email_send']))
+        {
+
+            require ROOT . '/views/inscription/inscriptionFinish.php';
+            unset($_SESSION['email_send']);
+        }
+        else{
+
+            header('location:/inscription/register');
+        }
         $this->end_page();
+
+
     }
 
     public function confirmaccount()
     {
         session_start();
         $this->start_page('Activation du compte');
-        if(isset($_SESSION['error_account_active'])) {
-            require ROOT . '/views/confirmationAccount/confimationAccountExistingView.php';
-            unset($_SESSION['error_account_active']);
-        }
-        else if(isset($_SESSION['active_account'])) {
+
+        if(isset($_SESSION['active_account'])) {
             $this->forceDisconnect(); // On force la session à se fermer (pour que l'utilisateur se reconnecte et ainsi éviter de potentiels erreurs de vues)
             require ROOT . '/views/confirmationAccount/confirmationAccountTrueView.php';
             unset($_SESSION['active_account']);
@@ -111,7 +127,7 @@ class Inscription extends  Controller
             unset($_SESSION['error_account']);
         }
         else
-            require ROOT . '/views/errorGestion/error403View.php';
+            header('location:/inscription/register');
         $this->end_page();
 
     }
@@ -154,8 +170,8 @@ class Inscription extends  Controller
         {
             if($row->accountActive == 1)
             {
-                $_SESSION['error_account_active'] = 1;
-                header('location:/inscription/confirmaccount');
+
+                header('location:/inscription/register');
             }
             else
             {
@@ -177,8 +193,8 @@ class Inscription extends  Controller
         }
         else { // dans le cas ou la clé n'a pas était trouver dans le serveur (ou n'importe quoi a était passé en argument)
 
-            $_SESSION['error_account'] = 1;
-            header('location:/inscription/confirmaccount');
+
+            header('location:/inscription/register');
 
         }
 
@@ -187,10 +203,7 @@ class Inscription extends  Controller
 
     private function forceDisconnect()
     {
-        if (isset($_SESSION['login'])) {
-            unset($_SESSION['login']);
-            unset($_SESSION['name']);
-        }
+        session_destroy();
     }
 
     public function cu()

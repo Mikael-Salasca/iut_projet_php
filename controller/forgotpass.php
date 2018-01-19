@@ -1,6 +1,6 @@
 <?php
 
-require ROOT . '/core/controller.php';
+
 require ROOT . '/model/forgotpass.php';
 
 
@@ -121,7 +121,7 @@ class Forgotpass extends Controller {
         }
         else
         {
-            header('location:/');
+            header('location:/forgotpass/forgot');
         }
 
         $this->end_page();
@@ -150,7 +150,7 @@ class Forgotpass extends Controller {
         session_start();
         if(!isset($_SESSION['reset_name']))
         {
-            header('location:/');
+            header('location:/forgotpass/forgot');
             exit();
 
         }
@@ -166,7 +166,9 @@ class Forgotpass extends Controller {
 
         if(!saveNewPass($_SESSION['reset_name'],md5($pass1))) // si le nouveau mot de passe n'a pas pu être sauvegardé
         {
-            header('location:/error/technical');
+            $this->start_page("Erreur technique");
+            require ROOT . '/views/errorGestion/technicalError.php';
+            $this->end_page();
             exit();
 
         }

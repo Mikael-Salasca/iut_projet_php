@@ -1,10 +1,51 @@
 <section id="corps">
 
-    <?php require ROOT . '/views/pannelConnexion/pannelConnexionView.php'; ?>
+    <section id="pannel-information">
+        <div id="pannel-info-block-1">
 
-    <section id="main-page">
-        <p>Votre compte à bien était créer.<br> Un email pour le confirmer viens de vous êtes envoyer.<br> Veuillez le valider pour pouvoir utiliser votre compte.</p>
-        <a href="/">Retourner au menu principal</a>
+            <p>Pourquoi dois-je activer mon compte ?</p>
+        </div>
+        <div id="pannel-info-content">
+            Il est important pour nous de s'assurer de la <strong>sécurité</strong> de votre compte ! Ainsi vos informations sont sûrs d'être protégés.
+            <br><br>
+            Attention, vous ne pourrez pas <strong>profiter des avantages</strong> d'un compte normal tant que vous ne l'aurez pas activé.
+            <br><br>
+            Si vous n'arrivez pas à accéder à votre boite mail, <strong>pas de panique</strong> ! Vous avez une chance de la changer maintenant.(en développement)
+
+        </div>
+
+
     </section>
 
+
+
+
+    <section id="main-page">
+        <div id="bar-account-3">
+            <h1>Créez votre compte</h1>
+
+        </div>
+        <div class="title-bottom-img">
+            <img class="title-bottom-img" src="/img/title-bottom1.png">
+        </div>
+        <br><br>
+        <div class="emailsend">
+            <img src="/img/mail.webp"></img>
+        </div>
+
+        <div class="ak-mailsend">
+            C'est presque terminé !
+        </div>
+
+        <div id="bar-befpro">
+            <div id="bar-progres">
+                90%
+            </div>
+        </div>
+        <br>
+        <div id="ak-mail-text">
+            Vous avez reçu un email à l'adresse :<br> <strong><?php echo $_SESSION['email_send'] ?></strong>
+        </div>
+        <br><br>
+    </section>
 </section>

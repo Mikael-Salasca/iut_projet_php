@@ -1,6 +1,6 @@
 <?php
 
-require ROOT . '/core/controller.php';
+
 
 Class Pagenotfound extends Controller {
 

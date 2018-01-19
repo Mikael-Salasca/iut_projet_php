@@ -1,7 +1,12 @@
 <?php // informations de l'inscription inscrites dans la bd
 
 
-require 'base.php';
+
+if (!class_exists('UsersDataBase'))
+{
+    require ROOT . '/model/base.php';
+}
+
 
 function saveRegistration($name, $email, $password)
 {
@@ -26,7 +31,7 @@ function saveRegistration($name, $email, $password)
     }
 }
 
-function checkAccountExist($email){
+function checkEmailExist($email){
 
     $usersDataBase = new UsersDataBase();
     $dbConnection = $usersDataBase->dbConnect();
@@ -48,11 +53,34 @@ function checkAccountExist($email){
     }
 }
 
+function checkAccountExist($name){
+
+    $usersDataBase = new UsersDataBase();
+    $dbConnection = $usersDataBase->dbConnect();
+    $registerCheckQuery = "SELECT * FROM user WHERE NAME = :name";
+    $stmt = $dbConnection->prepare($registerCheckQuery);
+    $stmt->bindValue('name', $name, PDO::PARAM_STR);
+
+    try {
+        $stmt->execute();
+        $affectedLines = $stmt->rowCount();
+        if ($affectedLines != 0)
+            return true;
+        return false;
+    }
+    catch (PDOException $e) {
+        echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+        echo 'Requête : ', $registerCheckQuery, PHP_EOL;
+        exit();
+    }
+
+}
+
 function saveKeyAccount($key,$name){
 
     $usersDataBase = new UsersDataBase();
     $dbConnection = $usersDataBase->dbConnect();
-    $query = "UPDATE user SET keyVerificationAccount=:key,accountActive=0 WHERE NAME = :name";
+    $query = "UPDATE user SET keyVerificationAccount=:key WHERE NAME = :name";
     $update = $dbConnection->prepare($query);
     $update->bindValue('key', $key, PDO::PARAM_STR);
     $update->bindValue('name', $name, PDO::PARAM_INT);

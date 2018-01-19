@@ -1,24 +1,42 @@
 <?php
 
-require 'base.php';
+if (!class_exists('UsersDataBase'))
+{
+    require ROOT . '/model/base.php';
+}
 
 
-function interneTranslation($targetLangage, $toTranslate) //fr par defaut
+
+function translate ($toTranslate) //fr par defaut
 {
     $usersDataBase = new UsersDataBase();
     $dbConnection  = $usersDataBase->dbConnect();
-
-
+    $targetLangage = $_SESSION['lang'];
+    if(empty($targetLangage)) $targetLangage = 'FRENCH';
     $query = 'SELECT ' . $targetLangage . ' FROM translate WHERE FRENCH=:toTranslate';
-    var_dump($query);
     $stmt = $dbConnection->prepare($query);
 
     $stmt->bindValue('toTranslate', $toTranslate, PDO::PARAM_STR);
     try {
         $stmt->execute();
-        $stmt->rowCount() or die('Pas de résultat' . PHP_EOL);
-        $stmt->setFetchMode(PDO::FETCH_OBJ);
-        return $stmt->fetch()->$targetLangage;
+        if($stmt->rowCount())
+        {
+            $stmt->setFetchMode(PDO::FETCH_OBJ);
+            $word = $stmt->fetch()->$targetLangage;
+            if(empty($word)) // Permet de nous aider pr le debug des phrases a traduire ou non.
+            {
+                return $toTranslate;
+            }
+            else{
+                return $word;
+            }
+        }
+        else // si la phrase n'est pas encore reference dans notre base on retourne '?', ceci est temporaire c pr aider au debug
+        {
+            return '?';
+        }
+
+
 
     }
     catch (PDOException $e) {
