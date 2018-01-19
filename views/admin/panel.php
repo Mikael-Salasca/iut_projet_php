@@ -6,8 +6,8 @@
             <h2>Panneau de contrôle</h2>
         </div>
         <?php if (isset($_SESSION['no_user_found'])) echo $_SESSION['no_user_found'] ; unset($_SESSION['no_user_found']); ?>
+        <form action = '/admin/changerank' method="post">
         <div class="row-compte">
-            <form action = '/admin/changerank' method="post">
                 <table id="panel-admin">
                     <tr class="info-table">
                         <td> Nom de compte </td>
@@ -30,7 +30,7 @@
                                 echo '<tr class="c-20">';
                             }
                             else{
-                                echo '<tr>';
+                                echo '<tr class="c-22">';
                             }
                             $i++;
                             foreach ($row as $key => $value) {
@@ -38,7 +38,7 @@
                                     $current_user = $value;
                                 if ($key == 'TYPEACCOUNT') {
                                     echo '<td>';
-                                    echo '<select name='.$current_user.'>';
+                                    echo '<select class="select-admin" name='.$current_user.'>';
                                     foreach ($types as $type) {
                                         //$type = (string)$type;
                                         if ($value == $type)
@@ -56,9 +56,15 @@
                         }
                     }?>
                 </table>
-                <input type="submit" value = "Valider les modifications">
-            </form>
+                <br>
+            <input type="submit" class="button-valid-4" value = "Valider les modifications">
+            <?php if (isset($_SESSION['rank_changes'])) echo $_SESSION['rank_changes']; unset ($_SESSION['rank_changes']);?>
         </div>
-        <?php if (isset($_SESSION['rank_changes'])) echo $_SESSION['rank_changes']; unset ($_SESSION['rank_changes']);?>
+        <br>
+
+
+        </form>
+
+
     </section>
 </section>

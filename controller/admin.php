@@ -39,7 +39,7 @@ class Admin extends Controller {
             foreach ($users as $row) {
                 $row = get_object_vars($row);
                 updateRanks($row['NAME'], $_POST[$row['NAME']]);
-                    $_SESSION['rank_changes'] = 'Changements de rangs effectués';
+                    $_SESSION['rank_changes'] = '<div class="error-co">Changements de rangs effectués</div>';
 
             }
             header('Location:/admin/control');

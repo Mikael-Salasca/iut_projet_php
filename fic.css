@@ -1133,3 +1133,62 @@ header{
 .c-20{
     background-color: #e4d0d0;
 }
+
+#pannel-admin option{
+    color:white;
+
+}
+.c-22:hover{
+
+    background-color: #efdddd;
+}
+
+.select-admin{
+
+    border: none;
+    padding: 2%;
+    border-radius: 5px;
+    overflow: none;
+}
+
+.select-admin:hover{
+
+    background-color: #d8c5c5;
+
+}
+
+.select-admin:focus{
+
+    outline:none;
+}
+
+#admin-button{
+
+
+
+}
+
+.button-valid-4{
+
+    background-color: #f45c20;
+    color: #fff;
+    text-shadow: 0 1px 1px #333;
+    transition: all 0.3s ease;
+    font-family: "bebas_neueregular",sans-serif;
+
+    border: none;
+    text-transform: uppercase;
+    text-align: center;
+
+    font-weight: bold;
+    padding-bottom: 10px;
+    padding-top: 10px;
+
+}
+
+.button-valid-4:hover{
+
+    background-color: #bfd500;
+    transition: all 0.3s ease;
+
+}
