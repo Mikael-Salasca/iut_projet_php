@@ -24,8 +24,10 @@ class Connection extends Controller {
         {
             header('location:/');
         }
-        $email = filter_input(INPUT_POST,email);
-        $passwd = filter_input(INPUT_POST,mdp);
+
+
+        $email = filter_input(INPUT_POST,'email');
+        $passwd = filter_input(INPUT_POST,'mdp');
 
         if(empty($email || $passwd))
         {

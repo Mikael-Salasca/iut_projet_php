@@ -22,7 +22,7 @@ class User {
 
     public function __sleep()
     {
-        return array('name', 'email', 'password', 'accountType');
+        return array('name', 'email', 'password', 'accountType', 'activation');
     }
 
     public function __wakeup()
