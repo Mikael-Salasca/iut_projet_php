@@ -80,8 +80,3 @@ class Admin extends Controller {
 ?>
 
 
-
-VINCENT
-
-Fatal error: Uncaught Error: Call to undefined function translate() in /home/vincent-weber/www/views/header/idBarConnect.php:7 Stack trace: #0 /home/vincent-weber/www/views/header/header.php(6): require() #1 /home/vincent-weber/www/core/controller.php(20): require('/home/vincent-w...') #2 /home/vincent-weber/www/controller/admin.php(17): Controller->start_page('Panneau de cont...') #3 /home/vincent-weber/www/index.php(29): Admin->control() #4 {main} thrown in /home/vincent-weber/www/views/header/idBarConnect.php on line 7
-
