@@ -65,6 +65,17 @@
 
         </form>
 
+        <form action = '/admin/addlang' method="post">
+            Ajouter une langue (entre 3 et 24 caractères, tout en majuscules) <br>
+            <input type="text" name="new_lang"><br>
+            Confirmation :
+            <input type="text" name="new_lang_confirm">
+            <input type="submit" value="Ajouter">
+            <br>
+            <?php if (isset($_SESSION['lang_add'])) echo $_SESSION['lang_add']; unset($_SESSION['lang_add']); ?>
+            <?php if (isset($_SESSION['wrong_pattern'])) echo $_SESSION['wrong_pattern']; unset($_SESSION['wrong_pattern']);?>
+            <?php if (isset($_SESSION['error_confirm'])) echo  $_SESSION['error_confirm']; unset( $_SESSION['error_confirm']);?>
+        </form>
 
     </section>
 </section>
