@@ -1451,3 +1451,23 @@ header{
     color: #222;
     font-size: 24px;
 }
+
+.alert-info{
+
+
+    background-color: #3498db;
+    border-color: #3498db;
+    color: #fff;
+    width: 40%;
+    min-height: 60px;
+    padding: 15px;
+    margin-bottom: 21px;
+    margin-right: 4%;
+    border: 1px solid transparent;
+    margin-top: 2%;
+    float: right;
+    border-radius: 3px;
+    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    line-height: 1.42857;
+}

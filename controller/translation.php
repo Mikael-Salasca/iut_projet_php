@@ -31,7 +31,7 @@ class Translation extends Controller
     {
 
         session_start();
-        if (!isset($_SESSION['user'])) { //non connecté
+        if (!isset($_SESSION['user']) || isset($_SESSION['isActive']) && !$_SESSION['isActive']) { //non connecté ou compte pas activé
 
 
             if (isset($_SESSION['haveToWait'])) {

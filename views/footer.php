@@ -11,3 +11,5 @@
     <p>2018</p>
     <p><?php translate("Tous droits reservés") ?></p>
 </footer>
+
+

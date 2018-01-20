@@ -66,21 +66,26 @@
 
         </div>
         </form>
+        <br>
+        <?php
+        if(isset($_SESSION['isActive']) && isset($_SESSION['user']) && !$_SESSION['isActive'] ){
+            echo '<div class="alert-info">
+                <img src="/img/info.png">&nbsp;&nbsp;<b>Activé votre compte</b><br>
+                Vous n\'avez pas encore activé le lien envoyé par email ! Activé votre compte pour pouvoir supprimer la restriction des 10 minutes d\'attente entre chaque traduction !
+                </div>';
+            }
+        if(!isset($_SESSION['user'])){
+            echo '<div class="alert-info">
+               <img src="/img/info.png">&nbsp;&nbsp;<b>Mode restreint actif</b><br>
+               Créer vous un compte <b>gratuitement</b> pour pouvoir supprimer la restriction des 10 minutes d\'attente entre chaque traduction !
+               </div>';
 
+            }
 
+            ?>
 
 
 
 
     </section>
 </section>
-
-<script type="text/javascript">
-    $("#word-to-translate").keypress(function (e) {
-        if(e.which == 13 && !e.shiftKey) {
-            $(this).closest("form").submit();
-            e.preventDefault();
-            return false;
-        }
-    });
-</script>
