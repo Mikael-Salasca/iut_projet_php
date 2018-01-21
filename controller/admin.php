@@ -15,6 +15,7 @@ class Admin extends Controller {
             }
 
             $this->start_page('Panneau de contrôle');
+            $_SESSION['langs'] = getAllLangs();
             $_SESSION['user_infos'] = getAllUsersInfo();
             $_SESSION['user_types'] = getAllAccountType();
             //var_dump($_SESSION['user_infos']);
@@ -66,10 +67,15 @@ class Admin extends Controller {
                 header('Location:/admin/control');
             }
             if (preg_match('/^[A-Z]{3,24}$/', $newlang)) {
-                if (addLanguage($newlang))
-                    $_SESSION['lang_add'] = 'Langue ajoutée avec succès !';
+                if (!langAlreadyExists($newlang)) {
+                    if (addLanguage($newlang))
+                        $_SESSION['lang_add'] = 'Langue ajoutée avec succès !';
+                    else
+                        $_SESSION['lang_add'] = 'Une erreur est survenue, veuillez réessayer ou contacter le support en cas d\'échecs répétés.';
+                }
                 else
-                    $_SESSION['lang_add'] = 'Une erreur est survenue, veuillez réessayer ou contacter le support en cas d\'échecs répétés.';
+                    $_SESSION['lang_already_exists'] = 'La langue choisie existe déjà !';
+
             }
             else
                 $_SESSION['wrong_pattern'] = "La saisie est invalide !";

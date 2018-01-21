@@ -64,18 +64,32 @@
 
 
         </form>
+        Langues disponibles : <br>
+        <table id="panel-langs">
+            <?php $langs = $_SESSION['langs']; ?>
+            <tr>
+                <?php foreach ($langs as $key => $lang) {
+                    if ($key == 0) continue;
+                    echo '<td>' . $lang . '</td>';
+                    if ($key % 10 == 0) echo '</tr><tr>';
+                }?>
+            </tr>
+        </table>
 
         <form action = '/admin/addlang' method="post">
             Ajouter une langue (entre 3 et 24 caractères, tout en majuscules) <br>
             <input type="text" name="new_lang"><br>
-            Confirmation :
+            Confirmation : <br>
             <input type="text" name="new_lang_confirm">
             <input type="submit" value="Ajouter">
             <br>
             <?php if (isset($_SESSION['lang_add'])) echo $_SESSION['lang_add']; unset($_SESSION['lang_add']); ?>
             <?php if (isset($_SESSION['wrong_pattern'])) echo $_SESSION['wrong_pattern']; unset($_SESSION['wrong_pattern']);?>
             <?php if (isset($_SESSION['error_confirm'])) echo  $_SESSION['error_confirm']; unset( $_SESSION['error_confirm']);?>
+            <?php if (isset($_SESSION['lang_already_exists'])) echo $_SESSION['lang_already_exists']; unset ($_SESSION['lang_already_exists']);?>
         </form>
+
+        <br><br>
 
     </section>
 </section>
