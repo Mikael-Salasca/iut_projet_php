@@ -78,8 +78,12 @@
                             <div id="gt-res-tools">
                                 <?php if(isset($_SESSION['translation_not_found']) && $_SESSION['user']->isPrenium())
                                     echo '<div id="gt-res-tools-sugg">
-                                    <a href="/translation/request">Demander une traduction</a>
-                                    </div>';
+
+                                  
+                                    <span class="jdk-button">but</span>
+                                      <a href="/translation/request">Demander une traduction</a>
+
+                                </div>';
 
                                 ?>
                             </div>
