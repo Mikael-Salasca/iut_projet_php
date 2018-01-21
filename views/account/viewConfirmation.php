@@ -2,14 +2,14 @@
     <section id="pannel-information">
         <div id="pannel-info-block-1">
 
-            <p>INFORMATIONS</p>
+            <p><?php echo translate('INFORMATIONS')?></p>
         </div>
         <div id="pannel-info-content">
-            Un code de vérification permet d'être sur que <strong>vous êtes le propriétaire du compte.</strong>
+            <?php echo translate('Un code de vérification permet d\'être sur que')?> <strong><?php echo translate('vous êtes le propriétaire du compte')?>.</strong>
             <br><br>
-            Ainsi vos informations sont <strong>protégés.</strong><br><br>
-            Le code de vérification expirera au bout de 30 minutes. Si d'ici là vous n'avez pas eu le temps d'accèder à votre boite email,
-            <strong> pas de panique.</strong> Recommencez l'opération depuis votre gestion de compte.
+            <?php echo translate('Ainsi vos informations sont')?> <strong><?php echo translate('protégés')?>.</strong><br><br>
+            <strong><?php echo translate('Le code de vérification expirera au bout de 30 minutes. Si d\'ici là vous n\'avez pas eu le temps d\'accèder à votre boite email')?>,
+            <strong> <strong><?php echo translate('pas de panique')?>.</strong> Recommencez l\'opération depuis votre gestion de compte.
         </div>
 
 
