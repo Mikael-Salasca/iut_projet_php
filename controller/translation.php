@@ -7,27 +7,26 @@ class Translation extends Controller
     {
         session_start();
 
-            if(!isset($_SESSION['lang_Input']))
-            {
-                $source = "FRENCH"; // par default
-                $target = "ENGLISH";
-            }
-            else{
-                $source = $_SESSION['lang_Input'][0];
-                $target = $_SESSION['lang_Input'][1];
+        if (!isset($_SESSION['lang_Input'])) {
+            $source = "FRENCH"; // par default
+            $target = "ENGLISH";
+        } else {
+            $source = $_SESSION['lang_Input'][0];
+            $target = $_SESSION['lang_Input'][1];
 
-            }
+        }
 
-            $tab = getAllLangs(); // attention on doit supprimer le premier élément qui contient le nom de la clée primaire
-            $this->array_middle_shift($tab,0);
+        $tab = getAllLangs(); // attention on doit supprimer le premier élément qui contient le nom de la clée primaire
+        $this->array_middle_shift($tab, 0);
 
-            $all_language = $tab; // les colonnes sont en anglais
+        $all_language = $tab; // les colonnes sont en anglais
+
+        $this->updateRestriction();
 
 
-            $this->start_page('Page de traduction');
-            require ROOT . '/views/translate/translateView.php';
-            $this->end_page();
-
+        $this->start_page('Page de traduction');
+        require ROOT . '/views/translate/translateView.php';
+        $this->end_page();
 
 
     }
@@ -36,44 +35,39 @@ class Translation extends Controller
     {
 
         session_start();
+
+        $targetLangage = filter_input(INPUT_POST, 'langDest');
+        $sourceLangage = filter_input(INPUT_POST, 'langSrc');
+        $wordToTranslate = filter_input(INPUT_POST, 'word-to-translate');
+        $this->saveSourceTargetInput($sourceLangage, $targetLangage);
+
         if (!isset($_SESSION['user']) || isset($_SESSION['isActive']) && !$_SESSION['isActive']) { //non connecté ou compte pas activé
 
+            $this->updateRestriction();
 
-            if (isset($_SESSION['haveToWait'])) {
-                $now = new DateTime("NOW");
-                $last_translation = $_SESSION['last_translation'];
+            if ($this->isRestriction()) {
 
-
-                $since_last_translation = $last_translation->diff($now);
-                if (!($since_last_translation->i >= 10)) {
-
-                    $_SESSION['min_to_wait'] = 10 - $since_last_translation->i;
-                    header('location:/translation/translate');
-                    exit();
-                }
-                unset($_SESSION['haveToWait']);
-                unset($_SESSION['min_to_wait']);
-
-
+                header('location:/translation/translate');
+                exit();
             }
+
         }
 
         unset($_SESSION['haveToWait']);
         unset($_SESSION['min_to_wait']);
         // pas besoin d'attendre
-        $targetLangage = filter_input(INPUT_POST, 'langDest');
-        $sourceLangage = filter_input(INPUT_POST, 'langSrc');
-        $wordToTranslate = filter_input(INPUT_POST, 'word-to-translate');
-        $this->saveSourceTargetInput($sourceLangage,$targetLangage);
 
         $translation = userTranslation($sourceLangage, $targetLangage, $wordToTranslate);
         $translation = mb_strtolower($translation); // met tout en minuscule
         if (!empty($translation)) {
-            $_SESSION['translation'] = array($wordToTranslate,$translation);
-            $_SESSION['haveToWait'] = true;
-            $_SESSION['last_translation'] = new DateTime("NOW");
+            $_SESSION['translation'] = array($wordToTranslate, $translation);
         } else {
             $_SESSION['translation_not_found'] = $wordToTranslate;
+            if(!isset($_SESSION['user']))
+            {
+                $_SESSION['haveToWait'] = true;
+                $_SESSION['last_translation'] = new DateTime("NOW");
+            }
 
         }
 
@@ -84,28 +78,28 @@ class Translation extends Controller
 
     }// fin de la fonction
 
-     private function saveSourceTargetInput($source,$target){
+    private function saveSourceTargetInput($source, $target)
+    {
 
-        $_SESSION['lang_Input'] = array($source,$target);
+        $_SESSION['lang_Input'] = array($source, $target);
 
 
+    }
 
-}
+    private function array_middle_shift(&$array, $key)
+    {
 
-    private function array_middle_shift(&$array,$key) {
+        $length = (($key + 1) - count($array) == 0) ? 1 : ($key + 1) - count($array);
+        return array_splice($array, $key, $length);
 
-        $length=(($key+1)-count($array)==0)?1:($key+1)-count($array);
-        return array_splice($array,$key,$length);
-
-}
+    }
 
     private function translateLanguageNameToFrench($tabLang)
     {
         $tab = array();
-        foreach ($tabLang as $lang)
-        {
+        foreach ($tabLang as $lang) {
             $l = translateLanguageNameToFrench($lang);
-            if($l != '')
+            if ($l != '')
                 $tab[] = $l;
             else
                 $tab[] = $lang;
@@ -113,10 +107,47 @@ class Translation extends Controller
         return $tab;
 
 
+    }
 
+    private function isRestriction()
+    {
+        if(isset($_SESSION['haveToWait'])) {
+
+            if ($_SESSION['min_to_wait'] <= 0) {
+
+                return false;
+
+            }
+            else
+                return true;
+
+        }
+        return false;
     }
 
 
+    private function updateRestriction()
+    {
 
+        if (isset($_SESSION['haveToWait'])) {
+
+            $now = new DateTime("NOW");
+            $last_translation = $_SESSION['last_translation'];
+            $since_last_translation = $last_translation->diff($now);
+
+            if (!($since_last_translation->i >= 10)) {
+                $_SESSION['min_to_wait'] = 10 - $since_last_translation->i;
+
+            }
+            else{
+                unset($_SESSION['min_to_wait']);
+                unset($_SESSION['haveToWait']);
+            }
+
+        }
+
+
+    }
 
 }
+
