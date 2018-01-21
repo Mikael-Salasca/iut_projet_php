@@ -5,12 +5,12 @@
             <p>INFORMATIONS</p>
         </div>
         <div id="pannel-info-content">
-            Le mot de passe et l'adresse email sont les deux informations qui vous permettent de vous connecter à notre site.
-            <strong>Ces informations doivent rester secrètes.</strong><br><br>
-            Il est recommandé d'avoir un mot de passe pour votre compte sur notre site
-            <strong>différent de celui que vous utilisez pour votre boite email.</strong>
+            <?php echo translate('Le mot de passe et l\'adresse email sont les deux informations qui vous permettent de vous connecter à notre site')?>.
+            <strong><?php echo translate('Ces informations doivent rester secrètes')?>.</strong><br><br>
+            <?php echo translate('Il est recommandé d\'avoir un mot de passe pour votre compte sur notre site')?>
+            <strong><?php echo translate('différent de celui que vous utilisez pour votre boite email')?>.</strong>
             <br><br>
-            Pour disposer d'un mot de passe fort, <strong>utilisez un minimum de 8 caractères et au moins trois des quatre types
+            <?php echo translate('Pour disposer d\'un mot de passe fort')?> , <strong>utilisez un minimum de 8 caractères et au moins trois des quatre types
                 de caractères suivants </strong>(majuscule, minuscule, chiffre, caractère spéciaux).
         </div>
 

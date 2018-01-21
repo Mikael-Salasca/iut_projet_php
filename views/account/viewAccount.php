@@ -28,7 +28,7 @@
     <section id="main-page-large">
 
         <div class="card-header">
-            <h2>Gestion du compte</h2>
+            <h2><?php echo translate('Gestion du compte')?></h2>
         </div>
 
 
@@ -37,48 +37,48 @@
             <table id="tab-compte">
 
                 <tr class="c1">
-                    <th>&nbsp;Nom de compte</th>
+                    <th>&nbsp;<?php echo translate('Nom de compte')?></th>
                     <td class="td-1"><?php echo $_SESSION['name']; ?></td>
-                    <td class="modif-elem-no">Modifier</td>
+                    <td class="modif-elem-no"><?php echo translate('Modifier')?></td>
                 </tr>
 
                 <tr>
-                    <th>&nbsp;Adresse email</th>
+                    <th>&nbsp;<?php echo translate('Adresse email')?></th>
                     <td class="td-1"><?php echo $_SESSION['crypt_email']; ?></td>
-                    <td class="modif-elem-ok"><a href="/account/modify_email">Modifier</a></td>
+                    <td class="modif-elem-ok"><a href="/account/modify_email"><?php echo translate('Modifier')?>></a></td>
                 </tr>
 
                 <tr class="c1">
-                    <th>&nbsp;Mot de passe</th>
+                    <th>&nbsp;<?php echo translate('Mot de passe')?></th>
                     <td class="td-1">**********</td>
-                    <td class="modif-elem-ok"><a href="/account/modify_password">Modifier</a></td>
+                    <td class="modif-elem-ok"><a href="/account/modify_password"><?php echo translate('Modifier')?></a></td>
                 </tr>
 
                 <tr>
-                    <th>&nbsp;Date d'inscription</th>
+                    <th>&nbsp;<?php echo translate('Date d\'inscription')?></th>
                     <td class="td-1">01/01/1999</td>
-                    <td class="modif-elem-no">Modifier</td>
+                    <td class="modif-elem-no"><?php echo translate('Modifier')?></td>
                 </tr>
 
                 <tr class="c1">
-                    <th>&nbsp;Rang</th>
+                    <th>&nbsp;<?php echo translate('Rang')?>'</th>
                     <td class="td-1"><?php echo $_SESSION['type']; ?></td>
-                    <td class="modif-elem-no">Modifier</td>
+                    <td class="modif-elem-no"><?php echo translate('Modifier')?></td>
                 </tr>
 
                 <tr>
-                    <th>&nbsp;Activation</th>
+                    <th>&nbsp;<?php echo translate('Activation')?></th>
 
                         <?php if ($_SESSION['isActive'] == 1) {
-                            echo '<td class="td-1">Compte activé</td>';
+                            echo '<td class="td-1">'. translate('Compte activé') . '</td>';
                             }
                             else{
-                            echo '<td class="td-1-no-activ">Compte non activé</td>';
+                            echo '<td class="td-1-no-activ">' . translate('Compte non activé') . '</td>';
                         }
                         ?>
 
                     </td>
-                    <td class="modif-elem-no">Modifier</td>
+                    <td class="modif-elem-no"><?php echo translate('Modifier')?></td>
                 </tr>
 
             </table>
