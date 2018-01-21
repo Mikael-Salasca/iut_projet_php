@@ -13,31 +13,41 @@
                     <td id="gt-lang-left">
 
                         <select class="select-trad" name="langSrc">
-                            <?php if(($source == "FRENCH")){
-                                echo '<option value="FRENCH" selected="FRENCH">Français</option>
-                                <option value="ENGLISH">Anglais</option>    ';
+                            <?php
+                            foreach ($all_language as $lang)
+                            {
+                                $option = '<option value="'. $lang . '" ';
+                                if($lang == $source) $option .= 'selected="' . $lang . '"';
+                                $option .= '">' . $lang . '</option>';
+                                echo $option;
 
                             }
-                            else{
-                                echo '<option value="FRENCH">Français</option>
-                                <option value="ENGLISH" selected="ENGLISH">Anglais</option> ';
-                            }
+                            var_dump($source);
+                            var_dump($target);
+
+
                             ?>
                         </select>
+
+
+
                     </td>
 
                     <td id="gt-lang-right">
                         <select class="select-trad" name="langDest">
-                            <?php if(($target == "FRENCH")){
-                                echo '<option value="FRENCH" selected="FRENCH">Français</option>
-                                <option value="ENGLISH">Anglais</option>    ';
+
+                            <?php
+                            foreach ($all_language as $lang)
+                            {
+                                $option = '<option value="'. $lang . '" ';
+                                if($lang == $target) $option .= 'selected="' . $lang . '"';
+                                $option .= '">' . $lang . '</option>';
+                                echo $option;
 
                             }
-                            else{
-                                echo '<option value="FRENCH">Français</option>
-                                <option value="ENGLISH" selected="ENGLISH">Anglais</option> ';
-                            }
-                                ?>
+
+                            ?>
+
 
                         </select>
                         <div id="button-trad"><input class="style-butt" type="submit" value="Traduire"></div>

@@ -1,5 +1,5 @@
 <?php
-
+require ROOT .'/model/lang.php';
 class Translation extends Controller
 {
 
@@ -17,6 +17,11 @@ class Translation extends Controller
                 $target = $_SESSION['lang_Input'][1];
 
             }
+
+            $tab = getAllLangs(); // attention on doit supprimer le premier élément qui contient le nom de la clée primaire
+            $this->array_middle_shift($tab,0);
+
+            $all_language = $tab; // les colonnes sont en anglais
 
 
             $this->start_page('Page de traduction');
@@ -86,5 +91,32 @@ class Translation extends Controller
 
 
 }
+
+    private function array_middle_shift(&$array,$key) {
+
+        $length=(($key+1)-count($array)==0)?1:($key+1)-count($array);
+        return array_splice($array,$key,$length);
+
+}
+
+    private function translateLanguageNameToFrench($tabLang)
+    {
+        $tab = array();
+        foreach ($tabLang as $lang)
+        {
+            $l = translateLanguageNameToFrench($lang);
+            if($l != '')
+                $tab[] = $l;
+            else
+                $tab[] = $lang;
+        }
+        return $tab;
+
+
+
+    }
+
+
+
 
 }

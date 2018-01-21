@@ -49,10 +49,10 @@ function translate ($toTranslate) //fr par defaut
 
 function userTranslation($srcLangage,$targetLangage, $toTranslate) //fr par defaut
 {
+
+
     $usersDataBase = new UsersDataBase();
-    $dbConnection  = $usersDataBase->dbConnect();
-
-
+    $dbConnection = $usersDataBase->dbConnect();
     $query = 'SELECT ' . $targetLangage . ' FROM translate WHERE ' .$srcLangage .'=:toTranslate';
     //var_dump($query);
     $stmt = $dbConnection->prepare($query);
@@ -74,6 +74,37 @@ function userTranslation($srcLangage,$targetLangage, $toTranslate) //fr par defa
         echo 'Requête : ', $query, PHP_EOL;
         exit();
     }
+
+}
+
+function translateLanguageNameToFrench($lang){
+
+
+    $usersDataBase = new UsersDataBase();
+    $dbConnection = $usersDataBase->dbConnect();
+    $query = 'SELECT * FROM translate WHERE ENGLISH =:toTranslate';
+    //var_dump($query);
+    $stmt = $dbConnection->prepare($query);
+
+    $stmt->bindValue('toTranslate', $lang, PDO::PARAM_STR);
+    try {
+        $stmt->execute();
+        if($stmt->rowCount())
+        {
+            $stmt->setFetchMode(PDO::FETCH_OBJ);
+            return $stmt->fetch()->FRENCH;
+        }
+        return '';
+
+
+    }
+    catch (PDOException $e) {
+        echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+        echo 'Requête : ', $query, PHP_EOL;
+        exit();
+    }
+
+
 
 }
 
