@@ -1,5 +1,6 @@
 <?php
 require ROOT .'/model/lang.php';
+require ROOT .'/model/waitingTranslation.php';
 class Translation extends Controller
 {
 
@@ -31,7 +32,7 @@ class Translation extends Controller
 
     }
 
-    function displayTranslation()
+    public function displayTranslation()
     {
 
         session_start();
@@ -61,8 +62,17 @@ class Translation extends Controller
         $translation = mb_strtolower($translation); // met tout en minuscule
         if (!empty($translation)) {
             $_SESSION['translation'] = array($wordToTranslate, $translation);
+            unset($_SESSION['translation_not_found']);
         } else {
-            $_SESSION['translation_not_found'] = $wordToTranslate;
+
+            if(checkIfWaiting($wordToTranslate)) // si le mot est déja en attente de traduction
+            {
+                $_SESSION['dataIsWaiting'] = $wordToTranslate;
+            }
+            else {
+                $_SESSION['translation_not_found'] = array($wordToTranslate, $sourceLangage);
+            }
+
             if(!isset($_SESSION['user']))
             {
                 $_SESSION['haveToWait'] = true;
@@ -145,6 +155,38 @@ class Translation extends Controller
             }
 
         }
+
+
+    }
+
+
+    public function request(){
+
+        session_start();
+
+        if(!isset($_SESSION['translation_not_found']) || !isset($_SESSION['user']) || !$_SESSION['isPrenium'])
+        {
+            header('location:/translation/translate');
+            exit();
+        }
+        $word = $_SESSION['translation_not_found'][0];
+        $source = $_SESSION['translation_not_found'][1];
+
+        if(insertNewWord($word,$source)) // si l'insertion s'est bien passé
+        {
+            $_SESSION['insert_ok'] = $word;
+            unset($_SESSION['translation_not_found']);
+        }
+        else
+        {
+            $_SESSION['error_insert'] = 1;
+        }
+
+        header('location:/translation/translate');
+
+
+
+
 
 
     }

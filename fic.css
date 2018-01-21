@@ -17,7 +17,7 @@ body {
     padding-bottom: 6rem;
     min-height: 100%;
 }
-
+table tr td a {text-decoration: none; color:inherit;}
 
 .navbar-menu{
     background-color:black;
@@ -1399,6 +1399,10 @@ header{
     /* margin-top: -3%; */
 
 }
+#gt-resr-wrap:a{
+
+    text-decoration: none;
+}
 
 .select-trad{
     -webkit-appearance: none;
@@ -1464,10 +1468,66 @@ header{
     margin-bottom: 21px;
     margin-right: 4%;
     border: 1px solid transparent;
-    margin-top: 2%;
     float: right;
     border-radius: 3px;
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 15px;
     line-height: 1.42857;
+}
+
+#gt-res-tools{
+
+
+
+    min-height: 28px;
+    /* margin-top: 37%; */
+    margin-top: 38px;
+    padding: 0 4px 4px 4px;
+
+}
+
+
+#gt-res-tools-sugg{
+
+
+    float: right;
+    color: #444;
+    /* border: solid 2px; */
+    font-size: 12px;
+    font-weight: bold;
+    padding-right: 5px;
+    line-height: 24px;
+    border-radius: 2px;
+    padding: 0;
+}
+#gt-res-tools-sugg:a{
+    text-decoration: none;
+}
+#gt-res-tools-sugg:hover{
+
+    color: #222;
+    /* padding: 0; */
+    border-color: #c6c6c6!important;
+    background-color: #f8f8f8;
+    background-image: -webkit-linear-gradient(top, #f8f8f8, #f1f1f1);
+    opacity: 0.9;
+    border: solid 1px;
+
+}
+
+.insert-success{
+
+    color: blue;
+    margin-left: 2%;
+}
+.err-insert{
+
+
+}
+
+.waiting{
+    text-align: center;
+    color:blue;
+
+
 }

@@ -59,15 +59,34 @@
                 <tr>
                     <td>
 
-                        <textarea name="word-to-translate" placeholder="Entrez le mot ou la phrase à traduire" id="source"><?php if(isset( $_SESSION['translation_not_found'])) echo $_SESSION['translation_not_found']; ?><?php if (isset($_SESSION['translation'])) echo $_SESSION['translation'][0]; ?></textarea>
+                        <textarea name="word-to-translate" placeholder="Entrez le mot ou la phrase à traduire" id="source"><?php if(isset( $_SESSION['translation_not_found'])) echo $_SESSION['translation_not_found'][0];
+
+                            if (isset($_SESSION['translation'])) echo $_SESSION['translation'][0];
+                            if(isset($_SESSION['dataIsWaiting'])) echo $_SESSION['dataIsWaiting'];
+                            ?></textarea>
+
+
 
                     </td>
                     <td COLSPAN=2>
                         <div id="gt-res-wrap">
-                            <?php if(isset($_SESSION['translation_not_found'])) echo '<br><br><br><div class="error_no_word">Aucune occurence trouvé </div>' ;
-                            unset($_SESSION['translation_not_found']); ?>
+                            <?php if(isset($_SESSION['translation_not_found'])) echo '<br><br><br><div class="error_no_word">Aucune occurence exacte trouvé </div>' ;
+                             ?>
                             <?php if (isset($_SESSION['translation'])) echo '<div class="show-trans">' . $_SESSION['translation'][1] . '</div>'; unset($_SESSION['translation']) ?>
                             <?php if (isset($_SESSION['min_to_wait'])) echo '<div class="error_no_word">Vous devez attendre ' . $_SESSION['min_to_wait'] . 'minute(s)' . '</div>'; ?>
+                            <?php if (isset($_SESSION['dataIsWaiting'])) echo '<div class="waiting"> La demande de traduction a déja était faite !</div>'; unset($_SESSION['dataIsWaiting']); ?>
+                            <div id="gt-res-tools">
+                                <?php if(isset($_SESSION['translation_not_found']) && $_SESSION['user']->isPrenium())
+                                    echo '<div id="gt-res-tools-sugg">
+                                    <a href="/translation/request">Demander une traduction</a>
+                                    </div>';
+
+                                ?>
+                            </div>
+
+
+
+
                         </div>
                     </td>
 
@@ -92,7 +111,20 @@
 
             }
 
+            if(isset($_SESSION['error_insert']))
+            {
+                echo '<div class="err-insert">Une erreur technique est survenue lors de votre demande.</div>';
+                unset($_SESSION['error_insert']);
+            }
+            if(isset($_SESSION['insert_ok']))
+            {
+                echo '<div class="insert-success">Nous avons bien reçu votre demande de traduction pour <b> ' . $_SESSION['insert_ok'] . '</b> !';
+                unset($_SESSION['insert_ok']);
+
+            }
+
             ?>
+        
 
 
 

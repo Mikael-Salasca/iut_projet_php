@@ -82,3 +82,4 @@ function langAlreadyExists($newlanguage) {
         exit();
     }
 }
+

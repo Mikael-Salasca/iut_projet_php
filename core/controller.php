@@ -52,6 +52,7 @@ class Controller {
             $_SESSION['type'] = $current_user->getAccountType();
             $_SESSION['isActive'] = $current_user->getActivation();
             $_SESSION['crypt_email'] = $this->cryptEmail($_SESSION['email']);
+            $_SESSION['isPrenium'] = $current_user->isPrenium();
 
             return true;
         }
