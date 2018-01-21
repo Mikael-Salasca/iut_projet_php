@@ -18,7 +18,7 @@
                             {
                                 $option = '<option value="'. $lang . '" ';
                                 if($lang == $source) $option .= 'selected="' . $lang . '"';
-                                $option .= '">' . $lang . '</option>';
+                                $option .= '">' . translate($lang,'ENGLISH') . '</option>';
                                 echo $option;
 
                             }
@@ -41,7 +41,7 @@
                             {
                                 $option = '<option value="'. $lang . '" ';
                                 if($lang == $target) $option .= 'selected="' . $lang . '"';
-                                $option .= '">' . $lang . '</option>';
+                                $option .= '">' . translate($lang,'ENGLISH') . '</option>';
                                 echo $option;
 
                             }

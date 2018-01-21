@@ -7,13 +7,15 @@ if (!class_exists('UsersDataBase'))
 
 
 
-function translate ($toTranslate) //fr par defaut
+function translate ($toTranslate,$optionLangSource = 'FRENCH') //fr par defaut
 {
     $usersDataBase = new UsersDataBase();
     $dbConnection  = $usersDataBase->dbConnect();
-    $targetLangage = $_SESSION['lang'];
+
+    $targetLangage = $_SESSION['lang']; // si la target lang n'existe pas c'est que par default on traduit le site en francais
     if(empty($targetLangage)) $targetLangage = 'FRENCH';
-    $query = 'SELECT ' . $targetLangage . ' FROM translate WHERE FRENCH=:toTranslate';
+
+    $query = 'SELECT ' . $targetLangage . ' FROM translate WHERE '.$optionLangSource . '=:toTranslate';
     $stmt = $dbConnection->prepare($query);
 
     $stmt->bindValue('toTranslate', $toTranslate, PDO::PARAM_STR);
