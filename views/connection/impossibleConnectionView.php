@@ -12,13 +12,13 @@
 
             <div class="col-row-1">
                 <a href="/forgotpass/forgot">
-                    <img src="../../img/imgkey.png">
+                    <img src="/img/imgkey.png">
                 </a>
             </div>
 
             <div class="col-row-1">
 
-                <img src="../../img/imgmail.png">
+                <img src="/img/imgmail.png">
 
             </div>
 
