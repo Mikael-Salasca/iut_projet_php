@@ -11,7 +11,7 @@
             <strong><?php echo translate('différent de celui que vous utilisez pour votre boite email')?>.</strong>
             <br><br>
             <?php echo translate('Pour disposer d\'un mot de passe fort')?> , <strong><?php echo translate('utilisez un minimum de 8 caractères et au moins trois des quatre types
-                de caractères suivants')?></strong> ( <?php echo translate('majuscule, minuscule, chiffre, caractère spéciaux')?>.
+                de caractères suivants')?></strong> ( <?php echo translate('majuscule, minuscule, chiffre, caractère spécial')?>.
         </div>
 
 
