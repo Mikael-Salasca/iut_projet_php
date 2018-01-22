@@ -53,6 +53,10 @@ class Translator extends Controller
         $dataSource = filter_input(INPUT_POST,'textareaSource',FILTER_DEFAULT,FILTER_REQUIRE_ARRAY);
         $dataDestination = filter_input(INPUT_POST,'textareaTarget',FILTER_DEFAULT,FILTER_REQUIRE_ARRAY);
 
+        if(empty($checkList)) {
+            $_SESSION['update_translation_msg'] = '<div class="error-co"> Aucunes traductions n\' a été mise à jour</div>';
+            header('location:/translator/control');
+        }
 
         foreach ($checkList as $value) {
 
