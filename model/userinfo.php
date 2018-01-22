@@ -37,14 +37,12 @@ function getAllAccountType() {
     $stmt = $dbConnection->prepare($query);
     try {
         $stmt->execute();
+        $columns = array();
         if ($stmt->rowCount()) {
-            $stmt->setFetchMode(PDO::FETCH_OBJ);
-            $result = $stmt->fetchAll();
-            return $result;
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+                $columns[] = $row['TYPEACCOUNT'];
         }
-        else {
-            return false;
-        }
+        return $columns;
     }
     catch (PDOException $e) {
         echo 'Erreur : ', $e->getMessage(), PHP_EOL;

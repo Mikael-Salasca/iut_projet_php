@@ -16,9 +16,12 @@ class Admin extends Controller {
 
             $this->start_page('Panneau de contrôle');
             $_SESSION['langs'] = getAllLangs();
+            $pctperlang = array();
+            foreach ($_SESSION['langs'] AS $lang)
+                $pctperlang[$lang] = getPercentageTranslated($lang);
+            $_SESSION['langs'] = $pctperlang;
             $_SESSION['user_infos'] = getAllUsersInfo();
-            $_SESSION['user_types'] = getAllAccountType();
-            //var_dump($_SESSION['user_infos']);
+            $_SESSION['user_types'] = array('ADMIN', 'TRANSLATOR', 'PREMIUM', 'ORDINARY');
             if (empty($_SESSION['user_infos'])) {
                 $_SESSION['no_user_found'] = 'Il n\'y a aucun utilisateur enregistré sur le site, mdr t tou seul';
             }
