@@ -18,7 +18,6 @@
                         $i = 1;
                         $users = $_SESSION['user_infos'];
                         $types = $_SESSION['user_types'];
-                        //$types =
                         foreach ($users as $row) {
                             $current_user = 'fail';
                             $row = get_object_vars($row);
@@ -60,20 +59,6 @@
 
 
         </form>
-        Langues disponibles : <br>
-        <table id="panel-langs">
-            <?php $langs = $_SESSION['langs'];?>
-
-                <?php foreach ($langs as $lang => $percentage) {
-                    //if ($key == 0) continue;
-                    $percentage = (int)$percentage;
-                    echo'<tr>';
-                    echo '<td>' . $lang. '</td>';
-                    echo '<td>' . $percentage . '%' . '</td>';
-                    echo'</tr>';
-                }?>
-
-        </table>
 
         <form action = '/admin/addlang' method="post">
             Ajouter une langue (en anglais, entre 3 et 24 caractères, tout en majuscules) <br>
