@@ -3,10 +3,9 @@
 <section id="corps">
 
     <section id="main-page-large">
-       <p> EN DEVELOPPEMENT
-        SI vous etes la c que vous etes un traducteur
-    </p>
-
+     <p> Modifier les traductions existantes.<br>
+         (Pense à cocher les traductions pour confirmer leur modifications)
+     </p>
 
         <br>
 
