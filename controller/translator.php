@@ -32,7 +32,17 @@ class Translator extends Controller
 
         }
 
-        $allTuple = getExistingTranslation($source,$target);
+        if(!isset($_SESSION['type_translation']))
+        {
+            $_SESSION['type_translation'] = 'exist'; //page par default
+        }
+
+        if($_SESSION['type_translation'] == 'exist')
+            $allTuple = getExistingTranslation($source,$target);
+        else
+            $allTuple = getRequestTranslation($source,$target);
+
+
         $all_langues = getAllLangs();
 
 
@@ -96,7 +106,7 @@ class Translator extends Controller
 
         }
 
-        $_SESSION['update_translation_msg'] = '<div class="error-co">Les traductions ont étaient mises à jour</div>';
+        $_SESSION['update_translation_msg'] = '<div class="insert-success">Les traductions ont étaient mises à jour</div>';
         header('location:/translator/control');
 
 
@@ -132,7 +142,131 @@ class Translator extends Controller
 
     }
 
+    public function change_control()
+    {
 
+        session_start();
+
+        if(!isset($_SESSION['user']) || !$_SESSION['isTranslator'] || !isset($_SESSION['type_translation']))
+        {
+            header('location:/translator/control');
+            exit();
+        }
+
+        if($_SESSION['type_translation'] == 'exist')
+            $_SESSION['type_translation'] = 'request';
+        else
+            $_SESSION['type_translation'] = 'exist';
+
+        header('location:/translator/control');
+
+    }
+
+
+    public function update_request()
+    {
+
+        session_start();
+
+        if(!isset($_SESSION['user']) || !$_SESSION['isTranslator'] || !isset($_SESSION['type_translation']))
+        {
+            header('location:/translator/control');
+            exit();
+        }
+
+        $button_option = filter_input(INPUT_POST,'buttonOption',FILTER_DEFAULT);
+
+
+        if(empty($button_option))
+        {
+            header('location:/translator/control');
+            exit();
+        }
+        $checkList = filter_input(INPUT_POST,'checkbox',FILTER_DEFAULT,FILTER_REQUIRE_ARRAY);
+        $dataSource = filter_input(INPUT_POST,'textareaSource',FILTER_DEFAULT,FILTER_REQUIRE_ARRAY);
+        $dataDestination = filter_input(INPUT_POST,'textareaTarget',FILTER_DEFAULT,FILTER_REQUIRE_ARRAY);
+
+
+
+        if(empty($checkList)) {
+            $_SESSION['update_translation_msg'] = '<div class="error-co"> Aucunes traductions n\' a été mise à jour</div>';
+            header('location:/translator/control');
+            exit();
+        }
+            // on récupere toute les infos recus grâce aux checkbox valide qui précise lequels
+        foreach ($checkList as $value) {
+
+            foreach ($dataSource[$value] as $lang => $trad) {
+                $langSource = $lang;
+                $dataS[] = $trad;
+
+            }
+            foreach ($dataDestination[$value] as $lang => $trad) {
+                $langTarget = $lang;
+                $dataT[] = $trad;
+
+            }
+            $id[] = $value; // attention ce sont uniquement les ids des requetes "requestUser"
+
+        }
+
+        if($button_option == 'accept') // on dois alors mettre le satut en "traduit", et ajouter la traduction à la table principal
+        {
+
+            for ($i = 0; $i < sizeof($id); $i++) {
+                $tabNewData[] = new Translate('',$langSource, $langTarget, $dataS[$i], $dataT[$i]); // tableau avec tout les nouveaux tuples à insérer(n'ont pas d'id)
+
+            }
+
+            for($i = 0; $i < sizeof($id); $i++){
+
+                $tabUpdateRequest[] = new Request($id[$i],$langSource,$langTarget,$dataS[$i],'VALID'); // on passe le parametre valide pr la mise a jour
+            }
+
+
+
+            //a présent on s'occupe d'insérer et mettre a jour tout ces tuples (en faisant l'insertion et la mise a jour en même temps pr chaque tuple pour réduire les erreurs techniques trop importantes)
+            $error = 0;
+
+            for($i = 0; $i < sizeof($id); $i++)
+            {
+
+                if(!updateRequestAccept($tabUpdateRequest[$i])){ // en cas d'erreur lors de la mise a jour des request
+                    $error = 1; // on signale l'erreur et on stoppe tout (pr ne pas insérer )
+                    break;
+                }
+                //si la mise a jour s'est bien effectué, on tente d'insérer la nouvelle traduction
+                if(!insertNewTranslation($tabNewData[$i])) // en cas d'erreur lors d'une insertion, on stoppe tout
+                {
+                    $error = 1; // on signale une erreur
+                    break;// on sort du for
+                }
+
+            }
+
+            if($error)
+            {
+                $_SESSION['request_translation_msg'] =' <div class="error-co">Une erreur technique s\'est produite (peut être êtes vous plusieurs a travailler sur la traduction)</div>';
+                header('location:/translator/control');
+                exit();
+            }
+
+            // si on arrive ici tout s'est bien passé
+
+            $_SESSION['request_translation_msg'] = '<div class="insert-success">Votre action a bien été appliqué</div>';
+
+            header('location:/translator/control');
+
+        }
+        else
+        {
+
+            echo "EN DEVELOPEMMENT POUR LE REJET";
+        }
+
+
+
+    }
 
 
 }

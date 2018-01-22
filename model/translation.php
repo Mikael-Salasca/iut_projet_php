@@ -153,19 +153,19 @@ function getExistingTranslation($langueSource, $langueDestination){
 }
 
 
-function updateExistingTranslation($tabObjet)
+function updateExistingTranslation($tabObject)
 {
 
     $usersDataBase = new UsersDataBase();
     $dbConnection  = $usersDataBase->dbConnect();
 
-    foreach ($tabObjet as $objet)
+    foreach ($tabObject as $object)
     {
-        $id = $objet->getId();
-        $langueSource = $objet->getLangSource();
-        $langueDestination = $objet->getLangDestination();
-        $dataSource = $objet->getDataSource();
-        $dataDestination = $objet->getDataDestination();
+        $id = $object->getId();
+        $langueSource = $object->getLangSource();
+        $langueDestination = $object->getLangDestination();
+        $dataSource = $object->getDataSource();
+        $dataDestination = $object->getDataDestination();
         //$query = 'UPDATE translation SET :langueSource=:dataSource, :langueDestination=:dataDestination WHERE ID_TRANSLATION = :id';
         $query = 'UPDATE translate SET ' . $langueSource . ' = :dataSource , ' . $langueDestination . '=:dataDestination WHERE ID_TRANSLATION=' . $id;
         $stmt = $dbConnection->prepare($query);
@@ -201,6 +201,45 @@ function updateExistingTranslation($tabObjet)
     }
     return true;
 
+
+
+}
+
+function insertNewTranslation($object)
+{
+
+    $usersDataBase = new UsersDataBase();
+    $dbConnection  = $usersDataBase->dbConnect();
+
+    $langueSource = $object->getLangSource();
+    $langueDestination = $object->getLangDestination();
+    $dataSource = $object->getDataSource();
+    $dataDestination = $object->getDataDestination();
+
+
+
+    $query = 'INSERT INTO translate  (' . $langueSource . ',' . $langueDestination . ') VALUES(:dataSource,:dataTarget);';
+    $stmt = $dbConnection->prepare($query);
+
+
+    $stmt->bindParam('dataSource', $dataSource, PDO::PARAM_STR);
+    $stmt->bindParam('dataTarget', $dataDestination, PDO::PARAM_STR);
+
+
+        try {
+            $stmt->execute();
+            if ($stmt->rowCount()) {
+                return true;
+            }
+            else {
+                return false; // si il y a une erreur lors de l'insertion
+            }
+
+        } catch (PDOException $e) {
+            echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+            echo 'Requête : ', $query, PHP_EOL;
+            exit();
+        }
 
 
 }

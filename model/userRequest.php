@@ -4,6 +4,10 @@ if (!class_exists('UsersDataBase'))
 {
     require ROOT . '/model/base.php';
 }
+if(!class_exists('Request')) {
+
+    require ROOT . '/core/request.php';
+}
 
 
 function insertNewWord($data,$sourceLang,$targetLang,$user){
@@ -62,5 +66,90 @@ function checkIfWaiting($data,$source,$target){
         echo 'Requête : ', $query, PHP_EOL;
         exit();
     }
+
+}
+
+
+
+
+
+
+
+
+function getRequestTranslation($source,$target){
+
+
+    $usersDataBase = new UsersDataBase();
+    $dbConnection  = $usersDataBase->dbConnect();
+
+    $queryGetTuple = 'SELECT * FROM userRequest WHERE SOURCE =:source AND TARGET = :target AND STATUS = "WAITING"';
+    $stmtGetTuple = $dbConnection->prepare($queryGetTuple);
+    $stmtGetTuple->bindParam('source',$source,PDO::PARAM_STR);
+    $stmtGetTuple->bindParam('target',$target,PDO::PARAM_STR);
+    try {
+        $stmtGetTuple->execute();
+        if($stmtGetTuple->rowCount()) {
+
+
+            $stmtGetTuple->setFetchMode(PDO::FETCH_OBJ);
+
+            while ($row = $stmtGetTuple->fetch()) {
+
+                $tab[] = new Request($row->ID,$row->SOURCE,$row->TARGET,$row->DATA,$row->STATUS);
+            }
+
+            return $tab;
+        }
+
+    }
+    catch (PDOException $e) {
+        echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+        echo 'Requête : ', $query, PHP_EOL;
+        exit();
+    }
+
+
+
+}
+
+function updateRequestAccept($object)
+{
+
+    $usersDataBase = new UsersDataBase();
+    $dbConnection = $usersDataBase->dbConnect();
+
+
+    $id = $object->getId();
+    $langueSource = $object->getLangSource();
+    $langueDestination = $object->getLangDestination();
+    $dataSource = $object->getDataSource();
+    $status = $object->getStatus();
+
+    $query = 'UPDATE userRequest SET SOURCE=:source, TARGET=:target, DATA=:data, STATUS=:status WHERE ID = :id';
+    $stmt = $dbConnection->prepare($query);
+    $stmt->bindParam('source',$langueSource,PDO::PARAM_STR);
+    $stmt->bindParam('target',$langueDestination,PDO::PARAM_STR);
+    $stmt->bindParam('data', $dataSource, PDO::PARAM_STR);
+    $stmt->bindParam('status', $status, PDO::PARAM_STR);
+    $stmt->bindParam('id', $id, PDO::PARAM_INT);
+
+    try {
+        $stmt->execute();
+        if ($stmt->rowCount()) {
+            return true;
+        } else {
+            return false;
+        }
+
+    } catch (PDOException $e) {
+        echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+        echo 'Requête : ', $query, PHP_EOL;
+        exit();
+    }
+
+
+
+
+
 
 }

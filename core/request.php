@@ -1,12 +1,12 @@
 <?php
 
-Class Translate{
+Class Request{
 
-        private $id;
-        private $langSource;
-        private $langDestination;
-        private $dataSource;
-        private $dataDestination;
+    private $id;
+    private $langSource;
+    private $langDestination;
+    private $dataSource;
+    private $status;
 
     /**
      * Translate constructor.
@@ -14,21 +14,21 @@ Class Translate{
      * @param $langSource
      * @param $langDestination
      * @param $dataSource
-     * @param $dataDestination
+     * @param $status
      */
-    public function __construct($id, $langSource, $langDestination, $dataSource, $dataDestination) //  l'id est vide si on ne passe pas de parametre (pour les nouvelles traductions a ajouter dans la base de donnée par exemple)
+    public function __construct($id, $langSource, $langDestination, $dataSource,$status)
     {
         $this->id = $id;
         $this->langSource = $langSource;
         $this->langDestination = $langDestination;
         $this->dataSource = $dataSource;
-        $this->dataDestination = $dataDestination;
+        $this->status = $status;
     }
 
     public function __toString()
     {
         $string =  $this->id . '==>' . $this->langSource . '==>' . $this->langDestination . '==>' .
-            $this->dataSource . '==>' . $this->dataDestination;
+            $this->dataSource . '==>' . $this->status;
         return $string;
     }
 
@@ -67,9 +67,9 @@ Class Translate{
     /**
      * @return mixed
      */
-    public function getDataDestination()
+    public function getStatus()
     {
-        return $this->dataDestination;
+        return $this->status;
     }
 
 
