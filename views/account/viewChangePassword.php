@@ -10,8 +10,7 @@
             <?php echo translate('Il est recommandé d\'avoir un mot de passe pour votre compte sur notre site')?>
             <strong><?php echo translate('différent de celui que vous utilisez pour votre boite email')?>.</strong>
             <br><br>
-            <?php echo translate('Pour disposer d\'un mot de passe fort')?> , <strong><?php echo translate('utilisez un minimum de 8 caractères et au moins trois des quatre types
-                de caractères suivants')?></strong> ( <?php echo translate('majuscule, minuscule, chiffre, caractère spécial')?>.
+            <?php echo translate('Pour disposer d\'un mot de passe fort')?> , <strong><?php echo translate('utilisez un minimum de 8 caractères et au moins trois des quatre types de caractères suivants')?></strong> ( <?php echo translate('majuscule, minuscule, chiffre, caractère spécial')?>.
         </div>
 
 
@@ -31,22 +30,22 @@
 
                 <div class="form-recovery-block-2">
                     <label for="mdp"> <?php echo translate('Mot de passe actuel')?> : </label><br>
-                    <input type="password" name="mypass" required placeholder="Mot de passe actuel"/>
+                    <input type="password" name="mypass" required placeholder="<?php echo translate('Mot de passe actuel')?>"/>
                     <?php if (isset($_SESSION['error_mypass'])) echo $_SESSION['error_mypass']; ?>
                 </div>
 
 
                 <div class="form-recovery-block-2">
                     <label for="mdp"><?php echo translate('Nouveau mot de passe')?></label></br>
-                    <input type="password" name="newpass" required placeholder="Nouveau mot de passe"/>
+                    <input type="password" name="newpass" required placeholder="<?php echo translate('Nouveau mot de passe')?>"/>
                     <?php if (isset($_SESSION['error_pass'])) echo $_SESSION['error_pass']; ?>
                 </div>
 
                 </br>
 
                 <div class="form-recovery-block-2">
-                    <label for="mdp"><?php echo translate('Confirmez  le nouveau mot de passe')?></label></br>
-                    <input type="password" name="newpass2" required placeholder="Confirmez le nouveau mot de passe"/>
+                    <label for="mdp"><?php echo translate('Confirmez le nouveau mot de passe')?></label></br>
+                    <input type="password" name="newpass2" required placeholder="<?php echo translate('Confirmez le nouveau mot de passe')?>"/>
                     <?php if (isset($_SESSION['error_pass'])) echo $_SESSION['error_pass']; unset($_SESSION['error_pass']); ?>
                 </div>
 

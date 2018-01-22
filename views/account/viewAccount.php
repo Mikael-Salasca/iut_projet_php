@@ -20,7 +20,6 @@
 -->
 
 
-
 <section id="corps">
 
     <?php // require ROOT . '/views/pannelConnexion/pannelConnexionView.php'; ?>
@@ -37,37 +36,37 @@
             <table id="tab-compte">
 
                 <tr class="c1">
-                    <th>&nbsp;<?php echo translate('Nom de compte')?></th>
+                    <th><?php echo translate('Nom de compte')?></th>
                     <td class="td-1"><?php echo $_SESSION['name']; ?></td>
                     <td class="modif-elem-no"><?php echo translate('Modifier')?></td>
                 </tr>
 
                 <tr>
-                    <th>&nbsp;<?php echo translate('Adresse email')?></th>
+                    <th>&nbsp<?php echo translate('Adresse email')?></th>
                     <td class="td-1"><?php echo $_SESSION['crypt_email']; ?></td>
-                    <td class="modif-elem-ok"><a href="/account/modify_email"><?php echo translate('Modifier')?>></a></td>
+                    <td class="modif-elem-ok"><a href="/account/modify_email"><?php echo translate('Modifier')?></a></td>
                 </tr>
 
                 <tr class="c1">
-                    <th>&nbsp;<?php echo translate('Mot de passe')?></th>
+                    <th><?php echo translate('Mot de passe')?></th>
                     <td class="td-1">**********</td>
                     <td class="modif-elem-ok"><a href="/account/modify_password"><?php echo translate('Modifier')?></a></td>
                 </tr>
 
                 <tr>
-                    <th>&nbsp;<?php echo translate('Date d\'inscription')?></th>
+                    <th><?php echo translate('Date d\'inscription')?></th>
                     <td class="td-1">01/01/1999</td>
                     <td class="modif-elem-no"><?php echo translate('Modifier')?></td>
                 </tr>
 
                 <tr class="c1">
-                    <th>&nbsp;<?php echo translate('Rang')?>'</th>
+                    <th><?php echo translate('Rang')?></th>
                     <td class="td-1"><?php echo $_SESSION['type']; ?></td>
                     <td class="modif-elem-no"><?php echo translate('Modifier')?></td>
                 </tr>
 
                 <tr>
-                    <th>&nbsp;<?php echo translate('Activation')?></th>
+                    <th><?php echo translate('Activation')?></th>
 
                         <?php if ($_SESSION['isActive'] == 1) {
                             echo '<td class="td-1">'. translate('Compte activé') . '</td>';
