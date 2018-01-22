@@ -1,7 +1,7 @@
 <?php
 
 require ROOT . '/model/waitingTranslation.php';
-
+require ROOT .'/model/lang.php';
 
 if(!class_exists('Translator')) {
 
@@ -23,8 +23,17 @@ class Translator extends Controller
             exit();
         }
 
-        $allTuple = getExistingTranslation('FRENCH','ENGLISH');
+        if (!isset($_SESSION['lang_translate'])) {
+            $source = "FRENCH"; // par default
+            $target = "ENGLISH";
+        } else {
+            $source = $_SESSION['lang_translate'][0];
+            $target = $_SESSION['lang_translate'][1];
 
+        }
+
+        $allTuple = getExistingTranslation($source,$target);
+        $all_langues = getAllLangs();
 
 
 
@@ -91,22 +100,37 @@ class Translator extends Controller
         header('location:/translator/control');
 
 
+    }
 
+    private function saveSourceTargetInput($source, $target)
+    {
 
-
-
-
-
-
-
-
-
-
-
+        $_SESSION['lang_translate'] = array($source, $target);
 
 
     }
 
+
+    public function change_lang(){
+
+        session_start();
+        session_start();
+        $langSource = filter_input(INPUT_POST,'lgSource');
+        $langTarget = filter_input(INPUT_POST,'lgTarget');
+
+
+
+
+        if(!empty($langSource) && !empty($langTarget))
+        {
+
+            $this->saveSourceTargetInput($langSource,$langTarget);
+
+        }
+        header('location:/translator/control');
+
+
+    }
 
 
 

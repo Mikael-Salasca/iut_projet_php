@@ -20,10 +20,10 @@ class Translation extends Controller
 
         }
 
-        $tab = getAllLangs(); // attention on doit supprimer le premier élément qui contient le nom de la clée primaire
-        $this->array_middle_shift($tab, 0);
+       // $tab = getAllLangs(); // attention on doit supprimer le premier élément qui contient le nom de la clée primaire
+      //  $this->array_middle_shift($tab, 0);
 
-        $all_language = $tab; // les colonnes sont en anglais
+        $all_language = getAllLangs(); // les colonnes sont en anglais
 
         $this->updateRestriction();
 
