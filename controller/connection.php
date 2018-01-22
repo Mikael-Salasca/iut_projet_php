@@ -26,7 +26,7 @@ class Connection extends Controller {
         }
 
 
-        $email = filter_input(INPUT_POST,'email');
+        $email = filter_input(INPUT_POST,'email', FILTER_VALIDATE_EMAIL);
         $passwd = filter_input(INPUT_POST,'mdp');
 
         if(empty($email || $passwd))

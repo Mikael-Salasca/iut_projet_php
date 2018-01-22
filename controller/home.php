@@ -6,7 +6,7 @@
  * Time: 16:13
  */
 
-
+require ROOT . '/model/lang.php';
 
 Class Home extends Controller {
 
@@ -17,6 +17,11 @@ Class Home extends Controller {
         $this->start_page(translate('Page d\'accueil'));
         $this->checkFirstCo();
         $this->checkDisconnect();
+        $_SESSION['langs'] = getAllLangs();
+        $pctperlang = array();
+        foreach ($_SESSION['langs'] AS $lang)
+            $pctperlang[$lang] = getPercentageTranslated($lang);
+        $_SESSION['langs'] = $pctperlang;
         require ROOT . '/views/homeView.php';
         $this->end_page();
 

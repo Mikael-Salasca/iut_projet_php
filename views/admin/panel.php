@@ -17,11 +17,7 @@
                     <?php if (isset($_SESSION['user_infos'])) {
                         $i = 1;
                         $users = $_SESSION['user_infos'];
-                        //unset($_SESSION['user_infos']);
-                        //$types = $_SESSION['user_types'];
-                        $types = array('ADMIN' /*=> 'ADMIN'*/, 'TRANSLATOR' /*=> 'TRANSLATOR'*/, 'PREMIUM' /*=> 'PREMIUM'*/, 'ORDINARY' /*=> 'ORDINARY'*/);
-                        //unset($_SESSION['user_types']);
-                        //var_dump($types);
+                        $types = $_SESSION['user_types'];
                         foreach ($users as $row) {
                             $current_user = 'fail';
                             $row = get_object_vars($row);
@@ -40,7 +36,6 @@
                                     echo '<td>';
                                     echo '<select class="select-admin" name='.$current_user.'>';
                                     foreach ($types as $type) {
-                                        //$type = (string)$type;
                                         if ($value == $type)
                                             echo '<option name='.$current_user." selected =  . $type>" . $type.'</option>';
                                         else
@@ -64,20 +59,9 @@
 
 
         </form>
-        Langues disponibles : <br>
-        <table id="panel-langs">
-            <?php $langs = $_SESSION['langs']; ?>
-            <tr>
-                <?php foreach ($langs as $key => $lang) {
-                    if ($key == 0) continue;
-                    echo '<td>' . $lang . '</td>';
-                    if ($key % 10 == 0) echo '</tr><tr>';
-                }?>
-            </tr>
-        </table>
 
         <form action = '/admin/addlang' method="post">
-            Ajouter une langue (entre 3 et 24 caractères, tout en majuscules) <br>
+            Ajouter une langue (en anglais, entre 3 et 24 caractères, tout en majuscules) <br>
             <input type="text" name="new_lang"><br>
             Confirmation : <br>
             <input type="text" name="new_lang_confirm">
