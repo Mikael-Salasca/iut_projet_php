@@ -1,5 +1,12 @@
 <?php
 
+
+if(!class_exists('Translator')) {
+
+    require ROOT . '/core/translate.php';
+}
+
+
 if (!class_exists('UsersDataBase'))
 {
     require ROOT . '/model/base.php';
@@ -110,3 +117,90 @@ function translateLanguageNameToFrench($lang){
 
 }
 
+function getExistingTranslation($langueSource, $langueDestination){
+
+    $usersDataBase = new UsersDataBase();
+    $dbConnection  = $usersDataBase->dbConnect();
+
+    $queryGetTuple = 'SELECT ID_TRANSLATION, ' . $langueSource . ',' . $langueDestination . ' FROM translate';
+    $stmtGetTuple = $dbConnection->prepare($queryGetTuple);
+    //$stmtGetTuple->bindParam('langueSource',$langueSource,PDO::PARAM_STR);
+    //$stmtGetTuple->bindParam('langueDestination',$langueDestination,PDO::PARAM_STR);
+    try {
+        $stmtGetTuple->execute();
+        if($stmtGetTuple->rowCount()) {
+
+
+            $stmtGetTuple->setFetchMode(PDO::FETCH_OBJ);
+
+            while ($row = $stmtGetTuple->fetch()) {
+                $tab[] = new Translate($row->ID_TRANSLATION, $langueSource, $langueDestination, $row->$langueSource, $row->$langueDestination);
+            }
+
+            return $tab;
+        }
+
+    }
+    catch (PDOException $e) {
+        echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+        echo 'Requête : ', $query, PHP_EOL;
+        exit();
+    }
+
+
+
+
+}
+
+
+function updateExistingTranslation($tabObjet)
+{
+
+    $usersDataBase = new UsersDataBase();
+    $dbConnection  = $usersDataBase->dbConnect();
+
+    foreach ($tabObjet as $objet)
+    {
+        $id = $objet->getId();
+        $langueSource = $objet->getLangSource();
+        $langueDestination = $objet->getLangDestination();
+        $dataSource = $objet->getDataSource();
+        $dataDestination = $objet->getDataDestination();
+        //$query = 'UPDATE translation SET :langueSource=:dataSource, :langueDestination=:dataDestination WHERE ID_TRANSLATION = :id';
+        $query = 'UPDATE translate SET ' . $langueSource . ' = :dataSource , ' . $langueDestination . '=:dataDestination WHERE ID_TRANSLATION=' . $id;
+        $stmt = $dbConnection->prepare($query);
+        //$stmt->bindParam('langueSource',$langueSource,PDO::PARAM_STR);
+        //$stmt->bindParam('langueDestination',$langueDestination,PDO::PARAM_STR);
+        $stmt->bindParam('dataSource',$dataSource,PDO::PARAM_STR);
+        $stmt->bindParam('dataDestination',$dataDestination,PDO::PARAM_STR);
+        //$stmt->bindParam('id',$id,PDO::PARAM_INT);
+
+
+
+        try {
+            $stmt->execute();
+            if($stmt->rowCount()) {
+                //on ne fait rien, on remonte a la boucle en haut
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        catch (PDOException $e) {
+            echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+            echo 'Requête : ', $query, PHP_EOL;
+            exit();
+        }
+
+
+
+
+
+    }
+    return true;
+
+
+
+}

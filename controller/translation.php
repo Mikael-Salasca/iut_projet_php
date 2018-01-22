@@ -1,6 +1,9 @@
 <?php
 require ROOT .'/model/lang.php';
 require ROOT .'/model/waitingTranslation.php';
+
+
+
 class Translation extends Controller
 {
 

@@ -13,7 +13,7 @@
             <li><a href="/translation/translate"><?php echo translate("Traduction") ?></a></li>
             <li></li>
 
-            <li><a href="">Menu 3</a></li>
+            <li><a href="/translator/control">Translator Control</a></li>
             <li><a href="">Menu 4</a></li>
         </ul>
 

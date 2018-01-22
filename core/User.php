@@ -73,4 +73,14 @@ class User {
 
     }
 
+    public function isTranslator(){
+
+        if($this->accountType == "TRANSLATOR" || $this->accountType == "ADMIN")
+            return true;
+        else
+            return false;
+
+
+    }
+
 }

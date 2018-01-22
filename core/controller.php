@@ -53,7 +53,7 @@ class Controller {
             $_SESSION['isActive'] = $current_user->getActivation();
             $_SESSION['crypt_email'] = $this->cryptEmail($_SESSION['email']);
             $_SESSION['isPrenium'] = $current_user->isPrenium();
-
+            $_SESSION['isTranslator'] = $current_user->isTranslator();
             return true;
         }
         return false;
