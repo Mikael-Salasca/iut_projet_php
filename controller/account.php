@@ -157,7 +157,7 @@ class account extends Controller {
         $new_email2 = filter_input(INPUT_POST,'newemail2');
 
         if($new_email == $_SESSION['email']){
-            $_SESSION['error_account_email'] = '<div class="error-register">Cette adresse email est déja lié à votre compte.</div>';
+            $_SESSION['error_account_email'] = '<div class="error-register">Cette adresse email est déja liée à votre compte.</div>';
             header('location:/account/new_email');
             exit();
 

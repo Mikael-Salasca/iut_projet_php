@@ -9,7 +9,7 @@
         </table>
     </div>
     <p>2018</p>
-    <p><?php translate("Tous droits reservés") ?></p>
+    <p><?php echo translate("Tous droits reservés") ?></p>
 </footer>
 
 

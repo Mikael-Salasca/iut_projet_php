@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 require ROOT . '/core/User.php';
 require ROOT . '/model/userinfo.php';

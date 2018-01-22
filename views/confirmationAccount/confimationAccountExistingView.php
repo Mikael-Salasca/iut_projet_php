@@ -3,8 +3,8 @@
     <?php require ROOT . '/views/pannelConnexion/pannelConnexionView.php'; ?>
 
     <section id="main-page">
-        <p>Votre compte a déja était activé !</p>
-        <a href="/">Retourner au menu principal</a>
+        <p><?php echo translate('Votre compte a déja été activé')?> !</p>
+        <a href="/"><?php echo translate('Retourner au menu principal')?></a>
     </section>
 
 </section>
