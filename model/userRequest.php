@@ -6,14 +6,16 @@ if (!class_exists('UsersDataBase'))
 }
 
 
-function insertNewWord($data,$sourceLang){
+function insertNewWord($data,$sourceLang,$targetLang,$user){
 
     $usersDataBase = new UsersDataBase();
     $dbConnection  = $usersDataBase->dbConnect();
-    $query = "INSERT INTO waitTranslate (DATA,SOURCE) VALUES(:data,:source)";
+    $query = "INSERT INTO userRequest (DATA,SOURCE,TARGET,USER) VALUES(:data,:source,:target,:user)";
     $stmt = $dbConnection->prepare($query);
     $stmt->bindParam('source',$sourceLang,PDO::PARAM_STR);
     $stmt->bindParam('data',$data,PDO::PARAM_STR);
+    $stmt->bindParam('target',$targetLang,PDO::PARAM_STR);
+    $stmt->bindParam('user',$user,PDO::PARAM_STR);
     try{
 
         $stmt->execute();
@@ -32,14 +34,16 @@ function insertNewWord($data,$sourceLang){
 
 }
 
-function checkIfWaiting($data){
+function checkIfWaiting($data,$source,$target){
 
 
     $usersDataBase = new UsersDataBase();
     $dbConnection  = $usersDataBase->dbConnect();
-    $query = "SELECT * FROM waitTranslate WHERE DATA = :data";
+    $query = "SELECT * FROM userRequest WHERE DATA = :data AND SOURCE = :source  AND TARGET = :target";
     $stmt = $dbConnection->prepare($query);
     $stmt->bindParam('data',$data,PDO::PARAM_STR);
+    $stmt->bindParam('source',$source,PDO::PARAM_STR);
+    $stmt->bindParam('target',$target,PDO::PARAM_STR);
     try{
 
         $stmt->execute();

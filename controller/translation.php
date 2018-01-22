@@ -1,6 +1,6 @@
 <?php
 require ROOT .'/model/lang.php';
-require ROOT .'/model/waitingTranslation.php';
+require ROOT .'/model/userRequest.php';
 
 
 
@@ -68,12 +68,12 @@ class Translation extends Controller
             unset($_SESSION['translation_not_found']);
         } else {
 
-            if(checkIfWaiting($wordToTranslate)) // si le mot est déja en attente de traduction
+            if(checkIfWaiting($wordToTranslate,$sourceLangage,$targetLangage)) // si le mot est déja en attente de traduction
             {
                 $_SESSION['dataIsWaiting'] = $wordToTranslate;
             }
             else {
-                $_SESSION['translation_not_found'] = array($wordToTranslate, $sourceLangage);
+                $_SESSION['translation_not_found'] = array($wordToTranslate, $sourceLangage,$targetLangage);
             }
 
             if(!isset($_SESSION['user']))
@@ -174,8 +174,8 @@ class Translation extends Controller
         }
         $word = $_SESSION['translation_not_found'][0];
         $source = $_SESSION['translation_not_found'][1];
-
-        if(insertNewWord($word,$source)) // si l'insertion s'est bien passé
+        $destination = $_SESSION['translation_not_found'][2];
+        if(insertNewWord($word,$source,$destination,$_SESSION['name'])) // si l'insertion s'est bien passé
         {
             $_SESSION['insert_ok'] = $word;
             unset($_SESSION['translation_not_found']);

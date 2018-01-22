@@ -1,6 +1,6 @@
 <?php
 
-require ROOT . '/model/waitingTranslation.php';
+require ROOT . '/model/userRequest.php';
 require ROOT .'/model/lang.php';
 
 if(!class_exists('Translator')) {
