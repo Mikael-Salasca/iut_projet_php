@@ -59,19 +59,44 @@
 
 
         </form>
+        <br>
+        <div class="panel-modif-pass">
 
-        <form action = '/admin/addlang' method="post">
-            Ajouter une langue (en anglais, entre 3 et 24 caractères, tout en majuscules) <br>
-            <input type="text" name="new_lang"><br>
-            Confirmation : <br>
-            <input type="text" name="new_lang_confirm">
-            <input type="submit" value="Ajouter">
-            <br>
-            <?php if (isset($_SESSION['lang_add'])) echo $_SESSION['lang_add']; unset($_SESSION['lang_add']); ?>
-            <?php if (isset($_SESSION['wrong_pattern'])) echo $_SESSION['wrong_pattern']; unset($_SESSION['wrong_pattern']);?>
-            <?php if (isset($_SESSION['error_confirm'])) echo  $_SESSION['error_confirm']; unset( $_SESSION['error_confirm']);?>
-            <?php if (isset($_SESSION['lang_already_exists'])) echo $_SESSION['lang_already_exists']; unset ($_SESSION['lang_already_exists']);?>
-        </form>
+            <div class="panel-heading">
+               <?php translate('Ajouter une nouvelle langue'); ?>
+            </div>
+            <div class="panel-modif-body">
+
+                <form action = '/admin/addlang' method="post">
+                    <label class="panel-modif-label" for="lang"><?php echo translate('Ajouter la langue') ?></label><br>
+                    <input type="text" name="new_lang"><br>
+                    <label class="panel-modif-label" for="confirmlang"><?php echo translate('Confirmer la langue') ?></label></br>
+                    <input type="text" name="new_lang_confirm"><br>
+                    <input type="submit" class="button-modif-admin" value="<?php echo translate('Valider') ?>">
+                    <?php if (isset($_SESSION['lang_add'])) echo '<div class="insert-success">' . translate( $_SESSION['lang_add']) . '!</div>'; unset($_SESSION['lang_add']); ?>
+                    <?php if (isset($_SESSION['wrong_pattern'])) echo '<div class="error-co">' . translate( $_SESSION['wrong_pattern']) . '.</div>'; unset($_SESSION['wrong_pattern']);?>
+                    <?php if (isset($_SESSION['error_confirm'])) echo '<div class="error-co">'. translate( $_SESSION['error_confirm']) . '!</div>'; unset( $_SESSION['error_confirm']);?>
+                    <?php if (isset($_SESSION['lang_already_exists'])) echo '<div class="error-co">'. translate($_SESSION['lang_already_exists']) .'!</div>'; unset ($_SESSION['lang_already_exists']);?>
+                    <br><br>
+
+                </form>
+
+                <?php echo translate('La langue dois être en anglais, tout en majuscule et être entre 3 et 24 caractères') ?>.
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
         <br><br>
 

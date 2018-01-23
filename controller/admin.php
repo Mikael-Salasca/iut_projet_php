@@ -61,22 +61,22 @@ class Admin extends Controller {
             $newlang = filter_input(INPUT_POST, 'new_lang');
             $newlangconfirm = filter_input(INPUT_POST, 'new_lang_confirm');
             if ($newlang != $newlangconfirm) {
-                $_SESSION['error_confirm'] = 'Les deux saisies ne correspondent pas.';
+                $_SESSION['error_confirm'] = 'Les deux saisies ne correspondent pas';
                 header('Location:/admin/control');
             }
             if (preg_match('/^[A-Z]{3,24}$/', $newlang)) {
                 if (!langAlreadyExists($newlang)) {
                     if (addLanguage($newlang))
-                        $_SESSION['lang_add'] = 'Langue ajoutée avec succès !';
+                        $_SESSION['lang_add'] = 'Langue ajoutée avec succès';
                     else
-                        $_SESSION['lang_add'] = 'Une erreur est survenue, veuillez réessayer ou contacter le support en cas d\'échecs répétés.';
+                        $_SESSION['lang_add'] = 'Une erreur est survenue, veuillez réessayer ou contacter le support en cas d\'échecs répétés';
                 }
                 else
-                    $_SESSION['lang_already_exists'] = 'La langue choisie existe déjà !';
+                    $_SESSION['lang_already_exists'] = 'La langue choisie existe déjà';
 
             }
             else
-                $_SESSION['wrong_pattern'] = "La saisie est invalide !";
+                $_SESSION['wrong_pattern'] = "La saisie est invalide";
             header('Location:/admin/control');
         }
     }
