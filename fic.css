@@ -1637,3 +1637,60 @@ header{
 
 
 }
+
+.prenium-tab{
+
+
+
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Roboto', sans-serif;
+}
+
+.prenium-tab tr, .prenium-tab td {
+
+    padding: 10px 5px;
+    font-weight: 300;
+}
+.prenium-info-tab{
+
+    border-top: solid 1px black;
+    border-bottom: solid 1px #9a9a9a;
+    background-color: #b2cfe0;
+    text-align: left;
+}
+
+.c-23{
+
+    background-color: #9cd4a69e;
+
+}
+
+.c-23:hover{
+
+    background-color: #9cd4a6;
+
+}
+.c-24{
+
+    background-color: #deeceba6;
+}
+
+.c-24:hover{
+
+    background-color: #d5e4e3;
+}
+
+.VALID-requet
+{
+
+    background-color: #19c589;
+    border-radius: 8px;
+    text-align: center;
+}
+.REJECT-requet{
+
+    background-color: #f45c20;
+    border-radius: 8px;
+    text-align: center;
+}
