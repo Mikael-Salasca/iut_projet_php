@@ -1744,7 +1744,22 @@ width: 100%;
 
     background-color: #b9a3a3;
 
+}
+.tab-home{
+
+    width: 95%;
+    margin: auto;
+}
+
+#bar-befpro2 {
 
 
-
+    background-color: #f6f5f5;
+    max-height: -1px;
+    margin: auto;
+    /* width: 40%; */
+    /* border: solid 1px; */
+    /* border-color: black; */
+    border: 1px solid #b1ac9c;
+    margin-top: 2%;
 }

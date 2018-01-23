@@ -16,8 +16,20 @@
         <br>
         <h1><?php echo translate("Bienvenue sur notre site de traduction 100 % gratuit") . '(' . translate('enfin presque') .')' ?> !</h1>
         <br><br><br>
-        Langues disponibles : <br>
-        <table id="panel-langs">
+
+    <p><?php echo translate('Créer vous un compte pour pouvoir dépasser de suite la restriction des 10 minutes de recherche')?> !<?php echo translate('C\'est gratuit et ça mange pas de pain')?> !</p>
+        <br>
+
+
+
+
+
+
+
+
+
+    <p><?php echo translate('Langues disponibles'); ?></p> <br>
+        <table id="panel-langs" class="tab-home">
             <?php $langs = $_SESSION['langs'];?>
 
             <?php foreach ($langs as $lang => $percentage) {
@@ -25,19 +37,16 @@
                 $percentage = (int)$percentage;
                 echo'<tr>';
                 echo '<td>' . $lang. '</td>';
-                echo '<td>' . $percentage . '% ';
-                if ($percentage != 100) echo translate('Aidez nous à traduire le site en cette langue en achetant le compte premium à 699€ !');
+                echo '<td><div id="bar-befpro2"><div id="bar-progres" style="width: '.$percentage .'%"> ' . $percentage . '%</div></div> ';
+
                 echo '</td>';
                 echo'</tr>';
             }?>
 
+
         </table>
-        <!--<p>Créer vous un compte pour pouvoir dépasser de suite la restriction des 10 minutes de recherche ! C'est gratuit et ça mange pas de pain !</p>
-        <br>
-        <p>Si vous souhaitez soutenir notre site , vous pouvez souscrire à un abonnement prenium qui vous offre des petits avantages tel que la recherche par pertinence !</p>
-        <br>
-        <p> Si vous avez des suggestions ou rencontrez un problème sur le site, n'hessitez pas à nous contacter via le menu Contact !</p>
-        -->
+    <?php if ($percentage != 100) echo translate('Aidez nous à traduire le site en cette langue en achetant le compte premium à 699€ !'); ?>
+
         <p>(<?php echo translate("Page de présentation temporaire") ?>)</p>
     </section>
 
