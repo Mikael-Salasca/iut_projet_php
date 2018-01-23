@@ -147,8 +147,39 @@ function updateRequestAccept($object)
         exit();
     }
 
+}
+
+function getAllRequestPremium($name)
+{
+
+    $usersDataBase = new UsersDataBase();
+    $dbConnection = $usersDataBase->dbConnect();
+
+    $queryGetTuple = 'SELECT * FROM userRequest WHERE USER = :name';
+    $stmtGetTuple = $dbConnection->prepare($queryGetTuple);
+
+    $stmtGetTuple->bindParam('name',$name,PDO::PARAM_STR);
+    try {
+        $stmtGetTuple->execute();
+        if($stmtGetTuple->rowCount()) {
 
 
+            $stmtGetTuple->setFetchMode(PDO::FETCH_OBJ);
+
+            while ($row = $stmtGetTuple->fetch()) {
+
+                $tab[] = new Request($row->ID,$row->SOURCE,$row->TARGET,$row->DATA,$row->STATUS);
+            }
+
+            return $tab;
+        }
+
+    }
+    catch (PDOException $e) {
+        echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+        echo 'Requête : ', $query, PHP_EOL;
+        exit();
+    }
 
 
 

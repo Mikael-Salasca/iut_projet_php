@@ -1,16 +1,20 @@
 
 <section id="corps">
 
-        <?php // require ROOT . '/views/pannelConnexion/pannelConnexionView.php'; ?>
+        <?php require ROOT . '/views/pannelConnexion/pannelConnexionView.php'; ?>
 
-    <section id="main-page-center">
+    <?php if(isset($_SESSION['user']))
+        echo '<section id="main-page">';
+        else
+            echo '<section id="main-page-center">';
+        ?>
         <br><br><br>
         <div id="block-11">
             <img class="drap-1" src="/img/drapeau-france.jpg">
             <img class="drap-2" src="/img/drapeau-anglais.png">
         </div>
         <br>
-        <h1><?php echo translate("Bienvenue sur notre site de traduction 100 % gratuit") ?> !</h1>
+        <h1><?php echo translate("Bienvenue sur notre site de traduction 100 % gratuit") . '(' . translate('enfin presque') .')' ?> !</h1>
         <br><br><br>
         Langues disponibles : <br>
         <table id="panel-langs">

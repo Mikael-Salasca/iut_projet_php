@@ -1,10 +1,7 @@
 <?php
-    if(!isset($_SESSION['login']) || $_SESSION['login'] != 'ok')
-    {
-        require 'pannelConnexionFalse.php';
-    }
-    else
+    if(isset($_SESSION['user']))
     {
         require 'pannelConnexionTrue.php';
     }
+
 

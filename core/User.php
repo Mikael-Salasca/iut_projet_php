@@ -66,7 +66,7 @@ class User {
 
     public function isPrenium(){
 
-        if($this->accountType == "PRENIUM" || $this->accountType == "ADMIN")
+        if($this->accountType == "PREMIUM" || $this->accountType == "ADMIN" || $this->accountType == "TRANSLATOR")
             return true;
         else
             return false;
