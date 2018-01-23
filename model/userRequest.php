@@ -151,16 +151,18 @@ function updateRequestAccept($object)
 
 }
 
-function getAllRequestPremium($name)
+function getAllRequestPremium($name,$start_page,$limit)
 {
 
     $usersDataBase = new UsersDataBase();
     $dbConnection = $usersDataBase->dbConnect();
 
-    $queryGetTuple = 'SELECT * FROM userRequest WHERE USER = :name';
+    $queryGetTuple = 'SELECT * FROM userRequest WHERE USER = :name ORDER BY ID DESC LIMIT :start,:end';
     $stmtGetTuple = $dbConnection->prepare($queryGetTuple);
 
     $stmtGetTuple->bindParam('name',$name,PDO::PARAM_STR);
+    $stmtGetTuple->bindParam('start',$start_page,PDO::PARAM_INT);
+    $stmtGetTuple->bindParam('end',$limit,PDO::PARAM_INT);
     try {
         $stmtGetTuple->execute();
         if($stmtGetTuple->rowCount()) {
@@ -198,6 +200,36 @@ function getNumberRequest($source,$target){
     $stmt->bindParam('source',$source,PDO::PARAM_STR);
     $stmt->bindParam('target',$target,PDO::PARAM_STR);
 
+    try {
+        $stmt->execute();
+        if ($stmt->rowCount()) {
+
+            $stmt->setFetchMode(PDO::FETCH_OBJ);
+            $result = $stmt->fetch();
+            return $result->TOTAL;
+        }
+        else {
+
+            return 0;
+        }
+
+    } catch (PDOException $e) {
+        echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+        echo 'Requête : ', $query, PHP_EOL;
+        exit();
+    }
+}
+
+function getNumbersRequestPremium($name)
+{
+
+
+    $usersDataBase = new UsersDataBase();
+    $dbConnection  = $usersDataBase->dbConnect();
+
+    $query = 'SELECT COUNT(ID) TOTAL FROM userRequest WHERE USER=:user';
+    $stmt = $dbConnection->prepare($query);
+    $stmt->bindParam('user',$name,PDO::PARAM_STR);
     try {
         $stmt->execute();
         if ($stmt->rowCount()) {
