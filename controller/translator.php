@@ -192,7 +192,33 @@ class Translator extends Controller
             header('location:/translator/control');
             exit();
         }
+        /*
 
+            // on récupere toute les infos recus grâce aux checkbox valide qui précise lequels
+        foreach ($checkOptions as $key=> $value) {
+
+            foreach ($dataSource[$key] as $lang => $trad) {
+                $langSource = $lang;
+                $dataS[] = $trad;
+                $status[] = $value;
+
+            }
+            foreach ($dataDestination[$key] as $lang => $trad) {
+                $langTarget = $lang;
+                $dataT[] = $trad;
+                $status[] = $value;
+
+            }
+            $id[] = $key; // attention ce sont uniquement les ids des requetes "requestUser"
+
+        }
+
+        var_dump($dataS); echo '<br>';
+        var_dump($dataT); echo '<br>';
+        var_dump($status); echo '<br>';
+        var_dump($id); echo '<br>';
+
+        */
         $modifications = 0; //si il y a eu des modifications, s'incrémentera
         foreach ($checkOptions as $key => $value)
         {
@@ -231,6 +257,7 @@ class Translator extends Controller
             }
 
         }
+
         //a présent on s'occupe d'insérer et mettre a jour tout ces tuples (en faisant l'insertion et la mise a jour en même temps pr chaque tuple pour réduire les erreurs techniques trop importantes)
 
         if(!$modifications) // si il n'y a pas eu de modifications
@@ -243,7 +270,7 @@ class Translator extends Controller
 
 
         $error = 0;
-            for($i = 0; $i < sizeof($id); $i++)
+            for($i = 0; $i < sizeof($tabUpdateRequest); $i++)
             {
 
                 if(!updateRequestAccept($tabUpdateRequest[$i])){ // en cas d'erreur lors de la mise a jour des request
