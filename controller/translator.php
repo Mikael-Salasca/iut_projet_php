@@ -176,12 +176,12 @@ class Translator extends Controller
 
         $button_Ok = filter_input(INPUT_POST,'buttonvalid',FILTER_DEFAULT);
 
-        /*
-        if(empty($buttonOk))
+
+        if(empty($button_Ok))
         {
             header('location:/translator/control');
             exit();
-        }*/
+        }
         $checkOptions = filter_input(INPUT_POST,'optionsSelect',FILTER_DEFAULT,FILTER_REQUIRE_ARRAY);
         $dataSource = filter_input(INPUT_POST,'textareaSource',FILTER_DEFAULT,FILTER_REQUIRE_ARRAY);
         $dataDestination = filter_input(INPUT_POST,'textareaTarget',FILTER_DEFAULT,FILTER_REQUIRE_ARRAY);
@@ -192,33 +192,7 @@ class Translator extends Controller
             header('location:/translator/control');
             exit();
         }
-        /*
 
-            // on récupere toute les infos recus grâce aux checkbox valide qui précise lequels
-        foreach ($checkOptions as $key=> $value) {
-
-            foreach ($dataSource[$key] as $lang => $trad) {
-                $langSource = $lang;
-                $dataS[] = $trad;
-                $status[] = $value;
-
-            }
-            foreach ($dataDestination[$key] as $lang => $trad) {
-                $langTarget = $lang;
-                $dataT[] = $trad;
-                $status[] = $value;
-
-            }
-            $id[] = $key; // attention ce sont uniquement les ids des requetes "requestUser"
-
-        }
-
-        var_dump($dataS); echo '<br>';
-        var_dump($dataT); echo '<br>';
-        var_dump($status); echo '<br>';
-        var_dump($id); echo '<br>';
-
-        */
         $modifications = 0; //si il y a eu des modifications, s'incrémentera
         foreach ($checkOptions as $key => $value)
         {
