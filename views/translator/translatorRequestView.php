@@ -56,7 +56,17 @@
                 echo '<tr>';
                 echo '<td><textarea style="width: 100%" name ="textareaSource[' . $objWord->getId() . '][' . $objWord->getLangSource() . ']">' . $objWord->getDataSource() . '</textarea>';
                 echo '<td COLSPAN=2><textarea style="width: 100%" name ="textareaTarget[' . $objWord->getId() . '][' . $objWord->getLangDestination() . ']"></textarea>';
-                echo '<td><input type="checkbox" name="checkbox[' . $objWord->getId() . ']" value="' . $objWord->getId() . '">';
+                //echo '<td><input type="checkbox" name="checkbox[' . $objWord->getId() . ']" value="' . $objWord->getId() . '">';
+
+                echo '<td><select name="optionsSelect[' . $objWord->getId() . ']">
+                        <option value="wait" selected>En attente</option>
+                        <option value="accept">Accepter</option>
+                        <option value="reject">Rejeter</option>
+
+
+
+                </select>';
+
                 echo '</tr>';
 
             }
@@ -67,6 +77,8 @@
 
 </table>
 <br><br>
-<button type="submit" name="buttonOption" value="accept">Accepter et traduire</button>
-<button type="submit" name="buttonOption" value="reject">Refuser</button>
+<!-- <button type="submit" name="buttonOption" value="accept">Accepter et traduire</button>
+ <button type="submit" name="buttonOption" value="reject">Refuser</button> !-->
+
+ <button type ="submit" name="buttonvalid" value="buttonOn">Appliquer les modifications</button>
 <?php if (isset($_SESSION['request_translation_msg'])) echo $_SESSION['request_translation_msg']; unset($_SESSION['request_translation_msg']); ?>

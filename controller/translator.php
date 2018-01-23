@@ -174,60 +174,75 @@ class Translator extends Controller
             exit();
         }
 
-        $button_option = filter_input(INPUT_POST,'buttonOption',FILTER_DEFAULT);
+        $button_Ok = filter_input(INPUT_POST,'buttonvalid',FILTER_DEFAULT);
 
-
-        if(empty($button_option))
+        /*
+        if(empty($buttonOk))
         {
             header('location:/translator/control');
             exit();
-        }
-        $checkList = filter_input(INPUT_POST,'checkbox',FILTER_DEFAULT,FILTER_REQUIRE_ARRAY);
+        }*/
+        $checkOptions = filter_input(INPUT_POST,'optionsSelect',FILTER_DEFAULT,FILTER_REQUIRE_ARRAY);
         $dataSource = filter_input(INPUT_POST,'textareaSource',FILTER_DEFAULT,FILTER_REQUIRE_ARRAY);
         $dataDestination = filter_input(INPUT_POST,'textareaTarget',FILTER_DEFAULT,FILTER_REQUIRE_ARRAY);
 
 
-
-        if(empty($checkList)) {
-            $_SESSION['update_translation_msg'] = '<div class="error-co"> Aucunes traductions n\' a été mise à jour</div>';
+        if(empty($checkOptions)) {
+            $_SESSION['request_translation_msg'] = '<div class="error-co"> Aucunes modifications n\'a été appliqué</div>';
             header('location:/translator/control');
             exit();
         }
-            // on récupere toute les infos recus grâce aux checkbox valide qui précise lequels
-        foreach ($checkList as $value) {
 
-            foreach ($dataSource[$value] as $lang => $trad) {
+        $modifications = 0; //si il y a eu des modifications, s'incrémentera
+        foreach ($checkOptions as $key => $value)
+        {
+            foreach ($dataSource[$key] as $lang=> $trad)
+            {
                 $langSource = $lang;
-                $dataS[] = $trad;
-
+                $dataS = $trad;
+                $status = $value;
+                $id = $key;
             }
-            foreach ($dataDestination[$value] as $lang => $trad) {
+            foreach ($dataDestination[$key] as $lang=> $trad)
+            {
                 $langTarget = $lang;
-                $dataT[] = $trad;
+                $dataT = $trad;
 
             }
-            $id[] = $value; // attention ce sont uniquement les ids des requetes "requestUser"
+
+
+            switch ($status)
+            {
+                case "accept":
+                    $tabNewData[] = new Translate('',$langSource, $langTarget, $dataS, $dataT); // tableau avec tout les nouveaux tuples à insérer(n'ont pas d'id)
+                    $tabUpdateRequest[] = new Request($id,$langSource,$langTarget,$dataS,'VALID'); // on passe le parametre valide pr la mise a jour
+                    $modifications++;
+                    break;
+                case "wait":
+                    //on ne fait rien
+                    break;
+                case "reject":
+                    $tabNewData[] = new Translate('none',$langSource, $langTarget, $dataS, $dataT); // tableau avec tout les nouveaux tuples à insérer(n'ont pas d'id)
+                    $tabUpdateRequest[] = new Request($id,$langSource,$langTarget,$dataS,'REJECT'); // on passe le parametre valide pr la mise a jour
+                    $modifications++;
+                    break;
+
+
+            }
 
         }
+        //a présent on s'occupe d'insérer et mettre a jour tout ces tuples (en faisant l'insertion et la mise a jour en même temps pr chaque tuple pour réduire les erreurs techniques trop importantes)
 
-        if($button_option == 'accept') // on dois alors mettre le satut en "traduit", et ajouter la traduction à la table principal
+        if(!$modifications) // si il n'y a pas eu de modifications
         {
-
-            for ($i = 0; $i < sizeof($id); $i++) {
-                $tabNewData[] = new Translate('',$langSource, $langTarget, $dataS[$i], $dataT[$i]); // tableau avec tout les nouveaux tuples à insérer(n'ont pas d'id)
-
-            }
-
-            for($i = 0; $i < sizeof($id); $i++){
-
-                $tabUpdateRequest[] = new Request($id[$i],$langSource,$langTarget,$dataS[$i],'VALID'); // on passe le parametre valide pr la mise a jour
-            }
+            $_SESSION['request_translation_msg'] = '<div class="error-co"> Aucunes modifications n\'a été appliqué</div>';
+            header('location:/translator/control');
+            exit();
+        }
 
 
 
-            //a présent on s'occupe d'insérer et mettre a jour tout ces tuples (en faisant l'insertion et la mise a jour en même temps pr chaque tuple pour réduire les erreurs techniques trop importantes)
-            $error = 0;
-
+        $error = 0;
             for($i = 0; $i < sizeof($id); $i++)
             {
 
@@ -235,11 +250,16 @@ class Translator extends Controller
                     $error = 1; // on signale l'erreur et on stoppe tout (pr ne pas insérer )
                     break;
                 }
-                //si la mise a jour s'est bien effectué, on tente d'insérer la nouvelle traduction
-                if(!insertNewTranslation($tabNewData[$i])) // en cas d'erreur lors d'une insertion, on stoppe tout
-                {
-                    $error = 1; // on signale une erreur
-                    break;// on sort du for
+                //si la mise a jour s'est bien effectué, on tente d'insérer la nouvelle traduction ou on ne fait rien si c'était un statut reject
+
+                if($tabNewData[$i]->getId() != "none") {
+
+
+                    if (!insertNewTranslation($tabNewData[$i])) // en cas d'erreur lors d'une insertion, on stoppe tout
+                    {
+                        $error = 1; // on signale une erreur
+                        break;// on sort du for
+                    }
                 }
 
             }
@@ -257,12 +277,6 @@ class Translator extends Controller
 
             header('location:/translator/control');
 
-        }
-        else
-        {
-
-            echo "EN DEVELOPEMMENT POUR LE REJET";
-        }
 
 
 
