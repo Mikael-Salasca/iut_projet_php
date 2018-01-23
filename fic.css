@@ -1694,3 +1694,29 @@ header{
     border-radius: 8px;
     text-align: center;
 }
+.trad-source{
+
+    background-color: #cab7b754;
+}
+
+.trad-target{
+
+
+}
+
+.area-trad{
+
+    width: 100%; */
+width: 100%;
+    border: none;
+    resize: none;
+    max-height: 46px;
+    margin-bottom: 2px;
+}
+
+.button-50{
+
+    background-color: #c6d9de;
+    border: none;
+    border-radius: 3px;
+}
