@@ -1,10 +1,14 @@
 <div class="card-header">
     <h2>Traductions existantes</h2>
 </div>
-<a href="/translator/change_control">Acceder aux demandes</a>
 
-<br>
 
+
+<div class="alert-info">
+    <img src="/img/info.png">&nbsp;&nbsp;<b>Rappel</b><br>
+    N'oubliez pas de cocher les traductions pour valider leurs modifications !
+</div>
+<a style="text-decoration: none;" href="/translator/change_control"><div class="link-2">Acceder aux demandes</div></a>
 <div class="row-compte">
 
     <table id="panel-admin">
@@ -64,7 +68,7 @@
     </table>
 </div>
 
-<input type="submit" value="envoyer">
+<input type="submit" class="button-valid-4" value="Valider les modifications">
 </form>
 <?php if (isset($_SESSION['update_translation_msg'])) echo $_SESSION['update_translation_msg'];
 unset($_SESSION['update_translation_msg']); ?>

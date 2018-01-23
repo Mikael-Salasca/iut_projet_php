@@ -1720,3 +1720,31 @@ width: 100%;
     border: none;
     border-radius: 3px;
 }
+
+.wait{
+
+
+}
+
+.link-2{
+
+    /* text-decoration: overline; */
+    background-color: #e4d0d0;
+    width: 20%;
+    /* height: 37px; */
+    border-radius: 3px;
+    text-align: center;
+    /* padding: 15px; */
+    padding-top: 7px;
+    padding-bottom: 7px;
+    color:inherit;
+}
+.link-2:hover{
+
+
+    background-color: #b9a3a3;
+
+
+
+
+}
