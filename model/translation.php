@@ -42,7 +42,7 @@ function translate ($toTranslate,$optionLangSource = 'FRENCH') //fr par defaut
         }
         else // si la phrase n'est pas encore reference dans notre base on retourne '?', ceci est temporaire c pr aider au debug
         {
-            return '?';
+            return $toTranslate;
         }
 
 
