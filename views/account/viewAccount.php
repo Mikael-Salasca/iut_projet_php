@@ -55,7 +55,7 @@
 
                 <tr>
                     <th><?php echo translate('Date d\'inscription')?></th>
-                    <td class="td-1">01/01/1999</td>
+                    <td class="td-1"><?php echo $_SESSION['user']->getDateCreation() ?></td>
                     <td class="modif-elem-no"><?php echo translate('Modifier')?></td>
                 </tr>
 
