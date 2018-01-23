@@ -5,7 +5,28 @@
 
 <a style="text-decoration: none;" href="/translator/change_control"><div class="link-2">Acceder aux traductions existantes</div></a>
 <br>
+<div class = "page-manage">
 
+
+
+    <?php
+    if($page_precedente != 0)
+    {
+        echo '<a href="/translator/operation_request?page=1">Début</a>';
+        echo '<==<a href="/translator/operation_request?page=' .$page_precedente . '">' . 'Précédent</a><==';
+    }
+    ?>
+    <?php echo 'page '. $_SESSION['page_actuelle_request']; ?>
+    <?php
+    if($page_suivante <= $_SESSION['nb_page_request']) {
+        echo '==><a href="/translator/operation_request?page=' . $page_suivante . '">Suivant</a>';
+        echo '==><a href = "/translator/operation_request?page='. $_SESSION['nb_page_request'] .'"> Fin</a >';
+
+    }
+    ?>
+
+</div>
+<br>
 <div class="row-compte">
 <table id="panel-admin">
     <form method="post" action="/translator/change_lang">
@@ -91,4 +112,28 @@
         N'oubliez pas de sélectionner les actions à appliquer  !
     </div>
 </div>
+<br>
+<br><br><br>
+<div class = "page-manage">
+
+
+
+    <?php
+    if($page_precedente != 0)
+    {
+        echo '<a href="/translator/operation_request?page=1">Début</a>';
+        echo '<==<a href="/translator/operation_request?page=' .$page_precedente . '">' . 'Précédent</a><==';
+    }
+    ?>
+    <?php echo 'page '. $_SESSION['page_actuelle_request']; ?>
+    <?php
+    if($page_suivante <= $_SESSION['nb_page_request']) {
+        echo '==><a href="/translator/operation_request?page=' . $page_suivante . '">Suivant</a>';
+        echo '==><a href = "/translator/operation_request?page='. $_SESSION['nb_page_request'] .'"> Fin</a >';
+
+    }
+?>
+
+</div>
+
 <br>

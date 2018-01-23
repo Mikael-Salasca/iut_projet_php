@@ -76,16 +76,18 @@ function checkIfWaiting($data,$source,$target){
 
 
 
-function getRequestTranslation($source,$target){
+function getRequestTranslation($source,$target,$start_page,$limite_page){
 
 
     $usersDataBase = new UsersDataBase();
     $dbConnection  = $usersDataBase->dbConnect();
 
-    $queryGetTuple = 'SELECT * FROM userRequest WHERE SOURCE =:source AND TARGET = :target AND STATUS = "WAITING"';
+    $queryGetTuple = 'SELECT * FROM userRequest WHERE SOURCE =:source AND TARGET = :target AND STATUS = "WAITING" ORDER BY ID LIMIT :start, :limit';
     $stmtGetTuple = $dbConnection->prepare($queryGetTuple);
     $stmtGetTuple->bindParam('source',$source,PDO::PARAM_STR);
     $stmtGetTuple->bindParam('target',$target,PDO::PARAM_STR);
+    $stmtGetTuple->bindParam('start',$start_page,PDO::PARAM_INT);
+    $stmtGetTuple->bindParam('limit',$limite_page,PDO::PARAM_INT);
     try {
         $stmtGetTuple->execute();
         if($stmtGetTuple->rowCount()) {
@@ -183,4 +185,33 @@ function getAllRequestPremium($name)
 
 
 
+}
+
+function getNumberRequest(){
+
+
+    $usersDataBase = new UsersDataBase();
+    $dbConnection  = $usersDataBase->dbConnect();
+
+    $query = 'SELECT COUNT(ID) TOTAL FROM userRequest WHERE STATUS="WAITING"';
+    $stmt = $dbConnection->prepare($query);
+
+    try {
+        $stmt->execute();
+        if ($stmt->rowCount()) {
+
+            $stmt->setFetchMode(PDO::FETCH_OBJ);
+            $result = $stmt->fetch();
+            return $result->TOTAL;
+        }
+        else {
+
+            return 0;
+        }
+
+    } catch (PDOException $e) {
+        echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+        echo 'Requête : ', $query, PHP_EOL;
+        exit();
+    }
 }

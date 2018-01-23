@@ -37,17 +37,39 @@ class Translator extends Controller
             $_SESSION['type_translation'] = 'exist'; //page par default
         }
 
-        if($_SESSION['type_translation'] == 'exist')
-            $allTuple = getExistingTranslation($source,$target);
-        else
-            $allTuple = getRequestTranslation($source,$target);
-
-
         $all_langues = getAllLangs();
+        if(!isset($_SESSION['limite_page']))
+            $_SESSION['limite_page'] = 10; // par default on affiche de 10 en 10
 
 
+        $_SESSION['nb_page_exist'] = ceil(getNumbersTranslation() / $_SESSION['limite_page']);
+        $_SESSION['nb_page_request'] =ceil( getNumberRequest() / $_SESSION['limite_page']);
+
+       if(!isset($_SESSION['page_actuelle_exist']))
+       {
+           $_SESSION['page_actuelle_exist'] = 1; // page par default
+       }
+       if(!isset($_SESSION['page_actuelle_request']))
+       {
+           $_SESSION['page_actuelle_request'] = 1;
+       }
+
+        if($_SESSION['type_translation'] == 'exist')
+            $allTuple = getExistingTranslation($source,$target,($_SESSION['page_actuelle_exist'] -1) * $_SESSION['limite_page'],$_SESSION['limite_page']);
+        else
+            $allTuple = getRequestTranslation($source,$target,($_SESSION['page_actuelle_request'] -1) * $_SESSION['limite_page'],$_SESSION['limite_page']);
 
 
+        if($_SESSION['type_translation'] == "exist")
+        {
+            $page_precedente = $_SESSION['page_actuelle_exist'] -1;
+            $page_suivante = $_SESSION['page_actuelle_exist'] + 1;
+        }
+        else if($_SESSION['type_translation'] == 'request')
+        {
+            $page_precedente = $_SESSION['page_actuelle_request'] -1;
+            $page_suivante = $_SESSION['page_actuelle_request'] + 1;
+        }
 
         $this->start_page('Controle des traductions');
         require ROOT . '/views/translator/translatorControlView.php';
@@ -279,6 +301,39 @@ class Translator extends Controller
             header('location:/translator/control');
 
 
+
+
+    }
+
+
+    public function operation_exist(){
+        session_start();
+    $value = filter_input(INPUT_GET,'page');
+        if(empty($value) || $value == 0 || $value > $_SESSION['nb_page_exist'])
+        {
+            header('location:/translator/control');
+            exit();
+        }
+
+
+    $_SESSION['page_actuelle_exist'] = $value;
+    header('location:/translator/control');
+
+    }
+
+    public function operation_request(){
+
+
+        session_start();
+        $value = filter_input(INPUT_GET,'page',FILTER_VALIDATE_INT);
+        if(empty($value) || $value == 0 || $value > $_SESSION['nb_page_request'])
+        {
+            header('location:/translator/control');
+            exit();
+        }
+
+        $_SESSION['page_actuelle_request'] = $value;
+        header('location:/translator/control');
 
 
     }

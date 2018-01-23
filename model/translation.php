@@ -117,15 +117,17 @@ function translateLanguageNameToFrench($lang){
 
 }
 
-function getExistingTranslation($langueSource, $langueDestination){
+function getExistingTranslation($langueSource, $langueDestination,$start_page,$limite_page){
 
     $usersDataBase = new UsersDataBase();
     $dbConnection  = $usersDataBase->dbConnect();
 
-    $queryGetTuple = 'SELECT ID_TRANSLATION, ' . $langueSource . ',' . $langueDestination . ' FROM translate';
+    $queryGetTuple = 'SELECT ID_TRANSLATION, ' . $langueSource . ',' . $langueDestination . ' FROM translate ORDER BY ID_TRANSLATION DESC LIMIT :start, :limit ';
     $stmtGetTuple = $dbConnection->prepare($queryGetTuple);
     //$stmtGetTuple->bindParam('langueSource',$langueSource,PDO::PARAM_STR);
     //$stmtGetTuple->bindParam('langueDestination',$langueDestination,PDO::PARAM_STR);
+    $stmtGetTuple->bindParam('start',$start_page,PDO::PARAM_INT);
+    $stmtGetTuple->bindParam('limit',$limite_page,PDO::PARAM_INT);
     try {
         $stmtGetTuple->execute();
         if($stmtGetTuple->rowCount()) {
@@ -240,6 +242,40 @@ function insertNewTranslation($object)
             echo 'Requête : ', $query, PHP_EOL;
             exit();
         }
+
+
+}
+
+function getNumbersTranslation()
+{
+
+    $usersDataBase = new UsersDataBase();
+    $dbConnection  = $usersDataBase->dbConnect();
+
+    $query = 'SELECT COUNT(ID_TRANSLATION) TOTAL FROM translate';
+    $stmt = $dbConnection->prepare($query);
+
+    try {
+        $stmt->execute();
+        if ($stmt->rowCount()) {
+
+            $stmt->setFetchMode(PDO::FETCH_OBJ);
+            $result = $stmt->fetch();
+            return $result->TOTAL;
+        }
+        else {
+
+            return 0;
+        }
+
+    } catch (PDOException $e) {
+        echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+        echo 'Requête : ', $query, PHP_EOL;
+        exit();
+    }
+
+
+
 
 
 }

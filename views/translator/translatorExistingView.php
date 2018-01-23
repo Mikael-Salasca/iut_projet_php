@@ -2,13 +2,24 @@
     <h2>Traductions existantes</h2>
 </div>
 
-
-
-<div class="alert-info">
-    <img src="/img/info.png">&nbsp;&nbsp;<b>Rappel</b><br>
-    N'oubliez pas de cocher les traductions pour valider leurs modifications !
-</div>
 <a style="text-decoration: none;" href="/translator/change_control"><div class="link-2">Acceder aux demandes</div></a>
+<br>
+<div class = "page-manage">
+    <?php
+    if($page_precedente != 0) {
+        echo '<a href="/translator/operation_exist?page=1">Début</a>';
+        echo ' <== ' . '<a href="/translator/operation_exist?page=' . $page_precedente . '">' . 'Précédent</a><==';
+    }
+    ?>
+    <?php echo 'page ' . $_SESSION['page_actuelle_exist']; ?>
+    <?php
+    if($page_suivante <= $_SESSION['$nb_page_exist']) {
+        echo '==><a href="/translator/operation_exist?page=' . $page_suivante . '">Suivant</a>';
+        echo '==><a href="/translator/operation_exist?page=' . $_SESSION['$nb_page_exist'] . '">Fin</a>';
+    }
+    ?>
+</div>
+<br>
 <div class="row-compte">
 
     <table id="panel-admin">
@@ -70,5 +81,33 @@
 
 <input type="submit" class="button-valid-4" value="Valider les modifications">
 </form>
+
+
+<div class="alert-info">
+    <img src="/img/info.png">&nbsp;&nbsp;<b>Rappel</b><br>
+    N'oubliez pas de cocher les traductions pour valider leurs modifications !
+</div>
+
+<br><br><br><br><br><br>
+
 <?php if (isset($_SESSION['update_translation_msg'])) echo $_SESSION['update_translation_msg'];
 unset($_SESSION['update_translation_msg']); ?>
+
+
+<div class = "page-manage">
+    <?php
+    if($page_precedente != 0) {
+        echo '<a href="/translator/operation_exist?page=1">Début</a>';
+        echo ' <== ' . '<a href="/translator/operation_exist?page=' . $page_precedente . '">' . 'Précédent</a><==';
+        }
+        ?>
+    <?php echo 'page ' . $_SESSION['page_actuelle_exist']; ?>
+    <?php
+    if($page_suivante <= $_SESSION['$nb_page_exist']) {
+        echo '==><a href="/translator/operation_exist?page=' . $page_suivante . '">Suivant</a>';
+        echo '==><a href="/translator/operation_exist?page=' . $_SESSION['$nb_page_exist'] . '">Fin</a>';
+    }
+    ?>
+</div>
+
+<br><br>
