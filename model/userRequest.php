@@ -187,14 +187,16 @@ function getAllRequestPremium($name)
 
 }
 
-function getNumberRequest(){
+function getNumberRequest($source,$target){
 
 
     $usersDataBase = new UsersDataBase();
     $dbConnection  = $usersDataBase->dbConnect();
 
-    $query = 'SELECT COUNT(ID) TOTAL FROM userRequest WHERE STATUS="WAITING"';
+    $query = 'SELECT COUNT(ID) TOTAL FROM userRequest WHERE STATUS="WAITING" AND SOURCE = :source AND TARGET = :target';
     $stmt = $dbConnection->prepare($query);
+    $stmt->bindParam('source',$source,PDO::PARAM_STR);
+    $stmt->bindParam('target',$target,PDO::PARAM_STR);
 
     try {
         $stmt->execute();

@@ -16,7 +16,7 @@
         echo '<==<a href="/translator/operation_request?page=' .$page_precedente . '">' . 'Précédent</a><==';
     }
     ?>
-    <?php echo 'page '. $_SESSION['page_actuelle_request']; ?>
+    <?php echo 'page '. $_SESSION['page_actuelle_request'] . ' / page ' . $_SESSION['nb_page_request']; ?>
     <?php
     if($page_suivante <= $_SESSION['nb_page_request']) {
         echo '==><a href="/translator/operation_request?page=' . $page_suivante . '">Suivant</a>';
@@ -26,7 +26,28 @@
     ?>
 
 </div>
-<br>
+<form method="get" action="/translator/select_page">
+<select name="select_page">
+    <?php
+
+            if($_SESSION['limite_page'] == 10)
+                echo '<option value="10" selected>Afficher par 10</option>';
+            else
+                echo '<option value="10">Afficher par 10</option>';
+            if($_SESSION['limite_page'] == 20)
+                echo '<option value="20" selected>Afficher par 20</option>';
+            else
+                echo '<option value="20">Afficher par 20</option>';
+            if ($_SESSION['limite_page'] == 50)
+                echo '<option value="50" selected>Afficher par 50</option>';
+            else
+                echo '<option value="50">Afficher par 50</option>';
+
+?>
+</select>
+<button type="submit">valider</button>
+</form>
+
 <div class="row-compte">
 <table id="panel-admin">
     <form method="post" action="/translator/change_lang">

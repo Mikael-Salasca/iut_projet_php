@@ -11,15 +11,37 @@
         echo ' <== ' . '<a href="/translator/operation_exist?page=' . $page_precedente . '">' . 'Précédent</a><==';
     }
     ?>
-    <?php echo 'page ' . $_SESSION['page_actuelle_exist']; ?>
+    <?php echo 'page ' . $_SESSION['page_actuelle_exist'] .' / page ' . $_SESSION['nb_page_exist']; ?>
     <?php
-    if($page_suivante <= $_SESSION['$nb_page_exist']) {
+    if($page_suivante <= $_SESSION['nb_page_exist']) {
         echo '==><a href="/translator/operation_exist?page=' . $page_suivante . '">Suivant</a>';
-        echo '==><a href="/translator/operation_exist?page=' . $_SESSION['$nb_page_exist'] . '">Fin</a>';
+        echo '==><a href="/translator/operation_exist?page=' . $_SESSION['nb_page_exist'] . '">Fin</a>';
     }
     ?>
 </div>
 <br>
+<form method="get" action="/translator/select_page">
+    <select name="select_page">
+        <?php
+
+        if($_SESSION['limite_page'] == 10)
+            echo '<option value="10" selected>Afficher par 10</option>';
+        else
+            echo '<option value="10">Afficher par 10</option>';
+        if($_SESSION['limite_page'] == 20)
+            echo '<option value="20" selected>Afficher par 20</option>';
+        else
+            echo '<option value="20">Afficher par 20</option>';
+        if ($_SESSION['limite_page'] == 50)
+            echo '<option value="50" selected>Afficher par 50</option>';
+        else
+            echo '<option value="50">Afficher par 50</option>';
+
+        ?>
+    </select>
+    <button type="submit">valider</button>
+</form>
+
 <div class="row-compte">
 
     <table id="panel-admin">
@@ -99,13 +121,13 @@ unset($_SESSION['update_translation_msg']); ?>
     if($page_precedente != 0) {
         echo '<a href="/translator/operation_exist?page=1">Début</a>';
         echo ' <== ' . '<a href="/translator/operation_exist?page=' . $page_precedente . '">' . 'Précédent</a><==';
-        }
-        ?>
-    <?php echo 'page ' . $_SESSION['page_actuelle_exist']; ?>
+    }
+    ?>
+    <?php echo 'page ' . $_SESSION['page_actuelle_exist'] .' / page ' . $_SESSION['nb_page_exist']; ?>
     <?php
-    if($page_suivante <= $_SESSION['$nb_page_exist']) {
+    if($page_suivante <= $_SESSION['nb_page_exist']) {
         echo '==><a href="/translator/operation_exist?page=' . $page_suivante . '">Suivant</a>';
-        echo '==><a href="/translator/operation_exist?page=' . $_SESSION['$nb_page_exist'] . '">Fin</a>';
+        echo '==><a href="/translator/operation_exist?page=' . $_SESSION['nb_page_exist'] . '">Fin</a>';
     }
     ?>
 </div>
