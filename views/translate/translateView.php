@@ -74,7 +74,7 @@
                             <?php if (isset($_SESSION['min_to_wait'])) echo '<div class="error_no_word">Vous devez attendre ' . $_SESSION['min_to_wait'] . 'minute(s)' . '</div>'; ?>
                             <?php if (isset($_SESSION['dataIsWaiting'])) echo '<div class="waiting"> La demande de traduction a déja était faite !</div>'; unset($_SESSION['dataIsWaiting']); ?>
                             <div id="gt-res-tools">
-                                <?php if(isset($_SESSION['translation_not_found']) && $_SESSION['user']->isPrenium())
+                                <?php if(isset($_SESSION['translation_not_found']) && isset($_SESSION['user']) && $_SESSION['user']->isPrenium())
                                     echo '<div id="gt-res-tools-sugg">
 
                                   

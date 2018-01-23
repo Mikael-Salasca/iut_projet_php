@@ -1706,11 +1706,12 @@ header{
 
 .area-trad{
 
-    width: 100%; */
+    width: 100%;
 width: 100%;
     border: none;
-    resize: none;
-    max-height: 46px;
+    resize: vertical;
+    max-height: 100px;
+    min-height: 40px;
     margin-bottom: 2px;
 }
 
