@@ -1707,7 +1707,7 @@ header{
 .area-trad{
 
     width: 100%;
-width: 100%;
+    width: 100%;
     border: none;
     resize: vertical;
     max-height: 100px;
@@ -1770,4 +1770,65 @@ width: 100%;
 
     text-align: center;
     font-size: 15px;
+}
+
+.switch{
+
+
+    display: inline-table;
+    /* float: right; */
+    margin-left: 60%;
+    background-color: #f5f5f5;
+    background-image: -webkit-linear-gradient(top,#f5f5f5,#f1f1f1);
+    border: 1px solid rgba(0,0,0,0.1);
+    min-width: 30px;
+    text-align: center;
+
+}
+.switch:hover{
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    background-color: #f8f8f8;
+    background-image: -webkit-linear-gradient(top, #f8f8f8, #f1f1f1);
+    background-image: -moz-linear-gradient(top, #f8f8f8, #f1f1f1);
+    background-image: -ms-linear-gradient(top, #f8f8f8, #f1f1f1);
+    background-image: -o-linear-gradient(top, #f8f8f8, #f1f1f1);
+    background-image: linear-gradient(top, #f8f8f8, #f1f1f1);
+    border: 1px solid #c6c6c6;
+    color: #333
+}
+.jfk-button-img{
+
+
+    background: url(/img/button-11.png) 0 0 no-repeat;
+    margin-top: -3px;
+    vertical-align: middle;
+    width: 21px;
+    height: 21px;
+    display: inline-block;
+    text-align: center;
+    padding:0;
+    opacity: .55;
+}
+
+.jfk-button-img:hover{
+
+    opacity: 0.9
+}
+
+.no-cursor{
+
+    cursor: default;
+}
+
+.no-button-style{
+
+    border:none;
+    background: none;
+
+}
+.no-button-style:focus{
+    outline: none;
 }

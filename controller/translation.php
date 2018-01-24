@@ -20,8 +20,6 @@ class Translation extends Controller
 
         }
 
-       // $tab = getAllLangs(); // attention on doit supprimer le premier élément qui contient le nom de la clée primaire
-      //  $this->array_middle_shift($tab, 0);
 
         $all_language = getAllLangs(); // les colonnes sont en anglais
 
@@ -40,9 +38,18 @@ class Translation extends Controller
 
         session_start();
 
+        $switch = filter_input(INPUT_POST,'switch');
         $targetLangage = filter_input(INPUT_POST, 'langDest');
         $sourceLangage = filter_input(INPUT_POST, 'langSrc');
         $wordToTranslate = filter_input(INPUT_POST, 'word-to-translate');
+        if(!empty($switch))
+        {
+            $this->switch($sourceLangage,$targetLangage);
+            header('location:/translation/translate');
+            exit();
+        }
+
+
         $this->saveSourceTargetInput($sourceLangage, $targetLangage);
 
         if (!isset($_SESSION['user']) || isset($_SESSION['isActive']) && !$_SESSION['isActive']) { //non connecté ou compte pas activé
@@ -191,6 +198,17 @@ class Translation extends Controller
 
 
 
+    }
+
+    private function switch($source,$target){
+
+        session_start();
+
+        if(isset($_SESSION['lang_Input'])) {
+
+            $_SESSION['lang_Input'][0] = $target;
+            $_SESSION['lang_Input'][1] = $source;
+        }
     }
 
 }
