@@ -85,8 +85,11 @@ function userTranslationNormal($srcLangage, $targetLangage, $toTranslate)
 
 }
 
-function userTranslationNoAccent($srcLangage, $targetLangage, $toTranslate)
+function userTranslationPrenium($srcLangage, $targetLangage, $listToTranslate)
 {
+    // permet de rechercher avec une plus grande précision un mot demandé dans l'ensemble des traductions existantes et de sortir une proposition au prenium
+    // listToTranslate est un tableau contenant chaque mot.
+
 
 
     $usersDataBase = new UsersDataBase();
@@ -103,13 +106,24 @@ function userTranslationNoAccent($srcLangage, $targetLangage, $toTranslate)
             {
                 $sourceData = $data->$srcLangage;
                 $targetData = $data->$targetLangage;
-               $sourceData = noAccent($sourceData);
-               $sourceData = strtolower($sourceData);
-                if($sourceData == $toTranslate)
-                   return $targetData;
+
+                $listSourceData = replaceWithSpace($sourceData);
+                foreach ($listToTranslate as $wordRequest)
+                {
+                    foreach ($listSourceData as $wordBase)
+                    {
+                        $wordBase = strtolower($wordBase);
+                        if($wordRequest == $wordBase)
+                        {
+                            $assocWord[] = array($wordRequest => $targetData);
+                        }
+                    }
+
+                }
 
 
             }
+            return $assocWord;
 
         }
         return '';
@@ -328,4 +342,25 @@ function noAccent($str, $charset='utf-8')
     $str = preg_replace('#&[^;]+;#', '', $str); // supprime les autres caractères
 
     return $str;
+}
+
+function replaceWithSpace($wordToTranslate){
+
+
+
+    $removeCharSpecial = array(".","?","!",",");
+    $removeSubject = array(" l'","un ","le "," la "," une "," de "," se "," du "," d'");
+    $temp = str_replace($removeCharSpecial," ",$wordToTranslate);
+    $temp = str_replace($removeSubject," ",$temp);
+    $explode = explode(" ",$temp); // explode est un tableau contenant chaque mot
+
+    foreach ($explode as $word)
+    {
+        if(strlen($word) != 0 && strlen($word) > 2) // les mots de moins de 3 lettres sont considéres comme nul
+            $tab[] = $word;
+    }
+
+    return $tab;
+
+
 }

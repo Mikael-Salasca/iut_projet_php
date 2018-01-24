@@ -1832,3 +1832,29 @@ header{
 .no-button-style:focus{
     outline: none;
 }
+
+.suggestion{
+
+    color:blue;
+    margin-left: 50%;
+    font: normal 15px arial,sans-serif;
+
+}
+
+.sugg-tit{
+
+
+    color: #000;
+    display: inline;
+
+    font-weight: 300;
+
+}
+
+.sugg-cont{
+
+
+    display: inline;
+    color: #777;
+
+}

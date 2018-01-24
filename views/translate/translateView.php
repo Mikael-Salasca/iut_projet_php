@@ -71,11 +71,14 @@
                         </td>
                         <td COLSPAN=2>
                             <div id="gt-res-wrap">
-                                <?php if(isset($_SESSION['translation_not_found'])) echo '<br><br><br><div class="error_no_word">Aucune occurence exacte trouvé </div>' ;
+                                <?php if(isset($_SESSION['translation_not_found'])) echo '<br><div class="error_no_word">Aucune occurence exacte trouvé </div>' ;
                                 ?>
                                 <?php if (isset($_SESSION['translation'])) echo '<div class="show-trans">' . $_SESSION['translation'][1] . '</div>'; unset($_SESSION['translation']) ?>
                                 <?php if (isset($_SESSION['min_to_wait'])) echo '<div class="error_no_word">Vous devez attendre ' . $_SESSION['min_to_wait'] . 'minute(s)' . '</div>'; ?>
                                 <?php if (isset($_SESSION['dataIsWaiting'])) echo '<div class="waiting"> La demande de traduction a déja était faite !</div>'; unset($_SESSION['dataIsWaiting']); ?>
+                                <?php if (isset($_SESSION['no_suggestion_premium '])) echo '<div class="error_no_word">La recherche approfondie n\'a pas trouvé de suggestions. N\'hessitez pas à faire une demande !</div>';
+                                unset($_SESSION['no_suggestion_premium ']); ?>
+
                                 <div id="gt-res-tools">
                                     <?php if(isset($_SESSION['translation_not_found']) && isset($_SESSION['user']) && $_SESSION['user']->isPrenium())
                                         echo '<div id="gt-res-tools-sugg">
@@ -101,6 +104,35 @@
             </div>
         </form>
         <br>
+        <?php
+
+        if(isset($_SESSION['list_suggestion_premium']))
+            {
+                $listAssoc = $_SESSION['list_suggestion_premium'];
+                echo '<br><br>';
+                echo '<div class="suggestion">Des suggestions ont étaient trouvés !<br>';
+
+                foreach ($listAssoc as $case)
+                {
+                    foreach ($case as $key => $value)
+                    {
+                        echo '<div class="sugg-tit">' . $key . ' ==> </div><div class="sugg-cont">' . $value . '</div>';
+                    }
+                    echo '<br>';
+                }
+                echo '</div>';
+                unset($_SESSION['list_suggestion_premium']);
+
+            }
+
+
+        ?>
+
+
+
+
+
+
         <?php
         if(isset($_SESSION['isActive']) && isset($_SESSION['user']) && !$_SESSION['isActive'] ){
             echo '<div class="alert-info">
@@ -129,10 +161,6 @@
         }
 
         ?>
-
-
-
-
 
     </section>
 </section>

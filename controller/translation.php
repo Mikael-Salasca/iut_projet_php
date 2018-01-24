@@ -68,22 +68,20 @@ class Translation extends Controller
         unset($_SESSION['min_to_wait']);
         // pas besoin d'attendre
 
-        if(isset($_SESSION['isPrenium']))
-        {
-            // en developpement (le prenium disposera de recherches affinés)
 
-        }
+            $wordToTranslate = mb_strtolower($wordToTranslate,'UTF-8');
+            $translation = userTranslationNormal($sourceLangage, $targetLangage, $wordToTranslate);
 
 
-            $wordToTranslateNormal = mb_strtolower($wordToTranslate,'UTF-8');
-            $translation = userTranslationNormal($sourceLangage, $targetLangage, $wordToTranslateNormal);
-
-
-        $translation = mb_strtolower($translation); // met tout en minuscule
+        $translation = mb_strtolower($translation,'UTF-8'); // met tout en minuscule
         if (!empty($translation)) {
             $_SESSION['translation'] = array($wordToTranslate, $translation);
             unset($_SESSION['translation_not_found']);
+            $this->requestPrenium($sourceLangage,$targetLangage,$wordToTranslate);
+
         } else {
+
+            $this->requestPrenium($sourceLangage,$targetLangage,$wordToTranslate);
 
             if (checkIfWaiting($wordToTranslate, $sourceLangage, $targetLangage)) // si le mot est déja en attente de traduction
             {
@@ -92,6 +90,8 @@ class Translation extends Controller
                 $_SESSION['translation_not_found'] = array($wordToTranslate, $sourceLangage, $targetLangage);
             }
         }
+
+
             if(!isset($_SESSION['user']))
             {
                 $_SESSION['haveToWait'] = true;
@@ -220,6 +220,43 @@ class Translation extends Controller
             $_SESSION['lang_Input'][1] = $source;
         }
     }
+
+    private function requestPrenium($sourceLangage,$targetLangage,$wordToTranslate)
+    {
+
+        if(isset($_SESSION['isPrenium']))
+        {
+            // en developpement (le prenium disposera de recherches affinés)
+            $listWord = replaceWithSpace($wordToTranslate); // renvoie tout les mots un par un dans un tableau
+            if(!empty($listWord)) //si la liste est vide c'est qu'aucun mot important n'est estimé filtré.
+            {
+                $listAssoc = userTranslationPrenium($sourceLangage,$targetLangage,$listWord);
+                // renvoie un tableau d'association qui propose des correspondances pour le mot cherché
+                if(!empty($listAssoc))
+                {
+                    // si des associations ont étaient trouvés
+                    $_SESSION['list_suggestion_premium'] = $listAssoc;
+                }
+                else{
+                    $_SESSION['no_suggestion_premium '] = 1;
+                }
+
+            }
+            else{
+                $_SESSION['no_suggestion_premium'];
+            }
+
+        }
+
+
+
+
+
+
+
+    }
+
+
 
 }
 
