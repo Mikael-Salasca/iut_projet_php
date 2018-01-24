@@ -45,8 +45,8 @@ class Translation extends Controller
         if(!empty($switch))
         {
             $this->switch($sourceLangage,$targetLangage);
-            header('location:/translation/translate');
-            exit();
+            $sourceLangage = $_SESSION['lang_Input'][0];
+            $targetLangage = $_SESSION['lang_Input'][1];
         }
 
 
