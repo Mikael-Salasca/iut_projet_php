@@ -67,9 +67,15 @@ class Admin extends Controller {
             if (preg_match('/^[A-Z]{3,24}$/', $newlang)) {
                 if (!langAlreadyExists($newlang)) {
                     if (addLanguage($newlang))
+                    {
+                        addLanguageInEnglish($newlang);
                         $_SESSION['lang_add'] = 'Langue ajoutée avec succès';
-                    else
+
+                    }
+
+                    else {
                         $_SESSION['lang_add'] = 'Une erreur est survenue, veuillez réessayer ou contacter le support en cas d\'échecs répétés';
+                    }
                 }
                 else
                     $_SESSION['lang_already_exists'] = 'La langue choisie existe déjà';
@@ -79,6 +85,8 @@ class Admin extends Controller {
                 $_SESSION['wrong_pattern'] = "La saisie est invalide";
             header('Location:/admin/control');
         }
+
+        header('location:/admin/control');
     }
 }
 ?>

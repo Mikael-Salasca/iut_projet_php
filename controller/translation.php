@@ -12,13 +12,13 @@ class Translation extends Controller
         session_start();
 
         if (!isset($_SESSION['lang_Input'])) {
-            $source = "FRENCH"; // par default
-            $target = "ENGLISH";
-        } else {
+            $_SESSION['lang_Input'][0] = "FRENCH"; // par default
+            $_SESSION['lang_Input'][1] = "ENGLISH";
+        }
             $source = $_SESSION['lang_Input'][0];
             $target = $_SESSION['lang_Input'][1];
 
-        }
+
 
 
         $all_language = getAllLangs(); // les colonnes sont en anglais

@@ -105,3 +105,34 @@ function langAlreadyExists($newlanguage) {
     }
 }
 
+function addLanguageInEnglish($newlang){
+
+    $usersDataBase = new UsersDataBase();
+    $dbConnection  = $usersDataBase->dbConnect();
+
+    $query = 'INSERT INTO translate (ENGLISH) VALUES (:lang)';
+    $stmt = $dbConnection->prepare($query);
+
+    $stmt->bindParam('lang',$newlang,PDO::PARAM_STR);
+
+    try {
+        $stmt->execute();
+        if($stmt->rowCount())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    catch (PDOException $e) {
+        echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+        echo 'Requête : ', $query, PHP_EOL;
+        exit();
+    }
+
+
+
+}
+
