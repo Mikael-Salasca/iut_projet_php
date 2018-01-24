@@ -92,7 +92,7 @@ class Translation extends Controller
         }
 
 
-            if(!isset($_SESSION['user']))
+            if(!isset($_SESSION['user']) || !$_SESSION['isActive'])
             {
                 $_SESSION['haveToWait'] = true;
                 $_SESSION['last_translation'] = new DateTime("NOW");
@@ -224,7 +224,7 @@ class Translation extends Controller
     private function requestPrenium($sourceLangage,$targetLangage,$wordToTranslate)
     {
 
-        if(isset($_SESSION['isPrenium']))
+        if(isset($_SESSION['isPrenium']) && $_SESSION['isPrenium'])
         {
             // en developpement (le prenium disposera de recherches affinés)
             $listWord = replaceWithSpace($wordToTranslate); // renvoie tout les mots un par un dans un tableau
