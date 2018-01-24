@@ -106,14 +106,15 @@ function userTranslationPrenium($srcLangage, $targetLangage, $listToTranslate)
             {
                 $sourceData = $data->$srcLangage;
                 $targetData = $data->$targetLangage;
-
                 $listSourceData = replaceWithSpace($sourceData);
                 foreach ($listToTranslate as $wordRequest)
-                {
+                {   $wordRequestNoAccent = noAccent($wordRequest);
+
                     foreach ($listSourceData as $wordBase)
                     {
-                        $wordBase = strtolower($wordBase);
-                        if($wordRequest == $wordBase)
+                        $wordBaseNoAccent = noAccent($wordBase);
+                        $wordBaseNoAccent = strtolower($wordBaseNoAccent);
+                        if($wordRequestNoAccent == $wordBaseNoAccent)
                         {
                             $assocWord[] = array($wordRequest => $targetData);
                         }
