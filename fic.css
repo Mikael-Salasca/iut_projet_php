@@ -1838,7 +1838,7 @@ header{
     color:blue;
     margin-left: 50%;
     font: normal 15px arial,sans-serif;
-
+    display: inline-block;
 }
 
 .sugg-tit{
