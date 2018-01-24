@@ -56,14 +56,13 @@ function translate ($toTranslate,$optionLangSource = 'FRENCH') //fr par defaut
 
 }
 
-function userTranslation($srcLangage,$targetLangage, $toTranslate) //fr par defaut
+function userTranslationNormal($srcLangage, $targetLangage, $toTranslate)
 {
 
 
     $usersDataBase = new UsersDataBase();
     $dbConnection = $usersDataBase->dbConnect();
     $query = 'SELECT ' . $targetLangage . ' FROM translate WHERE ' .$srcLangage .'=:toTranslate';
-    //var_dump($query);
     $stmt = $dbConnection->prepare($query);
 
     $stmt->bindValue('toTranslate', $toTranslate, PDO::PARAM_STR);
@@ -85,6 +84,46 @@ function userTranslation($srcLangage,$targetLangage, $toTranslate) //fr par defa
     }
 
 }
+
+function userTranslationNoAccent($srcLangage, $targetLangage, $toTranslate)
+{
+
+
+    $usersDataBase = new UsersDataBase();
+    $dbConnection = $usersDataBase->dbConnect();
+    $query = 'SELECT ' . $targetLangage .',' . $srcLangage . ' FROM translate ';
+    $stmt = $dbConnection->prepare($query);
+
+    try {
+        $stmt->execute();
+        if($stmt->rowCount())
+        {
+            $stmt->setFetchMode(PDO::FETCH_OBJ);
+            while($data = $stmt->fetch())
+            {
+                $sourceData = $data->$srcLangage;
+                $targetData = $data->$targetLangage;
+               $sourceData = noAccent($sourceData);
+               $sourceData = strtolower($sourceData);
+                if($sourceData == $toTranslate)
+                   return $targetData;
+
+
+            }
+
+        }
+        return '';
+
+
+    }
+    catch (PDOException $e) {
+        echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+        echo 'Requête : ', $query, PHP_EOL;
+        exit();
+    }
+
+}
+
 
 function translateLanguageNameToFrench($lang){
 
@@ -278,4 +317,15 @@ function getNumbersTranslation()
 
 
 
+}
+
+function noAccent($str, $charset='utf-8')
+{
+    $str = htmlentities($str, ENT_NOQUOTES, $charset);
+
+    $str = preg_replace('#&([A-za-z])(?:acute|cedil|caron|circ|grave|orn|ring|slash|th|tilde|uml);#', '\1', $str);
+    $str = preg_replace('#&([A-za-z]{2})(?:lig);#', '\1', $str); // pour les ligatures e.g. '&oelig;'
+    $str = preg_replace('#&[^;]+;#', '', $str); // supprime les autres caractères
+
+    return $str;
 }

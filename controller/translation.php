@@ -68,7 +68,17 @@ class Translation extends Controller
         unset($_SESSION['min_to_wait']);
         // pas besoin d'attendre
 
-        $translation = userTranslation($sourceLangage, $targetLangage, $wordToTranslate);
+        if(isset($_SESSION['isPrenium']))
+        {
+            // en developpement (le prenium disposera de recherches affinés)
+
+        }
+
+
+            $wordToTranslateNormal = mb_strtolower($wordToTranslate,'UTF-8');
+            $translation = userTranslationNormal($sourceLangage, $targetLangage, $wordToTranslateNormal);
+
+
         $translation = mb_strtolower($translation); // met tout en minuscule
         if (!empty($translation)) {
             $_SESSION['translation'] = array($wordToTranslate, $translation);
