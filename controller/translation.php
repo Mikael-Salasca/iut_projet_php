@@ -68,21 +68,20 @@ class Translation extends Controller
             unset($_SESSION['translation_not_found']);
         } else {
 
-            if(checkIfWaiting($wordToTranslate,$sourceLangage,$targetLangage)) // si le mot est déja en attente de traduction
+            if (checkIfWaiting($wordToTranslate, $sourceLangage, $targetLangage)) // si le mot est déja en attente de traduction
             {
                 $_SESSION['dataIsWaiting'] = $wordToTranslate;
+            } else {
+                $_SESSION['translation_not_found'] = array($wordToTranslate, $sourceLangage, $targetLangage);
             }
-            else {
-                $_SESSION['translation_not_found'] = array($wordToTranslate, $sourceLangage,$targetLangage);
-            }
-
+        }
             if(!isset($_SESSION['user']))
             {
                 $_SESSION['haveToWait'] = true;
                 $_SESSION['last_translation'] = new DateTime("NOW");
             }
 
-        }
+
 
 
         header('location:/translation/translate');
