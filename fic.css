@@ -1740,6 +1740,10 @@ header{
     padding-bottom: 7px;
     color:inherit;
 }
+
+.pos-right{
+    float: right;
+}
 .link-2:hover{
 
 

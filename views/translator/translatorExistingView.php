@@ -1,7 +1,7 @@
 <div class="card-header">
     <h2>Traductions existantes</h2>
 </div>
-
+<a style="text-decoration:none" href="/translator/export"><div class="link-2 pos-right">Exporter des traductions</div></a>
 <a style="text-decoration: none;" href="/translator/change_control"><div class="link-2">Acceder aux demandes</div></a>
 <br>
 <div class = "page-manage">
@@ -131,5 +131,6 @@ unset($_SESSION['update_translation_msg']); ?>
     }
     ?>
 </div>
+
 
 <br><br>

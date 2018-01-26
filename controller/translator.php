@@ -1,13 +1,13 @@
 <?php
 
 require ROOT . '/model/userRequest.php';
-require ROOT .'/model/lang.php';
+require ROOT . '/model/lang.php';
 
-if(!class_exists('Translator')) {
+include ROOT . '/vendor/gettext/gettext/src/autoloader.php';
+if (!class_exists('Translator')) {
 
     require ROOT . '/core/translate.php';
 }
-
 
 
 class Translator extends Controller
@@ -40,11 +40,6 @@ class Translator extends Controller
             $_SESSION['limite_page'] = 10; // par default on affiche de 10 en 10
 
 
-
-
-
-
-
         if (!isset($_SESSION['page_actuelle_exist'])) {
             $_SESSION['page_actuelle_exist'] = 1; // page par default
         }
@@ -56,12 +51,10 @@ class Translator extends Controller
 
             $_SESSION['nb_page_exist'] = $this->calculNumbersOfPageExist();
             $allTuple = getExistingTranslation($source, $target, ($_SESSION['page_actuelle_exist'] - 1) * $_SESSION['limite_page'], $_SESSION['limite_page']);
-        }
-        else{
+        } else {
             $allTuple = getRequestTranslation($source, $target, ($_SESSION['page_actuelle_request'] - 1) * $_SESSION['limite_page'], $_SESSION['limite_page']);
-                $_SESSION['nb_page_request'] = $this->calculNumbersOfPageRequest($source,$target);
-            }
-
+            $_SESSION['nb_page_request'] = $this->calculNumbersOfPageRequest($source, $target);
+        }
 
 
         if ($_SESSION['type_translation'] == "exist") {
@@ -331,10 +324,10 @@ class Translator extends Controller
         return $nb;
     }
 
-    private function calculNumbersOfPageRequest($source,$target)
+    private function calculNumbersOfPageRequest($source, $target)
     {
 
-        $nb_tuple = getNumberRequest($source,$target);
+        $nb_tuple = getNumberRequest($source, $target);
 
         $nb = ceil($nb_tuple / $_SESSION['limite_page']);
 
@@ -342,18 +335,72 @@ class Translator extends Controller
         return $nb;
 
 
+    }
 
-
-}
     public function select_page()
     {
         session_start();
 
-        $value = filter_input(INPUT_GET,'select_page',FILTER_VALIDATE_INT)  ;
+        $value = filter_input(INPUT_GET, 'select_page', FILTER_VALIDATE_INT);
         $_SESSION['limite_page'] = $value;
         $_SESSION['page_actuelle_request'] = 1;
         $_SESSION['page_actuelle_exist'] = 1;
         header('location:/translator/control');
+    }
+
+    public function export()
+    {
+        session_start();
+        if (!isset($_SESSION['user']) || !$_SESSION['isTranslator']) {
+            header('location:/');
+            exit();
+        }
+        $all_langues = getAllLangs();
+        $this->start_page("Exporter des traductions");
+        require ROOT . '/views/translator/exportView.php';
+        $this->end_page();
+
+    }
+
+    public function sub_export()
+    {
+
+        session_start();
+        if (!isset($_SESSION['user']) || !$_SESSION['isTranslator']) {
+            header('location:/');
+            exit();
+        }
+
+
+        $checkLangs = filter_input(INPUT_POST, 'langues', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+        file_put_contents('./export/export.po',''); // on vide
+        var_dump($checkLangs);
+        foreach ($checkLangs as $lang) {
+            $allTuple = getAllExistTranslation($lang);
+
+            foreach ($allTuple as $objet)
+            {
+                $translations[] = new Gettext\Translations();
+                $buffer = new Gettext\Translation('',$objet->getDataSource());
+
+
+                file_put_contents('./export/export.po',$objet->getDataSource(), FILE_APPEND);
+                file_put_contents('./export/export.po',"\n",FILE_APPEND);
+                $translations[] = $buffer;
+            }
+        }
+        $name = '';
+        foreach ($checkLangs as $check)
+            $name .= $check . '_';
+        // recuperer le fichier
+        header('Content-Transfer-Encoding: binary'); //Transfert en binaire (fichier)
+        header('Content-Disposition: attachment; filename="export' . $name . '.txt"');
+        readfile('./export/export.po');
+        
+
+
+
+
     }
 
 }

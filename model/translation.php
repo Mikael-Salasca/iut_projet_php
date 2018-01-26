@@ -365,3 +365,39 @@ function replaceWithSpace($wordToTranslate){
 
 
 }
+
+function getAllExistTranslation($langSource)
+{
+
+    $usersDataBase = new UsersDataBase();
+    $dbConnection  = $usersDataBase->dbConnect();
+
+    $queryGetTuple = 'SELECT '. $langSource . ' FROM translate';
+    $stmtGetTuple = $dbConnection->prepare($queryGetTuple);
+
+    try {
+        $stmtGetTuple->execute();
+        if($stmtGetTuple->rowCount()) {
+
+
+            $stmtGetTuple->setFetchMode(PDO::FETCH_OBJ);
+
+            while ($row = $stmtGetTuple->fetch()) {
+                $tab[] = new Translate($row->ID_TRANSLATION, $langSource, '', $row->$langSource, '');
+            }
+
+            return $tab;
+        }
+
+    }
+    catch (PDOException $e) {
+        echo 'Erreur : ', $e->getMessage(), PHP_EOL;
+        echo 'Requête : ', $query, PHP_EOL;
+        exit();
+    }
+
+
+
+
+
+}
