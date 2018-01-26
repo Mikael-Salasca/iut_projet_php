@@ -138,7 +138,6 @@ class Translator extends Controller
     {
 
         session_start();
-        session_start();
         $langSource = filter_input(INPUT_POST, 'lgSource');
         $langTarget = filter_input(INPUT_POST, 'lgTarget');
 
@@ -370,31 +369,36 @@ class Translator extends Controller
             header('location:/');
             exit();
         }
+        $langSource = filter_input(INPUT_POST, 'lgSource');
+        $langTarget = filter_input(INPUT_POST, 'lgTarget');
+
+       if(empty($langSource) || empty($langTarget))
+       {
+           header('location:/translator/export');
+           exit();
+       }
 
 
-        $checkLangs = filter_input(INPUT_POST, 'langues', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-        file_put_contents('./export/export.po',''); // on vide
-        var_dump($checkLangs);
-        foreach ($checkLangs as $lang) {
-            $allTuple = getAllExistTranslation($lang);
-
-            foreach ($allTuple as $objet)
+            if(!$allTuple = getAllExistTranslation($langSource,$langTarget))
             {
-                $translations[] = new Gettext\Translations();
-                $buffer = new Gettext\Translation('',$objet->getDataSource());
-
-
-                file_put_contents('./export/export.po',$objet->getDataSource(), FILE_APPEND);
-                file_put_contents('./export/export.po',"\n",FILE_APPEND);
-                $translations[] = $buffer;
+                header('location:/translator/export');
+                exit();
             }
-        }
-        $name = '';
-        foreach ($checkLangs as $check)
-            $name .= $check . '_';
+        $translationsSource = new Gettext\Translations();
+            foreach ($allTuple as $objet) {
+
+                $translationTarget = new Gettext\Translation(null, $objet->getDataSource());
+                $translationTarget->setTranslation($objet->getDataDestination());
+                $translationsSource[] = $translationTarget;
+            }
+
+
+        Gettext\Generators\Po::toFile($translationsSource, './export/export.po');
+            $name = '';
+            $name .= $langSource . '_' . $langTarget;
         // recuperer le fichier
         header('Content-Transfer-Encoding: binary'); //Transfert en binaire (fichier)
-        header('Content-Disposition: attachment; filename="export' . $name . '.txt"');
+        header('Content-Disposition: attachment; filename="export' . $name . '.po"');
         readfile('./export/export.po');
         
 

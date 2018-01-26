@@ -366,13 +366,13 @@ function replaceWithSpace($wordToTranslate){
 
 }
 
-function getAllExistTranslation($langSource)
+function getAllExistTranslation($langSource,$langTarget)
 {
 
     $usersDataBase = new UsersDataBase();
     $dbConnection  = $usersDataBase->dbConnect();
 
-    $queryGetTuple = 'SELECT '. $langSource . ' FROM translate';
+    $queryGetTuple = 'SELECT '. $langSource . ',' . $langTarget . ' FROM translate';
     $stmtGetTuple = $dbConnection->prepare($queryGetTuple);
 
     try {
@@ -383,7 +383,7 @@ function getAllExistTranslation($langSource)
             $stmtGetTuple->setFetchMode(PDO::FETCH_OBJ);
 
             while ($row = $stmtGetTuple->fetch()) {
-                $tab[] = new Translate($row->ID_TRANSLATION, $langSource, '', $row->$langSource, '');
+                $tab[] = new Translate($row->ID_TRANSLATION, $langSource, $langTarget, $row->$langSource, $row->$langTarget);
             }
 
             return $tab;
@@ -391,8 +391,7 @@ function getAllExistTranslation($langSource)
 
     }
     catch (PDOException $e) {
-        echo 'Erreur : ', $e->getMessage(), PHP_EOL;
-        echo 'Requête : ', $query, PHP_EOL;
+        return false;
         exit();
     }
 
