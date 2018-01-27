@@ -1,21 +1,21 @@
 <div class="card-header">
     <h2>Traductions existantes</h2>
 </div>
-<a style="text-decoration:none" href="/translator/export"><div class="link-2 pos-right"><?php echo translate('Exporter des traductions')?></div></a>
-<a style="text-decoration: none;" href="/translator/change_control"><div class="link-2"<?php echo translate('Acceder aux demandes')?></div></a>
+<a style="text-decoration:none" href="/translator/export"><div class="link-2 pos-right"><?php translate('Exporter des traductions')?></div></a>
+<a style="text-decoration: none;" href="/translator/change_control"><div class="link-2"><?php translate('Acceder aux demandes')?></div></a>
 <br>
 <div class = "page-manage">
     <?php
     if($page_precedente != 0) {
-        echo '<a href="/translator/operation_exist?page=1">'  . translate('Début')?> . '</a>';
-        echo ' <== ' . '<a href="/translator/operation_exist?page=' . $page_precedente . '">' .'Précédent'.</a><==';
+        echo '<a href="/translator/operation_exist?page=1">Début</a>';
+        echo ' <== ' . '<a href="/translator/operation_exist?page=' . $page_precedente . '">' . translate('Précédent').'</a><==';
     }
     ?>
     <?php echo 'page ' . $_SESSION['page_actuelle_exist'] .' / page ' . $_SESSION['nb_page_exist']; ?>
     <?php
     if($page_suivante <= $_SESSION['nb_page_exist']) {
-        echo '==><a href="/translator/operation_exist?page=' . $page_suivante . '">Suivant</a>';
-        echo '==><a href="/translator/operation_exist?page=' . $_SESSION['nb_page_exist'] . '">Fin</a>';
+        echo '==><a href="/translator/operation_exist?page=' . $page_suivante . '">' . translate('Suivant').'</a>';
+        echo '==><a href="/translator/operation_exist?page=' . $_SESSION['nb_page_exist'] . '">' . translate('Fin'). '</a>';
     }
     ?>
 </div>
@@ -25,21 +25,21 @@
         <?php
 
         if($_SESSION['limite_page'] == 10)
-            echo '<option value="10" selected>Afficher par 10</option>';
+            echo '<option value="10" selected>' . translate('Afficher par 10'). '</option>';
         else
-            echo '<option value="10">Afficher par 10</option>';
+            echo '<option value="10">' . translate('Afficher par 10'). '</option>';
         if($_SESSION['limite_page'] == 20)
-            echo '<option value="20" selected>Afficher par 20</option>';
+            echo '<option value="20" selected>'. translate('Afficher par 20') .'</option>';
         else
-            echo '<option value="20">Afficher par 20</option>';
+            echo '<option value="20">' .translate('Afficher par 20') .'</option>';
         if ($_SESSION['limite_page'] == 50)
-            echo '<option value="50" selected>Afficher par 50</option>';
+            echo '<option value="50" selected>' .translate('Afficher par 50').'</option>';
         else
-            echo '<option value="50">Afficher par 50</option>';
+            echo '<option value="50">' .translate('Afficher par 50') .'</option>';
 
         ?>
     </select>
-    <button type="submit">valider</button>
+    <button type="submit">' <?php echo translate('valider')?></button>
 </form>
 
 <div class="row-compte">
@@ -77,7 +77,7 @@
                     </select>
 
                 <td>
-                    <input type="submit" class="button-50" value="Appliquer le choix des langues"</td>
+                    <input type="submit" class="button-50" value="<?php translate('Appliquer le choix des langues')?>"</td>
 
 
                 </td>
@@ -101,13 +101,13 @@
     </table>
 </div>
 
-<input type="submit" class="button-valid-4" value="Valider les modifications">
+<input type="submit" class="button-valid-4" value="<?php translate('Valider les modifications')?>">
 </form>
 
 
 <div class="alert-info">
-    <img src="/img/info.png">&nbsp;&nbsp;<b>Rappel</b><br>
-    N'oubliez pas de cocher les traductions pour valider leurs modifications !
+    <img src="/img/info.png">&nbsp;&nbsp;<b><?php translate('Rappel')?></b><br>
+    <?php translate('N\'oubliez pas de cocher les traductions pour valider leurs modifications !')?>
 </div>
 
 <br><br><br><br><br><br>
@@ -120,14 +120,14 @@ unset($_SESSION['update_translation_msg']); ?>
     <?php
     if($page_precedente != 0) {
         echo '<a href="/translator/operation_exist?page=1">Début</a>';
-        echo ' <== ' . '<a href="/translator/operation_exist?page=' . $page_precedente . '">' . 'Précédent</a><==';
+        echo ' <== ' . '<a href="/translator/operation_exist?page=' . $page_precedente . '">' . translate('Précédent') . '</a><==';
     }
     ?>
     <?php echo 'page ' . $_SESSION['page_actuelle_exist'] .' / page ' . $_SESSION['nb_page_exist']; ?>
     <?php
     if($page_suivante <= $_SESSION['nb_page_exist']) {
-        echo '==><a href="/translator/operation_exist?page=' . $page_suivante . '">Suivant</a>';
-        echo '==><a href="/translator/operation_exist?page=' . $_SESSION['nb_page_exist'] . '">Fin</a>';
+        echo '==><a href="/translator/operation_exist?page=' . $page_suivante . '">' . translate('Suivant'). '</a>';
+        echo '==><a href="/translator/operation_exist?page=' . $_SESSION['nb_page_exist'] . '">' . translate('Fin') .'</a>';
     }
     ?>
 </div>
