@@ -2,15 +2,15 @@
     <section id="pannel-information">
         <div id="pannel-info-block-1">
 
-            <p>INFORMATIONS</p>
+            <p><?php echo translate('INFORMATIONS')?></p>
         </div>
         <div id="pannel-info-content">
-            <strong>Pour récupérer un nouveau mot de passe, nous devons vérifier que vous êtes bien le propriétaire du compte et de l'adresse e-mail associé.</strong>
+            <strong><?php echo translate('Pour récupérer un nouveau mot de passe, nous devons vérifier que vous êtes bien le propriétaire du compte et de l\'adresse e-mail associée')?>.</strong>
             <br><br>
-            Une fois identifié, nous vous enverrons un e-mail pour modifier le mot de passe du compte concerné.
+            <?php echo translate('Une fois identifié, nous vous enverrons un e-mail pour modifier le mot de passe du compte concerné')?>.
             <br><br>
-            <strong>L'adresse e-mail est un élément personnel et confidentiel.</strong>
-            Vous devez utiliser votre propre adresse e-mail et surtout pas celle d'un ami ni même celle d'un membre de votre famille.
+            <strong><?php echo translate('L\'adresse e-mail est un élément personnel et confidentiel')?>.</strong>
+<?php echo translate('Vous devez utiliser votre propre adresse e-mail et surtout pas celle d\'un ami ni même celle d\'un membre de votre famille')?>.
         </div>
 
 
@@ -21,25 +21,25 @@
 
         <br><br>
         <div id="bar-account">
-            <h1>Identifiez le compte concerné</h1>
+            <h1><?php echo translate('Identifiez le compte concerné')?></h1>
             <?php if(isset($_SESSION['error_system'])) echo $_SESSION['error_system']; unset($_SESSION['error_system']); ?>
         </div><br><br>
         <div id="form-recovery-pass">
             <form action="/connection/recoverypass" method = "post">
                 <div class="form-recovery-block">
-                    <label for="compte">Votre nom de compte</label></br>
-                    <input type="text" name="account" required placeholder="Votre nom de compte"/>
+                    <label for="compte"><?php echo translate('Votre nom de compte')?></label></br>
+                    <input type="text" name="account" required placeholder="<?php echo translate('Votre nom de compte')?>"/>
                     <?php if (isset($_SESSION['error_account'])) echo $_SESSION['error_account']; ?>
                 </div>
                 </br>
                 <div class="form-recovery-block-2">
-                    <label for="mdp">Votre adresse email</label></br>
-                    <input type="text" name="mail" required placeholder="Votre adresse email"/>
+                    <label for="mdp"><?php echo translate('Votre adresse email')?></label></br>
+                    <input type="text" name="mail" required placeholder="<?php echo translate('Votre adresse email')?>"/>
                     <?php if (isset($_SESSION['error_account'])) echo $_SESSION['error_account']; unset($_SESSION['error_account']); ?>
                 </div>
                 </br>
                 <div class="form-recovery-block-2">
-                    <input type="submit" class="button-valid" name="" value="VALIDER" />
+                    <input type="submit" class="button-valid" name="" value="<?php echo translate('VALIDER')?>" />
                 </div>
                 </br></br>
 
