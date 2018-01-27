@@ -1,4 +1,4 @@
 <section id="pannel-co">
     <br><br><br><br><br><br>
-    <p><b>Vous n'êtes pas connecté !</b></p>
+    <p><b><?php echo translate('Vous n\'êtes pas connecté !');?></b></p>
 </section>

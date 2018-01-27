@@ -8,7 +8,7 @@ class Premium extends Controller {
     public function my_request()
     {
         session_start();
-        if( !isset($_SESSION['user']) || !$_SESSION['isPrenium'])
+        if( !isset($_SESSION['user']) || !isset($_SESSION['isPrenium']))
         {
             header('location:/');
             exit();
@@ -29,7 +29,7 @@ class Premium extends Controller {
         $page_precedente = $_SESSION['page_actuelle_premium'] - 1;
         $page_suivante = $_SESSION['page_actuelle_premium'] + 1;
 
-        $this->start_page("Mes demandes");
+        $this->start_page(translate("Mes demandes"));
         require ROOT . '/views/premium/my_requestView.php';
         $this->end_page();
 

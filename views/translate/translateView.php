@@ -2,7 +2,7 @@
     <section id="main-page-large-wh">
         <div id="gt-appbar">
             <div id="gt-apb-main">
-                <a id="gt-appname" href="">Traduction</a>
+                <a id="gt-appname" href=""><?php echo translate('Traduction');?></a>
             </div>
         </div>
         <form action="/translation/displayTranslation" method="post">
@@ -51,7 +51,7 @@
 
 
                             </select>
-                            <div id="button-trad"><input class="style-butt" type="submit" value="Traduire"></div>
+                            <div id="button-trad"><input class="style-butt" type="submit" value="<?php echo translate("Traduire");?>"></div>
                         </td>
 
 
@@ -60,7 +60,7 @@
                     <tr>
                         <td>
 
-                        <textarea name="word-to-translate" placeholder="Entrez le mot ou la phrase à traduire" id="source"><?php if(isset( $_SESSION['translation_not_found'])) echo $_SESSION['translation_not_found'][0];
+                        <textarea name="word-to-translate" placeholder="<?php echo translate("Entrez le mot ou la phrase à traduire");?>" id="source"><?php if(isset( $_SESSION['translation_not_found'])) echo $_SESSION['translation_not_found'][0];
 
                             if (isset($_SESSION['translation'])) echo $_SESSION['translation'][0];
                             if(isset($_SESSION['dataIsWaiting'])) echo $_SESSION['dataIsWaiting'];
@@ -71,18 +71,18 @@
                         </td>
                         <td COLSPAN=2>
                             <div id="gt-res-wrap">
-                                <?php if(isset($_SESSION['translation_not_found'])) echo '<br><div class="error_no_word">Aucune occurence exacte trouvé </div>' ;
+                                <?php if(isset($_SESSION['translation_not_found'])) echo '<br><div class="error_no_word">' . translate('Aucune occurrence exacte trouvée') . '</div>' ;
                                 ?>
                                 <?php if (isset($_SESSION['translation'])) echo '<div class="show-trans">' . $_SESSION['translation'][1] . '</div>'; unset($_SESSION['translation']) ?>
-                                <?php if (isset($_SESSION['min_to_wait'])) echo '<div class="error_no_word">Vous devez attendre ' . $_SESSION['min_to_wait'] . 'minute(s)' . '</div>'; ?>
-                                <?php if (isset($_SESSION['dataIsWaiting'])) echo '<div class="waiting"> La demande de traduction a déja était faite !</div>'; unset($_SESSION['dataIsWaiting']); ?>
+                                <?php if (isset($_SESSION['min_to_wait'])) echo '<div class="error_no_word">' . translate('Vous devez attendre') . PHP_EOL . $_SESSION['min_to_wait'] . PHP_EOL . translate('minute(s)') . '</div>' ?>
+                                <?php if (isset($_SESSION['dataIsWaiting'])) echo '<div class="waiting">' . translate('La demande de traduction a déja été faite !') . '</div>'; unset($_SESSION['dataIsWaiting']); ?>
                                 <div id="gt-res-tools">
                                     <?php if(isset($_SESSION['translation_not_found']) && isset($_SESSION['user']) && $_SESSION['user']->isPrenium())
                                         echo '<div id="gt-res-tools-sugg">
 
                                   
                                     <span class="jdk-button">but</span>
-                                      <a href="/translation/request">Demander une traduction</a>
+                                      <a href="/translation/request">' . translate('Demander une traduction') . '</a>
 
                                 </div>';
 
@@ -107,7 +107,7 @@
             {
                 $listAssoc = $_SESSION['list_suggestion_premium'];
                 echo '<br><br>';
-                echo '<div class="suggestion">Des suggestions ont étaient trouvés !<br>';
+                echo '<div class="suggestion">' . translate('Des suggestions ont été trouvées !') . '<br>';
 
                 foreach ($listAssoc as $case)
                 {
@@ -126,7 +126,7 @@
         ?>
 
 
-        <?php if (isset($_SESSION['no_suggestion_premium '])) echo '<div class="suggestion"><div class="error_no_word">La recherche approfondie n\'a pas trouvé de suggestions.</div></div>';
+        <?php if (isset($_SESSION['no_suggestion_premium '])) echo '<div class="suggestion"><div class="error_no_word">' . translate('La recherche approfondie n\'a pas trouvé de suggestions.') . '</div></div>';
         unset($_SESSION['no_suggestion_premium ']); ?>
 
 
@@ -134,26 +134,26 @@
         <?php
         if(isset($_SESSION['isActive']) && isset($_SESSION['user']) && !$_SESSION['isActive'] ){
             echo '<div class="alert-info">
-                <img src="/img/info.png">&nbsp;&nbsp;<b>Activé votre compte</b><br>
-                Vous n\'avez pas encore activé le lien envoyé par email ! Activé votre compte pour pouvoir supprimer la restriction des 10 minutes d\'attente entre chaque traduction !
-                </div>';
+                <img src="/img/info.png">&nbsp;&nbsp;<b>' . translate('Activez votre compte') . '</b><br>'
+                . translate('Vous n\'avez pas encore activé le lien envoyé par email ! Activez votre compte pour pouvoir supprimer la restriction des 10 minutes d\'attente entre chaque traduction !') .
+                '</div>';
         }
         if(!isset($_SESSION['user'])){
             echo '<div class="alert-info">
-               <img src="/img/info.png">&nbsp;&nbsp;<b>Mode restreint actif</b><br>
-               Créer vous un compte <b>gratuitement</b> pour pouvoir supprimer la restriction des 10 minutes d\'attente entre chaque traduction !
-               </div>';
+               <img src="/img/info.png">&nbsp;&nbsp;<b>' . translate('Mode restreint actif') . '</b><br>'
+               . translate('Créez vous un compte') .  '<b> ' . translate('gratuitement') . ' </b>' . translate('pour pouvoir supprimer la restriction des 10 minutes d\'attente entre chaque traduction !') .
+               '</div>';
 
         }
 
         if(isset($_SESSION['error_insert']))
         {
-            echo '<div class="err-insert">Une erreur technique est survenue lors de votre demande.</div>';
+            echo '<div class="err-insert">' . translate('Une erreur technique est survenue lors de votre demande.') . '</div>';
             unset($_SESSION['error_insert']);
         }
         if(isset($_SESSION['insert_ok']))
         {
-            echo '<div class="insert-success">Nous avons bien reçu votre demande de traduction pour <b> ' . $_SESSION['insert_ok'] . '</b> !';
+            echo '<div class="insert-success">' . translate('Nous avons bien reçu votre demande de traduction pour') .  '<b> ' . $_SESSION['insert_ok'] . '</b> !';
             unset($_SESSION['insert_ok']);
 
         }

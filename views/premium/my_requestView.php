@@ -4,20 +4,20 @@
 
     <section id="main-page-large">
         <div class="card-header">
-            <h2>Mes demandes premiums</h2>
+            <h2><?php echo translate('Mes demandes premiums');?></h2>
         </div>
 
         <div class = "page-manage">
             <?php
             if($page_precedente != 0) {
                 echo '<a href="/premium/operation?page=1">Début</a>';
-                echo ' <== ' . '<a href="/premium/operation?page=' . $page_precedente . '">' . 'Précédent</a><==';
+                echo ' <== ' . '<a href="/premium/operation?page=' . $page_precedente . '">' . translate('Précédent') . '</a><==';
             }
             ?>
             <?php echo 'page ' . $_SESSION['page_actuelle_premium'] .' / page ' . $_SESSION['nb_page_premium']; ?>
             <?php
             if($page_suivante <= $_SESSION['nb_page_premium']) {
-                echo '==><a href="/premium/operation?page=' . $page_suivante . '">Suivant</a>';
+                echo '==><a href="/premium/operation?page="' . $page_suivante . '>' . translate('Suivant') .'</a>';
                 echo '==><a href="/premium/operation?page=' . $_SESSION['nb_page_premium'] . '">Fin</a>';
             }
             ?>
@@ -30,29 +30,29 @@
                     <?php
 
                     if($_SESSION['limite_page'] == 10)
-                        echo '<option value="10" selected>Afficher par 10</option>';
+                        echo '<option value="10" selected>' . translate('Afficher par 10') . '</option>';
                     else
-                        echo '<option value="10">Afficher par 10</option>';
+                        echo '<option value="10">' . translate('Afficher par 10') . '</option>';
                     if($_SESSION['limite_page'] == 20)
-                        echo '<option value="20" selected>Afficher par 20</option>';
+                        echo '<option value="20" selected>' . translate('Afficher par 20') . '</option>';
                     else
-                        echo '<option value="20">Afficher par 20</option>';
+                        echo '<option value="20">' . translate('Afficher par 20') . '</option>';
                     if ($_SESSION['limite_page'] == 50)
-                        echo '<option value="50" selected>Afficher par 50</option>';
+                        echo '<option value="50" selected>' . translate('Afficher par 50') . '</option>';
                     else
-                        echo '<option value="50">Afficher par 50</option>';
+                        echo '<option value="50">' . translate('Afficher par 50') . '</option>';
 
                     ?>
                 </select>
-                <button type="submit">valider</button>
+                <button type="submit"><?php echo translate('Valider');?></button>
             </form>
             <table class="prenium-tab">
 
                 <tr class="prenium-info-tab">
-                    <td>Ma demande</td>
-                    <td>Langue source</td>
-                    <td>Langue destination</td>
-                    <td>Statut</td>
+                    <td><?php echo translate('Ma demande');?></td>
+                    <td><?php echo translate('Langue source');?></td>
+                    <td><?php echo translate('Langue destination');?></td>
+                    <td><?php echo translate('Statut');?></td>
                 </tr>
 
                 <?php
@@ -83,15 +83,15 @@
         <div class = "page-manage">
             <?php
             if($page_precedente != 0) {
-                echo '<a href="/premium/operation?page=1">Début</a>';
-                echo ' <== ' . '<a href="/premium/operation?page=' . $page_precedente . '">' . 'Précédent</a><==';
+                echo '<a href="/premium/operation?page=1">'. translate('Début') . '</a>';
+                echo ' <== ' . '<a href="/premium/operation?page=' . $page_precedente . '">' . translate('Précédent') . '</a><==';
             }
             ?>
             <?php echo 'page ' . $_SESSION['page_actuelle_premium'] .' / page ' . $_SESSION['nb_page_premium']; ?>
             <?php
             if($page_suivante <= $_SESSION['nb_page_premium']) {
-                echo '==><a href="/premium/operation?page=' . $page_suivante . '">Suivant</a>';
-                echo '==><a href="/premium/operation?page=' . $_SESSION['nb_page_premium'] . '">Fin</a>';
+                echo '==><a href="/premium/operation?page="' . $page_suivante . '>' . translate('Suivant.') . '</a>';
+                echo '==><a href="/premium/operation?page="' . $_SESSION['nb_page_premium'] . '>' . translate('Fin') . '</a>';
             }
             ?>
         </div>
