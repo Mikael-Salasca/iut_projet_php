@@ -1,14 +1,14 @@
 <div class="card-header">
     <h2>Traductions existantes</h2>
 </div>
-<a style="text-decoration:none" href="/translator/export"><div class="link-2 pos-right">Exporter des traductions</div></a>
-<a style="text-decoration: none;" href="/translator/change_control"><div class="link-2">Acceder aux demandes</div></a>
+<a style="text-decoration:none" href="/translator/export"><div class="link-2 pos-right"><?php echo translate('Exporter des traductions')?></div></a>
+<a style="text-decoration: none;" href="/translator/change_control"><div class="link-2"<?php echo translate('Acceder aux demandes')?></div></a>
 <br>
 <div class = "page-manage">
     <?php
     if($page_precedente != 0) {
-        echo '<a href="/translator/operation_exist?page=1">Début</a>';
-        echo ' <== ' . '<a href="/translator/operation_exist?page=' . $page_precedente . '">' . 'Précédent</a><==';
+        echo '<a href="/translator/operation_exist?page=1">'  . translate('Début')?> . '</a>';
+        echo ' <== ' . '<a href="/translator/operation_exist?page=' . $page_precedente . '">' .'Précédent'.</a><==';
     }
     ?>
     <?php echo 'page ' . $_SESSION['page_actuelle_exist'] .' / page ' . $_SESSION['nb_page_exist']; ?>
