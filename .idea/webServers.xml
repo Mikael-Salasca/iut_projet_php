@@ -2,10 +2,10 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="7e078bb1-3fb7-435c-a29f-0dcf8aba7ca3" name="serv_perso" url="http://vincent-weber.alwaysdata.net">
+      <webServer id="7e078bb1-3fb7-435c-a29f-0dcf8aba7ca3" name="serv_perso" url="http://projetphpmvg.alwaysdata.net">
         <fileTransfer host="ftp-projetphpmvg.alwaysdata.net" port="21">
           <advancedOptions>
-            <advancedOptions dataProtectionLevel="Private" />
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" />
           </advancedOptions>
           <option name="port" value="21" />
         </fileTransfer>

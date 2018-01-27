@@ -22,6 +22,13 @@ class Inscription extends  Controller
         $password2 = filter_input(INPUT_POST,'password2');
         $cuAccept = filter_input(INPUT_POST,'cu');
 
+        if (!preg_match('/^[a-zA-Z0-9]/', $name)) {
+            $_SESSION['error_register'] = '<div class="error-register">Votre nom comporte des caractères interdits.</div>';
+            header('location:/inscription/register');
+            exit();
+        }
+
+
         if (empty($name) || empty($email) || empty($password) || empty($password2)) {
             $_SESSION['error_register'] = '<div class="error-register">Vous devez remplir tout les champs.</div>';
             header('location:/inscription/register');
@@ -117,7 +124,7 @@ class Inscription extends  Controller
         $this->start_page('Activation du compte');
 
         if(isset($_SESSION['active_account'])) {
-            $this->forceDisconnect(); // On force la session à se fermer (pour que l'utilisateur se reconnecte et ainsi éviter de potentiels erreurs de vues)
+
             require ROOT . '/views/confirmationAccount/confirmationAccountTrueView.php';
             unset($_SESSION['active_account']);
         }
@@ -198,12 +205,6 @@ class Inscription extends  Controller
 
         }
 
-    }
-
-
-    private function forceDisconnect()
-    {
-        session_destroy();
     }
 
     public function cu()

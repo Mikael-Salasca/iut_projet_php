@@ -1,30 +1,44 @@
 <section id="pannel-co">
 
     <?php
-    if(isset($_SESSION['login']) && $_SESSION['login'] == 'ok')
-    {
+
         setlocale(LC_TIME, 'fra_fra');
-        echo '<p>Bonjour<font color="green"> ' . $_SESSION['name'] . '</font> ! <br><b>Vous êtes connecté !</b></p>';
+        echo '<p>'. translate('Bonjour') . '<font color="green"> ' . $_SESSION['name'] . '</font> ! <br><b>'.translate('Vous êtes connecté') .' !</b></p>';
         echo '<br><br>';
-        echo '<p><u>Type de compte</u> : ' . $_SESSION['account_type'] . '</p>';
-        echo '<br><br>';
-        echo '<div class="pannel-co-date"> <p>Nous sommes le ' .strftime('%d %B %Y') . '</p></div>';
 
-
-    }
-
-
-
-
-
-
-    if(isset($_SESSION['account_active']) && $_SESSION['account_active'] == 0)
+        if($_SESSION['isPrenium'])
         {
-            echo '<br><br><div class="pannel-acc-not-valid">Attention, votre compte n\'est pas activé.</div>';
+            echo '<div class="pannel-disconnect"><a href="/premium/my_request">(PREMIUM)' . translate('Consulter le statut de mes demandes') .'</a></div>';
+        }
+        echo '<br>';
+        if($_SESSION['type'] == "ADMIN")
+        {
+            echo '<div class="pannel-disconnect"><a href="/admin/control">(ADMIN)' . translate('Accéder au panel super utilisateur') .'</a></div>';
+        }
+        echo '<br>';
+        if($_SESSION['isTranslator'])
+        {
+            echo '<div class="pannel-disconnect"><a href="/translator/control">(TRANSLATOR)' . translate('Accéder à mon interface') .'</a></div>';
+
+        }
+
+
+        echo '<div class="pannel-co-date"> <p>'. translate('Nous sommes le') . ' ' . strftime('%d %B %Y') . '</p></div>';
+
+
+
+
+
+
+
+
+
+    if($_SESSION['isActive'] == 0)
+        {
+            echo '<br><br><div class="pannel-acc-not-valid">'  .translate('votre compte n\'est pas activé') .'</div>';
         }
 
     ?>
 
     <br><br><br>
-    <div class="pannel-disconnect"><a href="/home/disconnect">Se déconnecter</a></div>
 </section>

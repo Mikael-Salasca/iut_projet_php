@@ -16,8 +16,7 @@ class Admin extends Controller {
 
             $this->start_page('Panneau de contrôle');
             $_SESSION['user_infos'] = getAllUsersInfo();
-            $_SESSION['user_types'] = getAllAccountType();
-            //var_dump($_SESSION['user_infos']);
+            $_SESSION['user_types'] = array('ADMIN', 'TRANSLATOR', 'PREMIUM', 'ORDINARY');
             if (empty($_SESSION['user_infos'])) {
                 $_SESSION['no_user_found'] = 'Il n\'y a aucun utilisateur enregistré sur le site, mdr t tou seul';
             }
@@ -62,19 +61,32 @@ class Admin extends Controller {
             $newlang = filter_input(INPUT_POST, 'new_lang');
             $newlangconfirm = filter_input(INPUT_POST, 'new_lang_confirm');
             if ($newlang != $newlangconfirm) {
-                $_SESSION['error_confirm'] = 'Les deux saisies ne correspondent pas.';
+                $_SESSION['error_confirm'] = 'Les deux saisies ne correspondent pas';
                 header('Location:/admin/control');
             }
             if (preg_match('/^[A-Z]{3,24}$/', $newlang)) {
-                if (addLanguage($newlang))
-                    $_SESSION['lang_add'] = 'Langue ajoutée avec succès !';
+                if (!langAlreadyExists($newlang)) {
+                    if (addLanguage($newlang))
+                    {
+                        addLanguageInEnglish($newlang);
+                        $_SESSION['lang_add'] = 'Langue ajoutée avec succès';
+
+                    }
+
+                    else {
+                        $_SESSION['lang_add'] = 'Une erreur est survenue, veuillez réessayer ou contacter le support en cas d\'échecs répétés';
+                    }
+                }
                 else
-                    $_SESSION['lang_add'] = 'Une erreur est survenue, veuillez réessayer ou contacter le support en cas d\'échecs répétés.';
+                    $_SESSION['lang_already_exists'] = 'La langue choisie existe déjà';
+
             }
             else
-                $_SESSION['wrong_pattern'] = "La saisie est invalide !";
+                $_SESSION['wrong_pattern'] = "La saisie est invalide";
             header('Location:/admin/control');
         }
+
+        header('location:/admin/control');
     }
 }
 ?>

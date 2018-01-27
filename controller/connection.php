@@ -26,7 +26,7 @@ class Connection extends Controller {
         }
 
 
-        $email = filter_input(INPUT_POST,'email');
+        $email = filter_input(INPUT_POST,'email', FILTER_VALIDATE_EMAIL);
         $passwd = filter_input(INPUT_POST,'mdp');
 
         if(empty($email || $passwd))
@@ -59,6 +59,12 @@ class Connection extends Controller {
 
     public function impossible(){
 
+        session_start();
+
+        if(isset($_SESSION['user']))
+        {
+            header('location:/');
+        }
         $this->start_page('Impossible de se connecter ?');
         require ROOT . '/views/connection/impossibleConnectionView.php';
         $this->end_page();

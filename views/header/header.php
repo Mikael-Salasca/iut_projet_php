@@ -12,10 +12,10 @@
             <li><a href="/"><?php echo translate("Accueil") ?></a></li>
             <li><a href="/translation/translate"><?php echo translate("Traduction") ?></a></li>
             <li></li>
-
-            <li><a href="">Menu 3</a></li>
-            <li><a href="">Menu 4</a></li>
+            <li></li>
+            <li></li>
         </ul>
 
     </nav>
 </header>
+

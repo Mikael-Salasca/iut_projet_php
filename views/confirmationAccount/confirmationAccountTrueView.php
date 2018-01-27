@@ -17,7 +17,7 @@
         <p>
             <b><?php echo translate('Votre inscription est à présent terminée à 100%')?></b>
         <p><?php echo translate('Vous retrouverez toutes les informations nécessaires')?><br> <?php echo translate('dans le mail de bienvenue que nous venons de vous envoyer')?>.
-            <br><br>(En dévelopemment)
+            <br><br>
         </p>
 
     </section>

@@ -25,6 +25,7 @@ class User {
         return array('name', 'email', 'password', 'accountType', 'activation');
     }
 
+
     public function __wakeup()
     {
         return $this;
@@ -63,9 +64,23 @@ class User {
         return $this->dateCreation;
     }
 
+    public function isPrenium(){
+
+        if($this->accountType == "PREMIUM" || $this->accountType == "ADMIN" || $this->accountType == "TRANSLATOR")
+            return true;
+        else
+            return false;
+
+    }
+
+    public function isTranslator(){
+
+        if($this->accountType == "TRANSLATOR" || $this->accountType == "ADMIN")
+            return true;
+        else
+            return false;
 
 
-
-
+    }
 
 }
