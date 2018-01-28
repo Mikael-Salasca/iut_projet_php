@@ -1,3 +1,12 @@
+
+<!--
+Vue pour le panel administrateur
+- On récupère les infos sur les utilisateurs du site
+- On récupère les différents types d'utilisateurs possibles
+- On affiche un tableau qui contient tout cela et qui permet de changer facilement le rang des utilisateurs
+- Le deuxième formulaire sert pour ajouter une nouvelle langue sur le site
+-->
+
 <section id="corps">
 
     <section id="main-page-large">

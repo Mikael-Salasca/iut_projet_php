@@ -5,6 +5,7 @@ if (!class_exists('UsersDataBase'))
     require ROOT . '/model/base.php';
 }
 
+//Récupérer toutes les langues du site
 function getAllLangs() {
     $usersDataBase = new UsersDataBase();
     $dbConnection  = $usersDataBase->dbConnect();
@@ -29,6 +30,7 @@ function getAllLangs() {
     }
 }
 
+//On récupère les pourcentages de traductions effectuées pour une langue choisie, cela sera affiché sur la page d'accueil du site
 function getPercentageTranslated($lang) {
     $usersDataBase = new UsersDataBase();
     $dbConnection  = $usersDataBase->dbConnect();
@@ -50,6 +52,7 @@ function getPercentageTranslated($lang) {
     }
 }
 
+//Ajouter une nouvelle langue sur le site
 function addLanguage($newlanguage) {
     $usersDataBase = new UsersDataBase();
     $dbConnection  = $usersDataBase->dbConnect();
@@ -67,6 +70,7 @@ function addLanguage($newlanguage) {
     }
 }
 
+//Supprimer une langue (inutilisée)
 function removeLanguage($lang) {
     $usersDataBase = new UsersDataBase();
     $dbConnection  = $usersDataBase->dbConnect();
@@ -85,6 +89,7 @@ function removeLanguage($lang) {
     }
 }
 
+//Vérifier si la langue que l'on souhaite ajouter n'existe pas déjà sur le site
 function langAlreadyExists($newlanguage) {
     $usersDataBase = new UsersDataBase();
     $dbConnection  = $usersDataBase->dbConnect();
