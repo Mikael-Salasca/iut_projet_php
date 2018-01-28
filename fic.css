@@ -227,7 +227,6 @@ footer {
 
     position: absolute;
     right: 0;
-    bottom: 0;
     left: 0;
 
 }
@@ -317,7 +316,7 @@ footer {
 }
 
 #bar-account h1 {
-    background-color: none;
+
     border-top: 2px solid #f45c20;
     border-bottom: 2px solid #e8e8e8;
     color:#F45C20; ;
@@ -1030,7 +1029,7 @@ header{
 #bar-befpro{
 
     background-color: #f6f5f5;
-    max-height: -1px;
+    max-height: 0px;
     margin: auto;
     width: 40%;
     /* border: solid 1px; */
@@ -1156,7 +1155,7 @@ header{
     border: none;
     padding: 2%;
     border-radius: 5px;
-    overflow: none;
+
 }
 
 .select-admin:hover{
@@ -1399,7 +1398,8 @@ header{
     /* margin-top: -3%; */
 
 }
-#gt-resr-wrap:a{
+
+#gt-resr-wrap a{
 
     text-decoration: none;
 }
@@ -1409,7 +1409,6 @@ header{
     border: none;
     padding: 2%;
     border-radius: 5px;
-    overflow: none;
     min-width: 25%;
     text-align-last: center;
 }
@@ -1662,7 +1661,7 @@ header{
 
 .c-23{
 
-    background-color: #9cd4a69e;
+    background-color: #9cd4a6;
 
 }
 
@@ -1673,7 +1672,7 @@ header{
 }
 .c-24{
 
-    background-color: #deeceba6;
+    background-color: #deeceb;
 }
 
 .c-24:hover{
@@ -1696,7 +1695,7 @@ header{
 }
 .trad-source{
 
-    background-color: #cab7b754;
+    background-color: #cab7b7;
 }
 
 .trad-target{
@@ -1760,7 +1759,7 @@ header{
 
 
     background-color: #f6f5f5;
-    max-height: -1px;
+
     margin: auto;
     /* width: 40%; */
     /* border: solid 1px; */
@@ -1799,7 +1798,7 @@ header{
     background-image: -moz-linear-gradient(top, #f8f8f8, #f1f1f1);
     background-image: -ms-linear-gradient(top, #f8f8f8, #f1f1f1);
     background-image: -o-linear-gradient(top, #f8f8f8, #f1f1f1);
-    background-image: linear-gradient(top, #f8f8f8, #f1f1f1);
+    background-image: linear-gradient(to top, #f8f8f8, #f1f1f1);
     border: 1px solid #c6c6c6;
     color: #333
 }
