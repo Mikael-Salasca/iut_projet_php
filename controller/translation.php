@@ -226,7 +226,7 @@ class Translation extends Controller
 
         if(isset($_SESSION['isPrenium']) && $_SESSION['isPrenium'])
         {
-            // en developpement (le prenium disposera de recherches affinés)
+
             $listWord = replaceWithSpace($wordToTranslate); // renvoie tout les mots un par un dans un tableau
             if(!empty($listWord)) //si la liste est vide c'est qu'aucun mot important n'est estimé filtré.
             {
