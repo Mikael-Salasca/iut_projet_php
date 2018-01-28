@@ -45,7 +45,7 @@
 
     ?>
 </select>
-<button type="submit">valider</button>
+<button type="submit"><?php echo translate('valider')?></button>
 </form>
 
 <div class="row-compte">
