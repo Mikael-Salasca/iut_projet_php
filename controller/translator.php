@@ -355,7 +355,7 @@ class Translator extends Controller
             exit();
         }
         $all_langues = getAllLangs();
-        $this->start_page("Exporter des traductions");
+        $this->start_page(translate("Exporter des traductions"));
         require ROOT . '/views/translator/exportView.php';
         $this->end_page();
 
