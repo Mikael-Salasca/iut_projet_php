@@ -7,8 +7,15 @@
  */
 
 require ROOT . '/model/translation.php';
-class Controller {
 
+    /**
+     * @summary Classe Controller permettant d'avoir nos objets controller instanciés dans l'index, faisant le lien entre le modèle et les vues
+     */
+class Controller {
+    /**
+     * @summary fonction générant le code html correspondant au head de nos vues
+     * @param string, titre de la page web
+     */
     protected function start_page($title)
     {
         echo '<!DOCTYPE html> <html lang="fr"> <head><title>'
@@ -24,9 +31,12 @@ class Controller {
         echo '<body> '. PHP_EOL;
     }
 
+
+    /**
+     * @summary fonction générant le code html correspondant au footer de nos vues
+     */
    protected function end_page()
    {
-
        require ROOT. '/views/footer.php';
     echo '</body></html>';
    }
@@ -34,6 +44,12 @@ class Controller {
 
 
 
+
+    /**
+     * @summary fonction récupérant les informations de l'utilisateur
+     * @see getAllInfoUser()
+     * @see getInfo()
+     */
     private function refreshInfoUser(){
 
         require ROOT . '/model/connexion.php';
@@ -47,6 +63,9 @@ class Controller {
 
     }
 
+    /**
+     * @summary fonction récupérant les informations de l'utilisateur courant
+     */
     protected function getInfo() {
         if (isset($_SESSION['user'])) {
             $current_user = $_SESSION['user'];
@@ -65,6 +84,11 @@ class Controller {
 
     }
 
+    /**
+     * @summary fonction chiffrant un email
+     * @param string, l'email à chiffrer
+     * @return string, l'email chiffré
+     */
     private function cryptEmail($email){
 
         $crypt = '';
