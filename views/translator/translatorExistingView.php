@@ -101,13 +101,13 @@
     </table>
 </div>
 
-<input type="submit" class="button-valid-4" value="<?php translate('Valider les modifications')?>">
+<input type="submit" class="button-valid-4" value="<?php echo translate('Valider les modifications')?>">
 </form>
 
 
 <div class="alert-info">
-    <img src="/img/info.png">&nbsp;&nbsp;<b><?php translate('Rappel')?></b><br>
-    <?php translate('N\'oubliez pas de cocher les traductions pour valider leurs modifications !')?>
+    <img src="/img/info.png">&nbsp;&nbsp;<b><?php echo translate('Rappel')?></b><br>
+    <?php echo translate('N\'oubliez pas de cocher les traductions pour valider leurs modifications !')?>
 </div>
 
 <br><br><br><br><br><br>
@@ -119,7 +119,7 @@ unset($_SESSION['update_translation_msg']); ?>
 <div class = "page-manage">
     <?php
     if($page_precedente != 0) {
-        echo '<a href="/translator/operation_exist?page=1">Début</a>';
+        echo '<a href="/translator/operation_exist?page=1">' . translate('Début') . '</a>';
         echo ' <== ' . '<a href="/translator/operation_exist?page=' . $page_precedente . '">' . translate('Précédent') . '</a><==';
     }
     ?>
