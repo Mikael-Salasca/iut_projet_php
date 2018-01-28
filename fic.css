@@ -219,12 +219,12 @@ table tr td a {text-decoration: none; color:inherit;}
 
 footer {
 
-    min-height: 100px;
+   height: 100px;
     min-width: 100%;
     background-color: black;
     text-align: center;
     color:white;
-
+    bottom: 0;
     position: absolute;
     right: 0;
     left: 0;
