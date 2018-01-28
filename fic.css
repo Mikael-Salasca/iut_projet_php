@@ -219,7 +219,7 @@ table tr td a {text-decoration: none; color:inherit;}
 
 footer {
 
-   height: 100px;
+    min-height: 100px;
     min-width: 100%;
     background-color: black;
     text-align: center;
