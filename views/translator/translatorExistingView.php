@@ -1,5 +1,5 @@
 <div class="card-header">
-    <h2><?php echo('Traductions existantes')?></h2>
+    <h2><?php echo translate('Traductions existantes')?></h2>
 </div>
 <a style="text-decoration:none" href="/translator/export"><div class="link-2 pos-right"><?php echo translate('Exporter des traductions')?></div></a>
 <a style="text-decoration: none;" href="/translator/change_control"><div class="link-2"><?php echo translate('Accéder aux demandes')?></div></a>
