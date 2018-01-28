@@ -1,9 +1,6 @@
 <section id="corps">
-
-
     <section id="pannel-information-large">
         <div id="pannel-info-block-1">
-
             <p><?php echo translate('INFORMATIONS');?></p>
         </div>
         <div id="pannel-info-content">
@@ -15,21 +12,17 @@
             <br><br>
             <?php echo translate('En cas de soucis, contactez nous.');?>
         </div>
-
-
     </section>
-
     <section id="main-page">
-
         <div id="block-row">
             <ul class="ak-stepper-list">
-                <li><?php echo translate('Identification');?></li>&nbsp;&nbsp;&nbsp;&nbsp;----------------------&nbsp;&nbsp;&nbsp;&nbsp;
-                <li class="current"><?php echo translate('Boite email');?></li>&nbsp;&nbsp;&nbsp;&nbsp;----------------------&nbsp;&nbsp;&nbsp;&nbsp;
+                <li><?php echo translate('Identification');?></li>
+                &nbsp;&nbsp;&nbsp;&nbsp;----------------------&nbsp;&nbsp;&nbsp;&nbsp;
+                <li class="current"><?php echo translate('Boite email');?></li>
+                &nbsp;&nbsp;&nbsp;&nbsp;----------------------&nbsp;&nbsp;&nbsp;&nbsp;
                 <li><?php echo translate('Modification');?></li>
-
             </ul>
         </div>
-
         <br><br>
         <div class="emailsend">
             <img src="/img/valid-email.png"></img>
@@ -40,7 +33,5 @@
             <?php echo translate('L\'email a été envoyé à :');?> <br>
             <?php echo $_SESSION['email_send']; ?>
         </div>
-
-
     </section>
 </section>

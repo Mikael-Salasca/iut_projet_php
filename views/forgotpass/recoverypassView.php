@@ -1,7 +1,6 @@
 <section id="corps">
     <section id="pannel-information">
         <div id="pannel-info-block-1">
-
             <p><?php echo translate('INFORMATIONS');?></p>
         </div>
         <div id="pannel-info-content">
@@ -12,20 +11,17 @@
             <strong><?php echo translate('L\'adresse e-mail est un élément personnel et confidentiel');?></strong>
             <?php echo translate('Vous devez utiliser votre propre adresse e-mail et surtout pas celle d\'un ami ni même celle d\'un membre de votre famille.');?>
         </div>
-
-
     </section>
-
     <section id="main-page">
         <div id="block-row">
             <ul class="ak-stepper-list">
-                <li class="current"><?php echo translate('Identification');?></li>&nbsp;&nbsp;&nbsp;&nbsp;----------------------&nbsp;&nbsp;&nbsp;&nbsp;
-                <li><?php echo translate('Boite email');?></li>&nbsp;&nbsp;&nbsp;&nbsp;----------------------&nbsp;&nbsp;&nbsp;&nbsp;
+                <li class="current"><?php echo translate('Identification');?></li>
+                &nbsp;&nbsp;&nbsp;&nbsp;----------------------&nbsp;&nbsp;&nbsp;&nbsp;
+                <li><?php echo translate('Boite email');?></li>
+                &nbsp;&nbsp;&nbsp;&nbsp;----------------------&nbsp;&nbsp;&nbsp;&nbsp;
                 <li><?php echo translate('Modification');?></li>
-
             </ul>
         </div>
-
         <br>
         <div id="bar-account">
             <h1><?php echo translate('Identifiez le compte concerné');?></h1>
@@ -49,12 +45,8 @@
                     <input type="submit" class="button-valid" name="" value="VALIDER" />
                 </div>
                 </br></br>
-
             </form>
-
         </div>
-
-
     </section>
 </section>
 </section>

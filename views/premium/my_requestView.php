@@ -1,12 +1,8 @@
 <section id="corps">
-
-
-
     <section id="main-page-large">
         <div class="card-header">
             <h2><?php echo translate('Mes demandes premiums');?></h2>
         </div>
-
         <div class = "page-manage">
             <?php
             if($page_precedente != 0) {
@@ -22,13 +18,10 @@
             }
             ?>
         </div>
-
         <div class="row-compte">
-
             <form method="get" action="/premium/select_page">
                 <select name="select_page">
                     <?php
-
                     if($_SESSION['limite_page'] == 10)
                         echo '<option value="10" selected>' . translate('Afficher par 10') . '</option>';
                     else
@@ -47,14 +40,12 @@
                 <button type="submit"><?php echo translate('Valider');?></button>
             </form>
             <table class="prenium-tab">
-
                 <tr class="prenium-info-tab">
                     <td><?php echo translate('Ma demande');?></td>
                     <td><?php echo translate('Langue source');?></td>
                     <td><?php echo translate('Langue destination');?></td>
                     <td><?php echo translate('Statut');?></td>
                 </tr>
-
                 <?php
                 $i = 0;
                 if (!empty($all_request)) {
@@ -74,10 +65,7 @@
                     }
                 }
                 ?>
-
-
             </table>
-
         </div>
         <br>
         <div class = "page-manage">
@@ -95,9 +83,7 @@
             }
             ?>
         </div>
-    </br>
+        </br>
         <br>
-
-
     </section>
 </section>

@@ -1,7 +1,6 @@
 <section id="corps">
     <section id="pannel-information">
         <div id="pannel-info-block-1">
-
             <p><?php echo translate('INFORMATIONS');?></p>
         </div>
         <div id="pannel-info-content">
@@ -12,20 +11,17 @@
             <br><br>
             <?php echo translate('Pour disposer d\'un mot de passe fort,');?> <strong><?php echo translate('utilisez un minimum de 8 caractères et au moins trois des quatre types de caractères suivants');?> </strong><?php echo translate('(majuscule, minuscule, chiffre, caractères spéciaux).');?>
         </div>
-
-
     </section>
-
     <section id="main-page">
         <div id="block-row">
             <ul class="ak-stepper-list">
-                <li><?php echo translate('Identification');?></li>&nbsp;&nbsp;&nbsp;&nbsp;----------------------&nbsp;&nbsp;&nbsp;&nbsp;
-                <li><?php echo translate('Boite email');?></li>&nbsp;&nbsp;&nbsp;&nbsp;----------------------&nbsp;&nbsp;&nbsp;&nbsp;
+                <li><?php echo translate('Identification');?></li>
+                &nbsp;&nbsp;&nbsp;&nbsp;----------------------&nbsp;&nbsp;&nbsp;&nbsp;
+                <li><?php echo translate('Boite email');?></li>
+                &nbsp;&nbsp;&nbsp;&nbsp;----------------------&nbsp;&nbsp;&nbsp;&nbsp;
                 <li class="current"><?php echo translate('Modification');?></li>
-
             </ul>
         </div>
-
         <br>
         <div id="bar-account">
             <h1><?php echo translate('ENTREZ VOTRE NOUVEAU MOT DE PASSE');?></h1>
@@ -49,14 +45,9 @@
                     <input type="submit" class="button-valid" name="" value="<?php echo translate("VALIDER");?>" />
                     <?php if(isset($_SESSION['error_recovery'])) echo '<br>' .$_SESSION['error_recovery']; unset($_SESSION['error_recovery']); ?>
                 </div>
-
                 </br></br>
-
             </form>
-
         </div>
-
-
     </section>
 </section>
 </section>

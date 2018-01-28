@@ -1,23 +1,15 @@
 <section id="corps">
-
-
     <section id="pannel-information">
         <div id="pannel-info-block-1">
-
             <p><?php echo translate("Droit à l'information") ?></p>
         </div>
         <div id="pannel-info-content">
             <?php echo translate("Les informations de ce formulaire sont"). '<strong> ' . translate("obligatoires") ?></strong>.<br><br><?php echo translate("Elles sont enregistrées dans un fichier informatisé pour vous permettre de") . ' <strong>' . translate("créer votre compte") . '</strong>. <br><br>' . translate("Conformément aux dispositions de la loi \"Informatique et libertés\" du 6 Janvier 1978 vous pouvez exercer votre droit d'accès aux données vous concernant et les faire rectifier en nous contactant") ?>.
         </div>
-
-
     </section>
-
-
     <section id="main-page">
         <div id="bar-account-3">
             <h1><?php echo translate('Créez votre compte') ?></h1>
-
         </div>
         <div class="title-bottom-img">
             <img class="title-bottom-img" src="/img/title-bottom1.png">
@@ -38,12 +30,9 @@
                 <label for="mdp2"><?php echo translate("Vérification du mot de passe") ?></label></br>
                 <input type="password" name="password2" required placeholder=<?php echo translate("Confirmez le mot de passe") ?>/> </br></br>
                 <?php if(isset($_SESSION['error_mdp'])) { echo $_SESSION['error_mdp']; unset($_SESSION['error_mdp']); } ?>
-
                 <input type="checkbox" name="cu" /> <?php echo translate("J'acceptes les") . ' ' ?><a target="_blank" href="/inscription/cu">C.U</a> </br></br>
                 <?php if(isset($_SESSION['error_cu'])) { echo $_SESSION['error_cu']; unset($_SESSION['error_cu']); } ?>
                 <input type="submit" class="button-inscription" name="" value=<?php echo translate("Terminer l'inscription") ?> />
-
-
             </form>
             <?php
             if(isset($_SESSION['error_register']) && !empty($_SESSION['error_register']))

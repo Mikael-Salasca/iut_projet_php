@@ -1,7 +1,6 @@
 <section id="corps">
     <section id="pannel-information">
         <div id="pannel-info-block-1">
-
             <p><?php echo translate('INFORMATIONS')?></p>
         </div>
         <div id="pannel-info-content">
@@ -9,27 +8,24 @@
             <br><br>
             <?php echo translate('Ainsi vos informations sont')?> <strong><?php echo translate('protégées')?>.</strong><br><br>
             <strong><?php echo translate('Le code de vérification expirera au bout de 30 minutes. Si d\'ici là vous n\'avez pas eu le temps d\'accèder à votre boite email')?>,
-            <strong> <strong><?php echo translate('pas de panique')?>.</strong> <?php echo translate('Recommencez l\'opération depuis votre gestion de compte')?>.
+                <strong> <strong><?php echo translate('pas de panique')?>.</strong> <?php echo translate('Recommencez l\'opération depuis votre gestion de compte')?>.
         </div>
-
-
     </section>
-
     <section id="main-page">
         <div id="block-row">
             <ul class="ak-stepper-list">
-                <li><?php echo translate('Email actuel')?></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <li class="current"><?php echo translate('Code de sécurité')?></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <li><?php echo translate('Email actuel')?></li>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <li class="current"><?php echo translate('Code de sécurité')?></li>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <li><?php echo translate('Nouvelle adresse email')?></li>
             </ul>
         </div>
-
         <br>
         <br>
         <div class="emailsend">
             <img class="img-111" src="/img/valid-email.png"></img>
         </div>
-
         <div class="block-12">
             <?php echo translate('Un e-mail vient de vous être envoyé')?>
         </div>
@@ -47,11 +43,7 @@
                 </div>
             </form>
         </div>
-
-
         <br><br><br>
-
-
     </section>
 </section>
 </section>
