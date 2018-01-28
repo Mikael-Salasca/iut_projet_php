@@ -31,14 +31,13 @@
                 <div class="form-recovery-block-2">
                     <label for="mdp"> <?php echo translate('Mot de passe actuel')?> : </label><br>
                     <input type="password" name="mypass" required placeholder="<?php echo translate('Mot de passe actuel')?>"/>
-                    <?php if (isset($_SESSION['error_mypass'])) echo $_SESSION['error_mypass']; ?>
+                    <?php if (isset($_SESSION['error_mypass'])) echo $_SESSION['error_mypass']; unset($_SESSION['error_mypass']); ?>
                 </div>
 
 
                 <div class="form-recovery-block-2">
                     <label for="mdp"><?php echo translate('Nouveau mot de passe')?></label></br>
                     <input type="password" name="newpass" required placeholder="<?php echo translate('Nouveau mot de passe')?>"/>
-                    <?php if (isset($_SESSION['error_pass'])) echo $_SESSION['error_pass']; ?>
                 </div>
 
                 </br>
