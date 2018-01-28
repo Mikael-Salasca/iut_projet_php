@@ -65,7 +65,7 @@ class Translator extends Controller
             $page_suivante = $_SESSION['page_actuelle_request'] + 1;
         }
 
-        $this->start_page('Controle des traductions');
+        $this->start_page(translate('Controle des traductions'));
         require ROOT . '/views/translator/translatorControlView.php';
         $this->end_page();
 
@@ -86,7 +86,7 @@ class Translator extends Controller
         $dataDestination = filter_input(INPUT_POST, 'textareaTarget', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
 
         if (empty($checkList)) {
-            $_SESSION['update_translation_msg'] = '<div class="error-co"> Aucunes traductions n\' a été mise à jour</div>';
+            $_SESSION['update_translation_msg'] = '<div class="error-co">' . translate('Aucune traduction n\' a été mise à jour').'</div>';
             header('location:/translator/control');
         }
 
@@ -113,13 +113,13 @@ class Translator extends Controller
 
         if (!updateExistingTranslation($tabNewData)) { // si une erreur est survenue lors de l'insertion
 
-            $_SESSION['update_translation_msg'] = '<div class="error-co">Un problème est servenue lors de la mises à jour des traductions</div>';
+            $_SESSION['update_translation_msg'] = '<div class="error-co">'. translate('Un problème est servenu lors de la mise à jour des traductions').'</div>';
             header('location:/translator/control');
             exit();
 
         }
 
-        $_SESSION['update_translation_msg'] = '<div class="insert-success">Les traductions ont étaient mises à jour</div>';
+        $_SESSION['update_translation_msg'] = '<div class="insert-success">'.translate('Les traductions ont été mises à jour').'</div>';
         header('location:/translator/control');
 
 
@@ -195,7 +195,7 @@ class Translator extends Controller
 
 
         if (empty($checkOptions)) {
-            $_SESSION['request_translation_msg'] = '<div class="error-co"> Aucunes modifications n\'a été appliqué</div>';
+            $_SESSION['request_translation_msg'] = '<div class="error-co">'.translate('Aucune modification n\'a été appliquée').'</div>';
             header('location:/translator/control');
             exit();
         }
@@ -239,7 +239,7 @@ class Translator extends Controller
 
         if (!$modifications) // si il n'y a pas eu de modifications
         {
-            $_SESSION['request_translation_msg'] = '<div class="error-co"> Aucunes modifications n\'a été appliqué</div>';
+            $_SESSION['request_translation_msg'] = '<div class="error-co">' .translate('Aucune modification n\'a été appliquée') .'</div>';
             header('location:/translator/control');
             exit();
         }
@@ -267,14 +267,14 @@ class Translator extends Controller
         }
 
         if ($error) {
-            $_SESSION['request_translation_msg'] = ' <div class="error-co">Une erreur technique s\'est produite (peut être êtes vous plusieurs a travailler sur la traduction)</div>';
+            $_SESSION['request_translation_msg'] = ' <div class="error-co">' .translate('Une erreur technique s\'est produite (peut être vous êtes plusieurs à travailler sur la traduction)') .'</div>';
             header('location:/translator/control');
             exit();
         }
 
         // si on arrive ici tout s'est bien passé
 
-        $_SESSION['request_translation_msg'] = '<div class="insert-success">Votre action a bien été appliqué</div>';
+        $_SESSION['request_translation_msg'] = '<div class="insert-success">' .translate('Votre action a bien été appliquée').'</div>';
 
         header('location:/translator/control');
 
