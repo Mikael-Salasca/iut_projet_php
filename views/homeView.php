@@ -21,13 +21,6 @@
         <br>
 
 
-
-
-
-
-
-
-
     <p><?php echo translate('Langues disponibles'); ?></p> <br>
         <table id="panel-langs" class="tab-home">
             <?php $langs = $_SESSION['langs'];?>

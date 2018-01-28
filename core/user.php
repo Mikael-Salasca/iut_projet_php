@@ -7,8 +7,22 @@
  */
 
 
+/**
+ * @summary Objets représentant les utilisateurs
+ */
+
 class User {
     private $name, $email, $password, $accountType,$activation,$dateCreation;
+
+    /**
+     * @summary constructeur
+     * @param $name, nome de l'utilisateur
+     * @param $email
+     * @param $password
+     * @param $accountType, son type de compte (admin/traducteur/premium/ordinaire)
+     * @param $activation, est ce qu'il a activé son compte
+     * @param $dateCreation
+     */
 
     public function __construct($name, $email, $password, $accountType,$activation,$dateCreation)
     {

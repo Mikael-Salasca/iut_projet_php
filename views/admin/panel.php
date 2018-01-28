@@ -3,16 +3,16 @@
     <section id="main-page-large">
 
         <div class="card-header">
-            <h2>Panneau de contrôle</h2>
+            <h2><?php echo ('Panneau de contrôle')?></h2>
         </div>
         <?php if (isset($_SESSION['no_user_found'])) echo $_SESSION['no_user_found'] ; unset($_SESSION['no_user_found']); ?>
         <form action = '/admin/changerank' method="post">
         <div class="row-compte">
                 <table id="panel-admin">
                     <tr class="info-table">
-                        <td> Nom de compte </td>
-                        <td class="panel-td"> Email </td>
-                        <td class="panel-td2"> Type de compte </td>
+                        <td> <?php echo translate('Nom de compte')?> </td>
+                        <td class="panel-td"> <?php echo translate('Email')?> </td>
+                        <td class="panel-td2"> <?php echo translate('Type de compte')?> </td>
                     </tr>
                     <?php if (isset($_SESSION['user_infos'])) {
                         $i = 1;
@@ -52,7 +52,7 @@
                     }?>
                 </table>
                 <br>
-            <input type="submit" class="button-valid-4" value = "Valider les modifications">
+            <input type="submit" class="button-valid-4" value = "<?php echo translate('Valider les modifications')?>">
             <?php if (isset($_SESSION['rank_changes'])) echo $_SESSION['rank_changes']; unset ($_SESSION['rank_changes']);?>
         </div>
         <br>
@@ -85,19 +85,6 @@
 
             </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
         <br><br>
 
     </section>

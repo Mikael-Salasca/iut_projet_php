@@ -13,7 +13,7 @@ class Connection extends Controller {
         {
             header('location:/');
         }
-        $this->start_page('Page de connexion');
+        $this->start_page(translate('Page de connexion'));
         require ROOT . '/views/connection/connectionView.php';
         $this->end_page();
     }
@@ -38,7 +38,7 @@ class Connection extends Controller {
         {
             // on initialise toute les infos de compte du client
             if(!$this->getInfo()){
-                $this->start_page("Erreur technique");
+                $this->start_page(translate("Erreur technique"));
                 require ROOT . '/views/errorGestion/technicalError.php';
                 $this->end_page();
                 exit();
@@ -49,7 +49,7 @@ class Connection extends Controller {
             header("Location:/");
         }
         else {
-            $_SESSION['error_connexion'] = '<div class="error-co">Le compte associé n\'existe pas ou le mot de passe est incorrect.</div>';
+            $_SESSION['error_connexion'] = '<div class="error-co">' . translate('Le compte associé n\'existe pas ou le mot de passe est incorrect.') . '</div>';
             header("Location: /connection/connect");
         }
     }
@@ -65,18 +65,8 @@ class Connection extends Controller {
         {
             header('location:/');
         }
-        $this->start_page('Impossible de se connecter ?');
+        $this->start_page(translate('Impossible de se connecter ?'));
         require ROOT . '/views/connection/impossibleConnectionView.php';
         $this->end_page();
-
-
     }
-
-
-
-
-
-
-
-
 }

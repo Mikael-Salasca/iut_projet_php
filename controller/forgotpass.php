@@ -11,7 +11,7 @@ class Forgotpass extends Controller {
     public function forgot()
     {
         session_start();
-        $this->start_page('Récupérer mon mot de passe');
+        $this->start_page(translate('Récupérer mon mot de passe'));
         require ROOT . '/views/forgotpass/recoverypassView.php';
         $this->end_page();
 
@@ -23,22 +23,22 @@ class Forgotpass extends Controller {
         session_start();
 
         //verifier que le compte est bien associé au mail envoyé
-        $name = filter_input(INPUT_POST,'account');
+        $name = filter_input(INPUT_POST, 'Account');
         $email = filter_input(INPUT_POST,'mail');
 
         if(!checkAccountWithMail($name,$email)){ // Si les deux ne sont pas associés
-            $_SESSION['error_account'] = '<div class="error-recovery-1">Nom de compte et/ou adresse e-mail incorrect</div>';
+            $_SESSION['error_account'] = '<div class="error-recovery-1">'.translate('Nom de compte et/ou adresse e-mail incorrect').'</div>';
             header('location:/forgotpass/forgot');
             exit();
         }
 
-        //générer une clée crypé
+        //générer une clée crypté
         $key = md5(microtime(TRUE)*100000);
 
         //stockée la clée dans la base de donnée
         if(!saveKeyPass($key,$name)) // si la clé n'a pas pu être sauvegardé
         {
-            $_SESSION['error_system'] = '<div class="error-recovery-1">Une erreur est survenue lors de la procédure de vérification.<br> Veuillez réessayer.</div>';
+            $_SESSION['error_system'] = '<div class="error-recovery-1">'.translate('Une erreur est survenue lors de la procédure de vérification').'<br> '.translate('Veuillez réessayer').'</div>';
             header('location:/forgotpass/forgot');
             exit();
         }
@@ -47,7 +47,7 @@ class Forgotpass extends Controller {
 
         if(!$this->sendEmailVerification($email,$key)){ // Si l'envoie n'a pas pu avoir lieu
 
-            $_SESSION['error_system'] = '<div class="error-recovery-1">Une erreur est survenue lors de la procédure de vérification.<br> Veuillez réessayer.</div>';
+            $_SESSION['error_system'] = '<div class="error-recovery-1">'.translate('Une erreur est survenue lors de la procédure de vérification').'<br> '.translate('Veuillez réessayer').'</div>';
             header('location:/forgotpass/forgot');
             exit();
         }
@@ -71,10 +71,10 @@ class Forgotpass extends Controller {
         $TO = $email;
         $head = "From: support@projetphpmvg.alwaysdata.net;";
         $head = 'Content-Type: text/html; charset=ISO-8859-1\r\n;';
-        $message = '<p><b>Bonjour</b>, </br> Vous avez demandé à recevoir un nouveau mot de passe pour votre compte . <br><br> Il vous suffit de cliquer sur ce lien pour choisir votre nouveau mot de passe dans un délai de 48h après la réception de cet email.<br>';
+        $message = '<p><b>'.translate('Bonjour').'</b>, </br> '.translate('Vous avez demandé à recevoir un nouveau mot de passe pour votre compte') . '.<br><br>'.translate('Il vous suffit de cliquer sur ce lien pour choisir votre nouveau mot de passe dans un délai de 48h après la réception de cet email').'.<br>';
         $lien = 'http://projetphpmvg.alwaysdata.net/forgotpass/resetpassword?guid=' . urlencode($key);
         $message .= '<a href="' . $lien . '">' . $lien . '</a><br><br>';
-        $message .= '<p>Ceci est un message automatique, merci de ne pas y répondre</p>';
+        $message .= '<p>'.translate('Ceci est un message automatique, merci de ne pas y répondre').'</p>';
         $subject ='Modification de votre mot de passe' ;
 
         if(mail($TO, $subject, $message, $head))
@@ -112,7 +112,7 @@ class Forgotpass extends Controller {
 
     public function mailsend(){
         session_start();
-        $this->start_page('Récupérer mon mot de passe');
+        $this->start_page(translate('Récupérer mon mot de passe'));
         if(isset($_SESSION['send_mail'])){
             require ROOT . '/views/forgotpass/mailSendView.php';
             unset($_SESSION['send_mail']);
@@ -131,7 +131,7 @@ class Forgotpass extends Controller {
 
     public function changepass(){
         session_start();
-        $this->start_page('Récupérer mon mot de passe');
+        $this->start_page(translate('Récupérer mon mot de passe'));
         if(isset($_SESSION['reset_name'])) {
             require ROOT . '/views/forgotpass/resetPassOkView.php';
 
@@ -159,14 +159,14 @@ class Forgotpass extends Controller {
 
         if(empty($pass1) || empty($pass2) || $pass1 != $pass2)
         {
-            $_SESSION['error_recovery'] = '<div class="error-recovery-1">Vos mots de passe doivent être identiques</div>';
+            $_SESSION['error_recovery'] = '<div class="error-recovery-1">'.translate('Vos mots de passe doivent être identiques').'</div>';
             header('location:/forgotpass/changepass');
             exit();
         }
 
         if(!saveNewPass($_SESSION['reset_name'],md5($pass1))) // si le nouveau mot de passe n'a pas pu être sauvegardé
         {
-            $this->start_page("Erreur technique");
+            $this->start_page(translate("Erreur technique"));
             require ROOT . '/views/errorGestion/technicalError.php';
             $this->end_page();
             exit();
@@ -176,7 +176,7 @@ class Forgotpass extends Controller {
 
 
         // on redirige le client en lui disant que son mot de passe a bien était sauvegardé.
-        $this->start_page("Mot de passe modifié");
+        $this->start_page(translate("Mot de passe modifié"));
         require ROOT . '/views/forgotpass/passmodifiedOK.php';
         $this->end_page();
         unset($_SESSION['reset_name']);

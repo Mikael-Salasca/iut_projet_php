@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @summary Traductions
+ */
 Class Translate{
 
         private $id;
@@ -33,7 +36,7 @@ Class Translate{
     }
 
     /**
-     * @return mixed
+     * @return int, id de la traduction
      */
     public function getId()
     {
@@ -41,7 +44,7 @@ Class Translate{
     }
 
     /**
-     * @return mixed
+     * @return string, langue source
      */
     public function getLangSource()
     {
@@ -49,7 +52,7 @@ Class Translate{
     }
 
     /**
-     * @return mixed
+     * @return string, langue cible de la traduction
      */
     public function getLangDestination()
     {
@@ -57,7 +60,7 @@ Class Translate{
     }
 
     /**
-     * @return mixed
+     * @return string, mot à traduire
      */
     public function getDataSource()
     {
@@ -65,7 +68,7 @@ Class Translate{
     }
 
     /**
-     * @return mixed
+     * @return string, mot traduit
      */
     public function getDataDestination()
     {

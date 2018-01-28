@@ -5,13 +5,8 @@
  * Date: 07/01/2018
  * Time: 17:25
  */
-//define("WEBROOT");
 define("ROOT",__DIR__);
-/*
-echo '<pre>';
-print_r($_SERVER);
-echo '</pre>';
-*/
+
 require 'core/controller.php';
 $params = explode('/',$_SERVER['REDIRECT_URL']);
 if (isset($params[1])&& isset($params[2])) {

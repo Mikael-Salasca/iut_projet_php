@@ -4,8 +4,6 @@ class UsersDataBase
 {
     function dbConnect()
     {
-
-
         try {
 // Connexion à la base de données.
             $dsn = 'mysql:host=mysql-projetphpmvg.alwaysdata.net;dbname=projetphpmvg_bd';

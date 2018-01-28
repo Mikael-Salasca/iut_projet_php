@@ -10,7 +10,7 @@ require(ROOT . '/model/registration.php');
 
 
 
-class Inscription extends  Controller
+class Inscription extends Controller
 {
 
     public function validate()
@@ -22,41 +22,40 @@ class Inscription extends  Controller
         $password2 = filter_input(INPUT_POST,'password2');
         $cuAccept = filter_input(INPUT_POST,'cu');
 
-        if (!preg_match('/^[a-zA-Z0-9]/', $name)) {
-            $_SESSION['error_register'] = '<div class="error-register">Votre nom comporte des caractères interdits.</div>';
+        if (!preg_match('/^[a-zA-Z0-9]+$/', $name)) {
+            $_SESSION['error_register'] = '<div class="error-register">' . translate('Votre nom comporte des caractères interdits.') . '</div>';
             header('location:/inscription/register');
             exit();
         }
 
-
         if (empty($name) || empty($email) || empty($password) || empty($password2)) {
-            $_SESSION['error_register'] = '<div class="error-register">Vous devez remplir tout les champs.</div>';
+            $_SESSION['error_register'] = '<div class="error-register">' . translate('Vous devez remplir tout les champs.') . '</div>';
             header('location:/inscription/register');
         }
         else if(checkAccountExist($name))
         {
-            $_SESSION['error_account_name'] = '<div class="error-register">Ce compte existe déja !</div>';
+            $_SESSION['error_account_name'] = '<div class="error-register">' . translate('Ce compte existe déja !') . '</div>';
             header('location:/inscription/register');
         }
         else if(checkEmailExist($email))
         {
-            $_SESSION['error_account_email'] = '<div class="error-register">Cette adresse email est déja enregistré !</div>';
+            $_SESSION['error_account_email'] = '<div class="error-register">' . translate('Cette adresse email est déja enregistrée !') . '</div>';
             header('location:/inscription/register');
         }
         else if(!filter_var($email,FILTER_VALIDATE_EMAIL))
         {
-            $_SESSION['error_account_email'] = '<div class="error-register">Veuillez entrer une adresse mail valide</div>';
+            $_SESSION['error_account_email'] = '<div class="error-register">' . translate('Veuillez entrer une adresse mail valide') . '</div>';
             header('location:/inscription/register');
         }
         else if ($password != $password2)
         {
-            $_SESSION['error_mdp'] = '<div class="error-register">Vos mots de passe doivent être identique</div>';
+            $_SESSION['error_mdp'] = '<div class="error-register">' . translate('Vos mots de passe doivent être identiques') . '</div>';
             header('location:/inscription/register');
 
         }
         else if($cuAccept != true)
         {
-            $_SESSION['error_cu'] = '<div class="error-register">Veuillez lire et accepter les conditions d\'utilisation</div>';
+            $_SESSION['error_cu'] = '<div class="error-register">' . translate('Veuillez lire et accepter les conditions d\'utilisation') . '</div>';
             header('location:/inscription/register');
         }
         else
@@ -66,7 +65,7 @@ class Inscription extends  Controller
 
                 if ($affectedLines === false)
                 {
-                    $_SESSION['error_register'] = '<p class="error_register">Une erreur s\'est produite lors de l\'inscription, veuillez reassayer.<br>Si le problème persiste, contactez le support</p>';
+                    $_SESSION['error_register'] = '<p class="error_register">' . translate('Une erreur s\'est produite lors de l\'inscription, veuillez réessayer.') . '<br>' . translate('Si le problème persiste, contactez le support') . '</p>';
                     header('Location: /inscription/register');
 
                 }
@@ -79,7 +78,7 @@ class Inscription extends  Controller
                     }
                     else
                     {
-                        $_SESSION['error_register'] = '<p class="error_register">Une erreur s\'est produite lors de la validation de votre compte, veuillez reassayer.<br>Si le problème persiste, contactez le support</p>';
+                        $_SESSION['error_register'] = '<p class="error_register">' . translate('Une erreur s\'est produite lors de la validation de votre compte, veuillez réessayer.') . '<br>' . translate('Si le problème persiste, contactez le support') . '</p>';
                         header('Location: /inscription/register');
                     }
                 }
@@ -92,7 +91,7 @@ class Inscription extends  Controller
     {
 
         session_start();
-        $this->start_page('Page d\'Inscription');
+        $this->start_page(translate('Page d\'inscription'));
         require ROOT . '/views/inscription/inscriptionView.php';
         $this->end_page();
 
@@ -102,7 +101,7 @@ class Inscription extends  Controller
     public function confirme()
     {
         session_start();
-        $this->start_page('Verification du compte.');
+        $this->start_page(translate('Vérification du compte'));
         if(isset($_SESSION['email_send']))
         {
 
@@ -121,7 +120,7 @@ class Inscription extends  Controller
     public function confirmaccount()
     {
         session_start();
-        $this->start_page('Activation du compte');
+        $this->start_page(translate('Activation du compte'));
 
         if(isset($_SESSION['active_account'])) {
 
@@ -149,13 +148,12 @@ class Inscription extends  Controller
             return false;
 
         $TO = $email;
-        $head = "From: inscription@projetphpmvg.alwaysdata.net;";
         $head = 'Content-Type: text/html; charset=ISO-8859-1\r\n;';
-        $message = '<p><b>Bonjour</b>, </br> Votre inscription est presque terminée ! Confirmez votre adresse email en cliquant sur le lien ci-dessous : <br>';
+        $message = '<p><b>' . translate('Bonjour') . '</b>, </br>' . translate('Votre inscription est presque terminée ! Confirmez votre adresse email en cliquant sur le lien ci-dessous :') . '<br>';
         $lien = 'http://projetphpmvg.alwaysdata.net/inscription/verifymail?guid=' . urlencode($key);
         $message .= '<a href="' . $lien . '">' . $lien . '</a><br><br>';
-        $message .= '<p>Ceci est un message automatique, merci de ne pas y répondre</p>';
-        $subject ='Activer votre compte sur notre site de traduction !' ;
+        $message .= '<p>' . translate('Ceci est un message automatique, merci de ne pas y répondre') . '</p>';
+        $subject = translate('Activer votre compte sur notre site de traduction !') ;
 
         if(mail($TO, $subject, $message, $head))
             return true;
@@ -210,7 +208,7 @@ class Inscription extends  Controller
     public function cu()
     {
         session_start();
-        $this->start_page('Conditions d\'utilisation');
+        $this->start_page(translate('Conditions d\'utilisation'));
         require ROOT . '/views/inscription/cuView.php';
         $this->end_page();
 

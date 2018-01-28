@@ -7,15 +7,23 @@
  */
 
 require ROOT . '/model/translation.php';
-class Controller {
 
+    /**
+     * @summary Objets controller instanciés dans l'index, faisant le lien entre le modèle et les vues
+     */
+class Controller {
+    /**
+     * @summary fonction générant le code html correspondant au head de nos vues
+     * @param string, titre de la page web
+     */
     protected function start_page($title)
     {
         echo '<!DOCTYPE html> <html lang="fr"> <head><title>'
             . PHP_EOL . $title . '</title> <link  rel="stylesheet" href="/fic.css"/>
                 <meta charset="utf-8"/>
-                <meta name="description" content="Site web de Traduction"/> 
-                <meta name="keywords" content="HTML,CSS,JS"/>
+                <meta name="description" content="'.translate('Site web de traduction offrant un outil simple et performant permettant de trouver rapidement la traduction d\'un mot ou d\'une phrase') . '"/>         
+                <meta name="keywords" content="'.translate('traduction').', '.translate('traductions').', '.translate('traduire').', '.translate('traducteur').', '.translate('traduction en ligne')  .'"/>
+                <link rel="icon" href="/img/favicon.png"
                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
                 </head>';
         if(isset($_SESSION['user'])) $this->refreshInfoUser();
@@ -23,9 +31,12 @@ class Controller {
         echo '<body> '. PHP_EOL;
     }
 
+
+    /**
+     * @summary fonction générant le code html correspondant au footer de nos vues
+     */
    protected function end_page()
    {
-
        require ROOT. '/views/footer.php';
     echo '</body></html>';
    }
@@ -33,6 +44,12 @@ class Controller {
 
 
 
+
+    /**
+     * @summary fonction récupérant les informations de l'utilisateur
+     * @see getAllInfoUser()
+     * @see getInfo()
+     */
     private function refreshInfoUser(){
 
         require ROOT . '/model/connexion.php';
@@ -46,6 +63,9 @@ class Controller {
 
     }
 
+    /**
+     * @summary fonction récupérant les informations de l'utilisateur courant
+     */
     protected function getInfo() {
         if (isset($_SESSION['user'])) {
             $current_user = $_SESSION['user'];
@@ -64,6 +84,11 @@ class Controller {
 
     }
 
+    /**
+     * @summary fonction chiffrant un email
+     * @param string, l'email à chiffrer
+     * @return string, l'email chiffré
+     */
     private function cryptEmail($email){
 
         $crypt = '';

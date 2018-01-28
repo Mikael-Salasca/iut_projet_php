@@ -26,7 +26,7 @@ class Translation extends Controller
         $this->updateRestriction();
 
 
-        $this->start_page('Page de traduction');
+        $this->start_page(translate('Page de traduction'));
         require ROOT . '/views/translate/translateView.php';
         $this->end_page();
 
@@ -202,12 +202,6 @@ class Translation extends Controller
         }
 
         header('location:/translation/translate');
-
-
-
-
-
-
     }
 
     private function switch($source,$target){
@@ -245,18 +239,7 @@ class Translation extends Controller
             else{
                 $_SESSION['no_suggestion_premium'];
             }
-
         }
-
-
-
-
-
-
-
     }
-
-
-
 }
 

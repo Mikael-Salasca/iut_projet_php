@@ -106,7 +106,7 @@ function getRequestTranslation($source,$target,$start_page,$limite_page){
     }
     catch (PDOException $e) {
         echo 'Erreur : ', $e->getMessage(), PHP_EOL;
-        echo 'Requête : ', $query, PHP_EOL;
+        echo 'Requête : ', $queryGetTuple, PHP_EOL;
         exit();
     }
 
@@ -181,7 +181,7 @@ function getAllRequestPremium($name,$start_page,$limit)
     }
     catch (PDOException $e) {
         echo 'Erreur : ', $e->getMessage(), PHP_EOL;
-        echo 'Requête : ', $query, PHP_EOL;
+        echo 'Requête : ', $queryGetTuple, PHP_EOL;
         exit();
     }
 
