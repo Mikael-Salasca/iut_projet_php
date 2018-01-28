@@ -3,7 +3,7 @@
     <section id="main-page-large">
 
         <div class="card-header">
-            <h2>Panneau de contrôle</h2>
+            <h2><?php echo ('Panneau de contrôle')?></h2>
         </div>
         <?php if (isset($_SESSION['no_user_found'])) echo $_SESSION['no_user_found'] ; unset($_SESSION['no_user_found']); ?>
         <form action = '/admin/changerank' method="post">

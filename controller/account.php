@@ -64,7 +64,7 @@ class account extends Controller {
 
         $TO = $email;
         $head = "From: support@projetphpmvg.alwaysdata.net;" . "\n";
-        $head .= 'Content-Type: text/html; charset=ISO-8859-1\r\n;';
+        $head = 'Content-Type: text/html; charset=ISO-8859-1\r\n;';
         $message = '<p><b>'. translate('Bonjour') . '</b>, </br>'. translate('Bonjour, vous avez demandé à changer votre adresse mail. Si ce message ne vous concerne pas, veuillez l\'ignorer.') . '<br>' .
                     translate('Voici votre code de confirmation :') .  '<br><br>';
         $message .= '<p style="font-weight:bold;font-size:20px;">'. $code . '</p><br><br>';

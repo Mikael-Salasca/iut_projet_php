@@ -10,14 +10,14 @@
         <div class = "page-manage">
             <?php
             if($page_precedente != 0) {
-                echo '<a href="/premium/operation?page=1">Début</a>';
+                echo '<a href="/premium/operation?page=1">'.translate('Début').'</a>';
                 echo ' <== ' . '<a href="/premium/operation?page=' . $page_precedente . '">' . translate('Précédent') . '</a><==';
             }
             ?>
             <?php echo 'page ' . $_SESSION['page_actuelle_premium'] .' / page ' . $_SESSION['nb_page_premium']; ?>
             <?php
             if($page_suivante <= $_SESSION['nb_page_premium']) {
-                echo '==><a href="/premium/operation?page="' . $page_suivante . '>' . translate('Suivant') .'</a>';
+                echo '==><a href="/premium/operation?page=' . $page_suivante . '">' . translate('Suivant') .'</a>';
                 echo '==><a href="/premium/operation?page=' . $_SESSION['nb_page_premium'] . '">Fin</a>';
             }
             ?>
@@ -90,8 +90,8 @@
             <?php echo 'page ' . $_SESSION['page_actuelle_premium'] .' / page ' . $_SESSION['nb_page_premium']; ?>
             <?php
             if($page_suivante <= $_SESSION['nb_page_premium']) {
-                echo '==><a href="/premium/operation?page="' . $page_suivante . '>' . translate('Suivant.') . '</a>';
-                echo '==><a href="/premium/operation?page="' . $_SESSION['nb_page_premium'] . '>' . translate('Fin') . '</a>';
+                echo '==><a href="/premium/operation?page=' . $page_suivante . '">' . translate('Suivant') . '</a>';
+                echo '==><a href="/premium/operation?page=' . $_SESSION['nb_page_premium'] . '">' . translate('Fin') . '</a>';
             }
             ?>
         </div>

@@ -149,7 +149,7 @@ class Inscription extends Controller
 
         $TO = $email;
         $head = "From: support@projetphpmvg.alwaysdata.net;" . "\n";
-        $head .= 'Content-Type: text/html; charset=ISO-8859-1\r\n;';
+        $head = 'Content-Type: text/html; charset=ISO-8859-1\r\n;';
         $message = '<p><b>' . translate('Bonjour') . '</b>, </br>' . translate('Votre inscription est presque terminée ! Confirmez votre adresse email en cliquant sur le lien ci-dessous :') . '<br>';
         $lien = 'http://projetphpmvg.alwaysdata.net/inscription/verifymail?guid=' . urlencode($key);
         $message .= '<a href="' . $lien . '">' . $lien . '</a><br><br>';

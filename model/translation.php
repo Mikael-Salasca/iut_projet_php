@@ -40,9 +40,9 @@ function translate ($toTranslate,$optionLangSource = 'FRENCH') //fr par defaut
                 return $word;
             }
         }
-        else // si la phrase n'est pas encore reference dans notre base on retourne '?', ceci est temporaire c pr aider au debug
+        else // si la phrase n'est pas encore reference dans notre base on retourne le mot à traduire, ceci est temporaire pour aider au debug
         {
-            return '?';
+            return $toTranslate;
         }
 
 
