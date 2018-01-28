@@ -1,8 +1,6 @@
 <section id="corps">
 
 
-
-
         <section id="main-page">
             <div id="block-row">
                 <ul class="ak-stepper-list">

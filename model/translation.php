@@ -146,7 +146,6 @@ function translateLanguageNameToFrench($lang){
     $usersDataBase = new UsersDataBase();
     $dbConnection = $usersDataBase->dbConnect();
     $query = 'SELECT * FROM translate WHERE ENGLISH =:toTranslate';
-    //var_dump($query);
     $stmt = $dbConnection->prepare($query);
 
     $stmt->bindValue('toTranslate', $lang, PDO::PARAM_STR);
@@ -178,8 +177,6 @@ function getExistingTranslation($langueSource, $langueDestination,$start_page,$l
 
     $queryGetTuple = 'SELECT ID_TRANSLATION, ' . $langueSource . ',' . $langueDestination . ' FROM translate ORDER BY ID_TRANSLATION DESC LIMIT :start, :limit ';
     $stmtGetTuple = $dbConnection->prepare($queryGetTuple);
-    //$stmtGetTuple->bindParam('langueSource',$langueSource,PDO::PARAM_STR);
-    //$stmtGetTuple->bindParam('langueDestination',$langueDestination,PDO::PARAM_STR);
     $stmtGetTuple->bindParam('start',$start_page,PDO::PARAM_INT);
     $stmtGetTuple->bindParam('limit',$limite_page,PDO::PARAM_INT);
     try {
@@ -199,7 +196,7 @@ function getExistingTranslation($langueSource, $langueDestination,$start_page,$l
     }
     catch (PDOException $e) {
         echo 'Erreur : ', $e->getMessage(), PHP_EOL;
-        echo 'Requête : ', $query, PHP_EOL;
+        echo 'Requête : ', $queryGetTuple, PHP_EOL;
         exit();
     }
 
@@ -222,14 +219,10 @@ function updateExistingTranslation($tabObject)
         $langueDestination = $object->getLangDestination();
         $dataSource = $object->getDataSource();
         $dataDestination = $object->getDataDestination();
-        //$query = 'UPDATE translation SET :langueSource=:dataSource, :langueDestination=:dataDestination WHERE ID_TRANSLATION = :id';
         $query = 'UPDATE translate SET ' . $langueSource . ' = :dataSource , ' . $langueDestination . '=:dataDestination WHERE ID_TRANSLATION=' . $id;
         $stmt = $dbConnection->prepare($query);
-        //$stmt->bindParam('langueSource',$langueSource,PDO::PARAM_STR);
-        //$stmt->bindParam('langueDestination',$langueDestination,PDO::PARAM_STR);
         $stmt->bindParam('dataSource',$dataSource,PDO::PARAM_STR);
         $stmt->bindParam('dataDestination',$dataDestination,PDO::PARAM_STR);
-        //$stmt->bindParam('id',$id,PDO::PARAM_INT);
 
 
 

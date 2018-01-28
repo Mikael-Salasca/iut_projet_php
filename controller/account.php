@@ -46,7 +46,6 @@ class account extends Controller {
             }
             else
                 {
-                    //$_SESSION['error_register'] = '<p class="error_register">Une erreur s\'est produite, veuillez réessayer.<br>Si le problème persiste, veuillez contacter le support.</p>';
                     $this->start_page(translate("Erreur technique"));
                     require ROOT . '/views/errorGestion/technicalError.php';
                     $this->end_page();
@@ -57,13 +56,11 @@ class account extends Controller {
 
 
     private function sendCodeVerification($email) {
-        //$key = md5(microtime(TRUE)*65413);
         $code = $this->generateKeyAscii(6);
         if(!saveCodeVerification($code,$_SESSION['name']))
             return false;
 
         $TO = $email;
-        $head = "From: support@projetphpmvg.alwaysdata.net;" . "\n";
         $head = 'Content-Type: text/html; charset=ISO-8859-1\r\n;';
         $message = '<p><b>'. translate('Bonjour') . '</b>, </br>'. translate('Bonjour, vous avez demandé à changer votre adresse mail. Si ce message ne vous concerne pas, veuillez l\'ignorer.') . '<br>' .
                     translate('Voici votre code de confirmation :') .  '<br><br>';

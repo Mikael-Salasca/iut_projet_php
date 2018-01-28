@@ -68,15 +68,5 @@ class Connection extends Controller {
         $this->start_page(translate('Impossible de se connecter ?'));
         require ROOT . '/views/connection/impossibleConnectionView.php';
         $this->end_page();
-
-
     }
-
-
-
-
-
-
-
-
 }

@@ -202,12 +202,6 @@ class Translation extends Controller
         }
 
         header('location:/translation/translate');
-
-
-
-
-
-
     }
 
     private function switch($source,$target){
@@ -245,18 +239,7 @@ class Translation extends Controller
             else{
                 $_SESSION['no_suggestion_premium'];
             }
-
         }
-
-
-
-
-
-
-
     }
-
-
-
 }
 

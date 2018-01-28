@@ -26,13 +26,6 @@
         echo '<div class="pannel-co-date"> <p>'. translate('Nous sommes le') . ' ' . strftime('%d %B %Y') . '</p></div>';
 
 
-
-
-
-
-
-
-
     if($_SESSION['isActive'] == 0)
         {
             echo '<br><br><div class="pannel-acc-not-valid">'  .translate('votre compte n\'est pas activé') .'</div>';
