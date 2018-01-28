@@ -13,7 +13,7 @@ Class Home extends Controller {
     public function index()
     {
         session_start();
-
+        unset($_SESSION['last_page']);
         $this->start_page(translate('Page d\'accueil'));
         $this->checkFirstCo();
         $this->checkDisconnect();
@@ -64,13 +64,17 @@ Class Home extends Controller {
 
         session_start();
         $_SESSION['lang'] = 'FRENCH';
-        if($_SESSION['last_page'] != '/home/fr' || $_SESSION['last_page'] != '/home/en')
+        if(isset($_SESSION['last_page']) && ($_SESSION['last_page'] != '/home/fr' || $_SESSION['last_page'] != '/home/en'))
         {
 
             header('location:'.$_SESSION['last_page']);
             exit();
         }
-        header('location:/');
+        else {
+
+
+            header('location:/');
+        }
 
     }
 
@@ -79,13 +83,17 @@ Class Home extends Controller {
 
         session_start();
         $_SESSION['lang'] = 'ENGLISH';
-        if($_SESSION['last_page'] != '/home/fr' || $_SESSION['last_page'] != '/home/en')
+        if(isset($_SESSION['last_page']) && ($_SESSION['last_page'] != '/home/fr' || $_SESSION['last_page'] != '/home/en'))
         {
 
             header('location:'.$_SESSION['last_page']);
             exit();
         }
-        header('location:/');
+        else {
+
+
+            header('location:/');
+        }
 
     }
 
