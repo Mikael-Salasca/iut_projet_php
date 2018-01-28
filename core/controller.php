@@ -15,7 +15,7 @@ class Controller {
             . PHP_EOL . $title . '</title> <link  rel="stylesheet" href="/fic.css"/>
                 <meta charset="utf-8"/>
                 <meta name="description" content="'.translate('Site web de traduction offrant un outil simple et performant permettant de trouver rapidement la traduction d\'un mot ou d\'une phrase') . '"/>         
-                <meta name="keywords" content="'.translate('traduction'), translate('traductions'), translate('traduire'), translate('traducteur'), translate('traduction en ligne')  .'"/>
+                <meta name="keywords" content="'.translate('traduction').', '.translate('traductions').', '.translate('traduire').', '.translate('traducteur').', '.translate('traduction en ligne')  .'"/>
                 <link rel="icon" href="/img/favicon.png"
                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
                 </head>';
