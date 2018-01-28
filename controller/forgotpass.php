@@ -11,7 +11,7 @@ class Forgotpass extends Controller {
     public function forgot()
     {
         session_start();
-        $this->start_page('Récupérer mon mot de passe');
+        $this->start_page(translate('Récupérer mon mot de passe'));
         require ROOT . '/views/forgotpass/recoverypassView.php';
         $this->end_page();
 
@@ -32,7 +32,7 @@ class Forgotpass extends Controller {
             exit();
         }
 
-        //générer une clée crypé
+        //générer une clée crypté
         $key = md5(microtime(TRUE)*100000);
 
         //stockée la clée dans la base de donnée
@@ -131,7 +131,7 @@ class Forgotpass extends Controller {
 
     public function changepass(){
         session_start();
-        $this->start_page('Récupérer mon mot de passe');
+        $this->start_page(translate('Récupérer mon mot de passe'));
         if(isset($_SESSION['reset_name'])) {
             require ROOT . '/views/forgotpass/resetPassOkView.php';
 
