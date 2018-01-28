@@ -3,7 +3,7 @@
 </div>
 
 
-<a style="text-decoration: none;" href="/translator/change_control"><div class="link-2">><?php echo translate('Acceder aux traductions existantes')?></div></a>
+<a style="text-decoration: none;" href="/translator/change_control"><div class="link-2"><?php echo translate('Accéder aux traductions existantes')?></div></a>
 <br>
 <div class = "page-manage">
 
@@ -84,7 +84,7 @@
                 </select>
 
             <td>
-                <input type="submit" class="button-50" value="><?php echo translate('Appliquer le choix des langues')?>" </td>
+                <input type="submit" class="button-50" value="<?php echo translate('Appliquer le choix des langues')?>" </td>
 
 
             </td>
@@ -130,7 +130,7 @@
 
     <div class="alert-info">
         <img src="/img/info.png">&nbsp;&nbsp;<b><?php echo translate('Rappel')?></b><br>
-        <?php echo translate(' N\'oubliez pas de sélectionner les actions à appliquer  !')?>
+        <?php echo translate('N\'oubliez pas de sélectionner les actions à appliquer !')?>
     </div>
 </div>
 <br>

@@ -1,10 +1,10 @@
 <section id="corps">
     <section id="main-page">
 
-    <p>Langues à exporter :</p>
+    <p><?php echo translate('Langues à exporter')?> :</p>
         <form method="post" action="/translator/sub_export">
 
-            Source
+<?php echo translate('Source')?>
             <select class="select-admin" name="lgSource">
                 <?php foreach ($all_langues as $lang) {
                     $option = '<option value="' . $lang . '" ';
@@ -14,7 +14,7 @@
                 } ?>
 
             </select>
-            Destination
+<?php echo translate('Destination')?>
             <select class="select-admin" name="lgTarget">
                 <?php
                 foreach ($all_langues as $lang) {
@@ -30,7 +30,7 @@
             <br><br>
 
 
-            <input type="submit" value="Exporter">
+            <input type="submit" value="<?php echo translate('Exporter')?>">
         </form>
 
     </section>
