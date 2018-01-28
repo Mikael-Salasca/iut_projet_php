@@ -26,7 +26,7 @@ class Translation extends Controller
         $this->updateRestriction();
 
 
-        $this->start_page('Page de traduction');
+        $this->start_page(translate('Page de traduction'));
         require ROOT . '/views/translate/translateView.php';
         $this->end_page();
 
