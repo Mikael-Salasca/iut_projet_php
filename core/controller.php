@@ -9,7 +9,7 @@
 require ROOT . '/model/translation.php';
 
     /**
-     * @summary Classe Controller permettant d'avoir nos objets controller instanciés dans l'index, faisant le lien entre le modèle et les vues
+     * @summary Objets controller instanciés dans l'index, faisant le lien entre le modèle et les vues
      */
 class Controller {
     /**

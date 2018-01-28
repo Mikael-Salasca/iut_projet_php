@@ -1,5 +1,10 @@
 <?php
 
+
+/**
+ * @summary Requêtes des utilisateurs premiums
+ */
+
 Class Request{
 
     private $id;
@@ -33,7 +38,7 @@ Class Request{
     }
 
     /**
-     * @return mixed
+     * @return int, id de la requête
      */
     public function getId()
     {
@@ -41,7 +46,7 @@ Class Request{
     }
 
     /**
-     * @return mixed
+     * @return string, langue source de la requête
      */
     public function getLangSource()
     {
@@ -49,7 +54,7 @@ Class Request{
     }
 
     /**
-     * @return mixed
+     * @return string, langue cible de la requête
      */
     public function getLangDestination()
     {
@@ -57,7 +62,7 @@ Class Request{
     }
 
     /**
-     * @return mixed
+     * @return string, mot à traduire
      */
     public function getDataSource()
     {
@@ -65,7 +70,7 @@ Class Request{
     }
 
     /**
-     * @return mixed
+     * @return string, statut de la requête ( acceptée, en attente, rejetée)
      */
     public function getStatus()
     {
