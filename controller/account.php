@@ -29,12 +29,12 @@ class account extends Controller {
         $email = filter_input(INPUT_POST, 'email');
         if(!filter_var($email,FILTER_VALIDATE_EMAIL))
         {
-            $_SESSION['error_account_email'] = '<div class="error-register">Veuillez entrer une adresse mail valide</div>';
+            $_SESSION['error_account_email'] = '<div class="error-register">'.translate('Veuillez entrer une adresse mail valide'). '</div>';
             header('location:/account/modify_email');
         }
 
         else if ($email != $_SESSION['email']) {
-            $_SESSION['error_account_email'] = '<div class="error-register">Votre compte n\'est pas lié à cette adresse email.</div>';
+            $_SESSION['error_account_email'] = '<div class="error-register">'.translate('Votre compte n\'est pas lié à cette adresse email'). '</div>';
             header('location:/account/modify_email');
         }
 
@@ -64,14 +64,14 @@ class account extends Controller {
 
         $TO = $email;
         $head = "From: support@projetphpmvg.alwaysdata.net;";
-        $head = 'Content-Type: text/html; charset=ISO-8859-1\r\n;';
-        $message = '<p><b>Bonjour</b>, </br> Bonjour, vous avez demandé à changer votre adresse mail. Si ce message ne vous concerne pas, veuillez l\'ignorer. <br>
-                    Voici votre code de confirmation : <br><br>';
+        $head .= 'Content-Type: text/html; charset=ISO-8859-1\r\n;';
+        $message = '<p><b>'.translate('Bonjour').'</b>, </br> '.translate('Bonjour, vous avez demandé à changer votre adresse mail. Si ce message ne vous concerne pas, veuillez l\'ignorer'). '<br>
+                    '.translate('Voici votre code de confirmation :') . '<br><br>';
         $message .= '<p style="font-weight:bold;font-size:20px;">'. $code . '</p><br><br>';
 
 
-        $message .= '<p>Ceci est un message automatique, merci de ne pas y répondre</p>';
-        $subject ='Votre code de confirmation' ;
+        $message .= '<p>'.translate('Ceci est un message automatique, merci de ne pas y répondre').'</p>';
+        $subject = translate('Votre code de confirmation') ;
 
         if(mail($TO, $subject, $message, $head))
             return true;
@@ -106,7 +106,7 @@ class account extends Controller {
 
 
         if (!checkCode($_SESSION['name'], $code) || checkDateCode($code)) {
-            $_SESSION['wrong_code'] = '<div class="error-register">Le code entré n\'est pas le bon ! (Ou a expiré)</div>';
+            $_SESSION['wrong_code'] = '<div class="error-register">'.translate('Le code entré n\'est pas le bon ! (Ou a expiré)').'</div>';
             header('location:/account/confirm_code');
             exit();
         }
@@ -157,25 +157,25 @@ class account extends Controller {
         $new_email2 = filter_input(INPUT_POST,'newemail2');
 
         if($new_email == $_SESSION['email']){
-            $_SESSION['error_account_email'] = '<div class="error-register">Cette adresse email est déja liée à votre compte.</div>';
+            $_SESSION['error_account_email'] = '<div class="error-register">'.translate('Cette adresse email est déja liée à votre compte').'</div>';
             header('location:/account/new_email');
             exit();
 
         }
         else if (checkEmailExist($new_email)) {
-            $_SESSION['error_account_email'] = '<div class="error-register">Cette adresse email n\' est pas disponible.</div>';
+            $_SESSION['error_account_email'] = '<div class="error-register">'.translate('Cette adresse email n\' est pas disponible').'</div>';
             header('location:/account/new_email');
             exit();
         }
         else if($new_email != $new_email2)
         {
-            $_SESSION['error_account_email'] = '<div class="error-register"> Vos adresses emails ne sont pas les mêmes</div>';
+            $_SESSION['error_account_email'] = '<div class="error-register"> '.translate('Vos adresses emails ne sont pas les mêmes').'</div>';
             header('location:/account/new_email');
             exit();
         }
         else if(!filter_var($new_email,FILTER_VALIDATE_EMAIL))
         {
-            $_SESSION['error_account_email'] = '<div class="error-register">Veuillez entrer une adresse mail valide</div>';
+            $_SESSION['error_account_email'] = '<div class="error-register">'.translate('Veuillez entrer une adresse mail valide').'</div>';
             header('location:/account/new_email');
             exit();
         }
@@ -223,7 +223,7 @@ class account extends Controller {
 
     public function mail_change(){
         session_start();
-        $this->start_page('Adresse mail changé.');
+        $this->start_page('Adresse mail changée.');
 
         if(isset($_SESSION['email_changed']))
         {
@@ -275,7 +275,7 @@ class account extends Controller {
             unset($_SESSION['pass_has_change']);
         }
         else {
-            $this->start_page("Modifié votre mot de passe");
+            $this->start_page("Modifier votre mot de passe");
             require ROOT . '/views/account/viewChangePassword.php';
         }
         $this->end_page();
@@ -300,14 +300,14 @@ class account extends Controller {
         $newpass2 = filter_input(INPUT_POST,'newpass2');
         if(!checkConnexionValid($_SESSION['email'],$password))
         {
-            $_SESSION['error_mypass'] = '<div class="error-register">Le mot de passe est incorrect</div>';
+            $_SESSION['error_mypass'] = '<div class="error-register">'.translate('Le mot de passe est incorrect').'</div>';
             header('location:/account/modify_password');
             exit();
         }
 
         if($newpass != $newpass2)
         {
-            $_SESSION['error_pass'] = '<div class="error-register">Vos mot de passes ne sont pas identiques</div>';
+            $_SESSION['error_pass'] = '<div class="error-register">'.translate('Vos mot de passes ne sont pas identiques').'</div>';
             header('location:/account/modify_password');
             exit();
         }
