@@ -5,6 +5,7 @@ if (!class_exists('UsersDataBase'))
     require ROOT . '/model/base.php';
 }
 
+//Récupérer le nom, le mail et le type de compte des utilisateurs du site
 function getAllUsersInfo() {
     $usersDataBase = new UsersDataBase();
     $dbConnection = $usersDataBase->dbConnect();
@@ -29,6 +30,7 @@ function getAllUsersInfo() {
     }
 }
 
+//Fonction inutilisée
 function getAllAccountType() {
     $usersDataBase = new UsersDataBase();
     $dbConnection = $usersDataBase->dbConnect();
