@@ -91,6 +91,7 @@ class Inscription extends Controller
     {
 
         session_start();
+        $_SESSION['last_page'] = $_SESSION['param'];
         $this->start_page(translate('Page d\'inscription'));
         require ROOT . '/views/inscription/inscriptionView.php';
         $this->end_page();
@@ -101,6 +102,7 @@ class Inscription extends Controller
     public function confirme()
     {
         session_start();
+        $_SESSION['last_page'] = $_SESSION['param'];
         $this->start_page(translate('Vérification du compte'));
         if(isset($_SESSION['email_send']))
         {
@@ -120,6 +122,7 @@ class Inscription extends Controller
     public function confirmaccount()
     {
         session_start();
+        $_SESSION['last_page'] = $_SESSION['param'];
         $this->start_page(translate('Activation du compte'));
 
         if(isset($_SESSION['active_account'])) {
@@ -208,6 +211,7 @@ class Inscription extends Controller
     public function cu()
     {
         session_start();
+        $_SESSION['last_page'] = $_SESSION['param'];
         $this->start_page(translate('Conditions d\'utilisation'));
         require ROOT . '/views/inscription/cuView.php';
         $this->end_page();

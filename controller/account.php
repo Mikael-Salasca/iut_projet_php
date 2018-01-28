@@ -8,6 +8,7 @@ class Account extends Controller {
 
     public function informations() {
         session_start();
+        $_SESSION['last_page'] = $_SESSION['param'];
         $this->isConnect();
         $this->start_page(translate("Gestion du compte"));
         require ROOT . '/views/account/viewAccount.php';
@@ -16,6 +17,7 @@ class Account extends Controller {
 
     public function modify_email() {
         session_start();
+        $_SESSION['last_page'] = $_SESSION['param'];
         $this->isConnect();
         $this->start_page(translate("Changement d'adresse"));
         require ROOT . '/views/account/viewChangeMail.php';
@@ -78,6 +80,7 @@ class Account extends Controller {
 
     public function confirm_code() {
         session_start();
+        $_SESSION['last_page'] = $_SESSION['param'];
         $this->start_page(translate('Verification du compte'));
         if($_SESSION['access_code'])
         {
@@ -91,6 +94,7 @@ class Account extends Controller {
 
     public function verify_code() {
         session_start();
+        $_SESSION['last_page'] = $_SESSION['param'];
         if(!isset($_SESSION['access_code'])){
             $this->start_page(translate('Accès refusé'));
             require ROOT . '/views/errorGestion/error403View.php';
@@ -116,6 +120,7 @@ class Account extends Controller {
 
     public function new_email(){
         session_start();
+        $_SESSION['last_page'] = $_SESSION['param'];
         if(!isset($_SESSION['access_new_email']))
         {
             $this->start_page(translate('Accès refusé'));
@@ -139,6 +144,7 @@ class Account extends Controller {
 
     public function send_new_mail(){
         session_start();
+        $_SESSION['last_page'] = $_SESSION['param'];
         if(!isset($_SESSION['access_new_email']))
         {
             $this->start_page(translate('Accès refusé'));
@@ -220,6 +226,7 @@ class Account extends Controller {
 
     public function mail_change(){
         session_start();
+        $_SESSION['last_page'] = $_SESSION['param'];
         $this->start_page(translate('Adresse mail changée'));
 
         if(isset($_SESSION['email_changed']))
@@ -265,6 +272,7 @@ class Account extends Controller {
     public function modify_password(){
 
         session_start();
+        $_SESSION['last_page'] = $_SESSION['param'];
         $this->isConnect();
         if(isset($_SESSION['pass_has_change'])){
             $this->start_page(translate("Mot de passe changé"));
@@ -287,6 +295,7 @@ class Account extends Controller {
     public function send_pass(){
 
         session_start();
+
         $this->isConnect();
         require ROOT . '/model/connexion.php'; // on charge des fonctions déja écrite antérieurement(donc pas la peine de les réécrire)
         require ROOT . '/model/forgotpass.php';

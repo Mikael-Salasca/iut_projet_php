@@ -16,7 +16,7 @@ class Translator extends Controller
     public function control()
     {
         session_start();
-
+        $_SESSION['last_page'] = $_SESSION['param'];
         if (!isset($_SESSION['user']) || !$_SESSION['isTranslator']) {
             header('location:/');
             exit();
@@ -324,6 +324,7 @@ class Translator extends Controller
     public function export()
     {
         session_start();
+        $_SESSION['last_page'] = $_SESSION['param'];
         if (!isset($_SESSION['user']) || !$_SESSION['isTranslator']) {
             header('location:/');
             exit();

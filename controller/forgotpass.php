@@ -11,6 +11,7 @@ class Forgotpass extends Controller {
     public function forgot()
     {
         session_start();
+        $_SESSION['last_page'] = $_SESSION['param'];
         $this->start_page(translate('Récupérer mon mot de passe'));
         require ROOT . '/views/forgotpass/recoverypassView.php';
         $this->end_page();
@@ -131,6 +132,7 @@ class Forgotpass extends Controller {
 
     public function changepass(){
         session_start();
+        $_SESSION['last_page'] = $_SESSION['param'];
         $this->start_page(translate('Récupérer mon mot de passe'));
         if(isset($_SESSION['reset_name'])) {
             require ROOT . '/views/forgotpass/resetPassOkView.php';

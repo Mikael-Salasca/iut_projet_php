@@ -64,6 +64,12 @@ Class Home extends Controller {
 
         session_start();
         $_SESSION['lang'] = 'FRENCH';
+        if($_SESSION['last_page'] != '/home/fr' || $_SESSION['last_page'] != '/home/en')
+        {
+
+            header('location:'.$_SESSION['last_page']);
+            exit();
+        }
         header('location:/');
 
     }
@@ -73,6 +79,12 @@ Class Home extends Controller {
 
         session_start();
         $_SESSION['lang'] = 'ENGLISH';
+        if($_SESSION['last_page'] != '/home/fr' || $_SESSION['last_page'] != '/home/en')
+        {
+
+            header('location:'.$_SESSION['last_page']);
+            exit();
+        }
         header('location:/');
 
     }

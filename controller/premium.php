@@ -8,6 +8,7 @@ class Premium extends Controller {
     public function my_request()
     {
         session_start();
+        $_SESSION['last_page'] = $_SESSION['param'];
         if( !isset($_SESSION['user']) || !isset($_SESSION['isPrenium']))
         {
             header('location:/');

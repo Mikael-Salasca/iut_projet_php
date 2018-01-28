@@ -6,9 +6,11 @@
  * Time: 17:25
  */
 define("ROOT",__DIR__);
+session_start();
 
 require 'core/controller.php';
 $params = explode('/',$_SERVER['REDIRECT_URL']);
+
 if (isset($params[1])&& isset($params[2])) {
 
     $controller = $params[1];
@@ -18,6 +20,7 @@ if (isset($params[1])&& isset($params[2])) {
         if (class_exists($controller)) {
             $controllerObject = new $controller();
             if (is_callable(array($controllerObject, $action))) {
+                $_SESSION['param'] = '/' . $controller .'/' . $action;
                 $controllerObject->$action();
             }
             else {

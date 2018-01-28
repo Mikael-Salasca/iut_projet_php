@@ -10,7 +10,7 @@ class Translation extends Controller
     function translate()
     {
         session_start();
-
+        $_SESSION['last_page'] = $_SESSION['param'];
         if (!isset($_SESSION['lang_Input'])) {
             $_SESSION['lang_Input'][0] = "FRENCH"; // par default
             $_SESSION['lang_Input'][1] = "ENGLISH";

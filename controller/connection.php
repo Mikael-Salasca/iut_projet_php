@@ -8,7 +8,7 @@ class Connection extends Controller {
 
     public function connect() {
         session_start();
-
+        $_SESSION['last_page'] = $_SESSION['param'];
         if(isset($_SESSION['user']))
         {
             header('location:/');
@@ -60,7 +60,7 @@ class Connection extends Controller {
     public function impossible(){
 
         session_start();
-
+        $_SESSION['last_page'] = $_SESSION['param'];
         if(isset($_SESSION['user']))
         {
             header('location:/');
