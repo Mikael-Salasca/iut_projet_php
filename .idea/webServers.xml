@@ -5,7 +5,7 @@
       <webServer id="48435332-d849-4f58-a9c0-8a021310bebd" name="myserv" url="http://ftp-mikaelsalasca.alwaysdata.net">
         <fileTransfer host="ftp-mikaelsalasca.alwaysdata.net" port="21">
           <advancedOptions>
-            <advancedOptions dataProtectionLevel="Private" />
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" />
           </advancedOptions>
           <option name="port" value="21" />
         </fileTransfer>
