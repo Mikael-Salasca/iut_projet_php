@@ -7,7 +7,7 @@ if (!class_exists('UsersDataBase'))
 }
 if(!class_exists('User')) {
 
-    require ROOT . '/core/User.php';
+    require ROOT . '/core/user.php';
 }
 
 function checkConnexionValid($email,$passwd)

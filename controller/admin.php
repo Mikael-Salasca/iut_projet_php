@@ -1,6 +1,6 @@
  <?php
 
-require ROOT . '/core/User.php';
+require ROOT . '/core/user.php';
 require ROOT . '/model/userinfo.php';
 require ROOT . '/model/lang.php';
 

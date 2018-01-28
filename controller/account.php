@@ -1,10 +1,10 @@
 <?php
 
 
-require ROOT . '/core/User.php';
+require ROOT . '/core/user.php';
 require ROOT . '/model/accountmodif.php';
 
-class account extends Controller {
+class Account extends Controller {
 
     public function informations() {
         session_start();

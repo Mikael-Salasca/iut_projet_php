@@ -23,7 +23,7 @@ class Forgotpass extends Controller {
         session_start();
 
         //verifier que le compte est bien associé au mail envoyé
-        $name = filter_input(INPUT_POST,'account');
+        $name = filter_input(INPUT_POST, 'Account');
         $email = filter_input(INPUT_POST,'mail');
 
         if(!checkAccountWithMail($name,$email)){ // Si les deux ne sont pas associés
