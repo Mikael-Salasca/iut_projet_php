@@ -90,7 +90,7 @@
             <?php echo 'page ' . $_SESSION['page_actuelle_premium'] .' / page ' . $_SESSION['nb_page_premium']; ?>
             <?php
             if($page_suivante <= $_SESSION['nb_page_premium']) {
-                echo '==><a href="/premium/operation?page="' . $page_suivante . '>' . translate('Suivant.') . '</a>';
+                echo '==><a href="/premium/operation?page="' . $page_suivante . '>' . translate('Suivant') . '</a>';
                 echo '==><a href="/premium/operation?page="' . $_SESSION['nb_page_premium'] . '>' . translate('Fin') . '</a>';
             }
             ?>
