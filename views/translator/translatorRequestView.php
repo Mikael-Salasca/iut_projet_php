@@ -1,9 +1,9 @@
 <div class="card-header">
-    <h2>Demandes de traductions</h2>
+    <h2><?php echo translate('Demandes de traductions')?></h2>
 </div>
 
 
-<a style="text-decoration: none;" href="/translator/change_control"><div class="link-2">Acceder aux traductions existantes</div></a>
+<a style="text-decoration: none;" href="/translator/change_control"><div class="link-2">><?php echo translate('Acceder aux traductions existantes')?></div></a>
 <br>
 <div class = "page-manage">
 
@@ -84,7 +84,7 @@
                 </select>
 
             <td>
-                <input type="submit" class="button-50" value="Appliquer le choix des langues" </td>
+                <input type="submit" class="button-50" value="><?php echo translate('Appliquer le choix des langues')?>" </td>
 
 
             </td>

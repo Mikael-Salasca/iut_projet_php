@@ -1,13 +1,13 @@
 <div class="card-header">
-    <h2>Traductions existantes</h2>
+    <h2><?php echo('Traductions existantes')?></h2>
 </div>
-<a style="text-decoration:none" href="/translator/export"><div class="link-2 pos-right"><?php translate('Exporter des traductions')?></div></a>
-<a style="text-decoration: none;" href="/translator/change_control"><div class="link-2"><?php translate('Acceder aux demandes')?></div></a>
+<a style="text-decoration:none" href="/translator/export"><div class="link-2 pos-right"><?php echo translate('Exporter des traductions')?></div></a>
+<a style="text-decoration: none;" href="/translator/change_control"><div class="link-2"><?php echo translate('Acceder aux demandes')?></div></a>
 <br>
 <div class = "page-manage">
     <?php
     if($page_precedente != 0) {
-        echo '<a href="/translator/operation_exist?page=1">Début</a>';
+        echo '<a href="/translator/operation_exist?page=1">' . translate('Début').'</a>';
         echo ' <== ' . '<a href="/translator/operation_exist?page=' . $page_precedente . '">' . translate('Précédent').'</a><==';
     }
     ?>
@@ -39,7 +39,7 @@
 
         ?>
     </select>
-    <button type="submit">' <?php echo translate('valider')?></button>
+    <button type="submit"><?php echo translate('valider')?></button>
 </form>
 
 <div class="row-compte">
@@ -77,7 +77,7 @@
                     </select>
 
                 <td>
-                    <input type="submit" class="button-50" value="<?php translate('Appliquer le choix des langues')?>"</td>
+                    <input type="submit" class="button-50" value="<?php echo translate('Appliquer le choix des langues')?>"</td>
 
 
                 </td>
